@@ -131,13 +131,19 @@ public struct ColorButtonStyle: ButtonStyle {
         #endif
     }
 }
+//実装中
 
-
+//listStyleを真似しようとしている部分
+//https://developer.apple.com/documentation/swiftui/liststyle
 @available(iOS 14.0,macOS 11,*)
-struct MyTitle: ViewModifier {
+public struct onboardingStyle: ViewModifier {
     let color: Color
     
-    func body(content: Content) -> some View {
+    init(){
+        color = .accentColor
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.largeTitle)
             .foregroundColor(.white)
@@ -146,3 +152,20 @@ struct MyTitle: ViewModifier {
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
+@available(iOS 14.0,macOS 11,*)
+extension View {
+    func onboardingStyle(color: Color) -> some View {
+        self.modifier(OnboardingUI.onboardingStyle())
+    }
+}
+//ListStyleプロトコルを真似しようとしている部分
+//https://developer.apple.com/documentation/swiftui/liststyle
+protocol OnboardingStyle {
+    static var title: String { set get }
+}
+//PlainListStyle構造体を真似しようとしている部分
+//https://developer.apple.com/documentation/swiftui/plainliststyle
+struct TitleOnboardingStyle: OnboardingStyle {
+    static var title = "test"
+}
+
