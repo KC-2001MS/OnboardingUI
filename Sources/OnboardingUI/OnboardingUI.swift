@@ -26,17 +26,15 @@ public struct OnboardingTitle: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .accessibilityLabel(Text(localizedText))
-            } else if stringText != "" {
+            }
+            if stringText != "" {
                 Text(stringText)
                     .fontWeight(.bold)
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .accessibilityLabel(Text(stringText))
-            } else {
-                
             }
         }
-
     }
 }
 //項目とシステムイメージ（完成）
@@ -78,33 +76,72 @@ public struct OnboardingItem<Content: View>: View {
 //項目タイトル
 @available(iOS 14.0,macOS 11,*)
 public struct ItemTitle: View {
-    let text: LocalizedStringKey
+    let localizedText: LocalizedStringKey
+    let stringText: String
     
     init(_ key: LocalizedStringKey){
-        text = key
+        self.localizedText = key
+        self.stringText = ""
     }
+    
+    init(_ text: String) {
+        self.localizedText = ""
+        self.stringText = text
+    }
+    
     public var body: some View {
-        Text(text)
-            .font(.system(size: 15))
-            .font(.headline)
-            .foregroundColor(.primary)
-            .bold()
+        Group {
+            if localizedText != "" {
+                Text(localizedText)
+                    .font(.system(size: 15))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .bold()
+            }
+            if stringText != "" {
+                Text(stringText)
+                    .font(.system(size: 15))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .bold()
+            }
+        }
     }
 }
 //項目内容
 @available(iOS 14.0,macOS 11,*)
 public struct ItemContent: View {
-    let text: LocalizedStringKey
+    let localizedText: LocalizedStringKey
+    let stringText: String
     
     init(_ key: LocalizedStringKey){
-        text = key
+        self.localizedText = key
+        self.stringText = ""
     }
+    
+    init(_ text: String) {
+        self.localizedText = ""
+        self.stringText = text
+    }
+    
     public var body: some View {
-        Text(text)
-            .font(.system(size: 15))
-            .font(.body)
-            .lineSpacing(3)
-            .foregroundColor(.secondary)
+        Group {
+            if localizedText != "" {
+                Text(localizedText)
+                    .font(.system(size: 15))
+                    .font(.body)
+                    .lineSpacing(3)
+                    .foregroundColor(.secondary)
+            }
+            if stringText != "" {
+                Text(stringText)
+                    .font(.system(size: 15))
+                    .font(.body)
+                    .lineSpacing(3)
+                    .foregroundColor(.secondary)
+
+            }
+        }
     }
 }
 //続けるボタン
@@ -112,6 +149,9 @@ public struct ItemContent: View {
 public struct ContinueButton: View {
     var color: Color = Color.accentColor
     let action: () -> Void
+    
+    
+    
     public var body: some View {
         Button(action: action) {
             Text("Continue")
