@@ -131,3 +131,18 @@ public struct ColorButtonStyle: ButtonStyle {
         #endif
     }
 }
+
+
+@available(iOS 14.0,macOS 11,*)
+struct MyTitle: ViewModifier {
+    let color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .padding()
+            .background(color)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
