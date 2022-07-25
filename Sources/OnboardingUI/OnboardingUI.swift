@@ -11,6 +11,7 @@ public struct OnboardingTitle: View {
     init(_ key: LocalizedStringKey){
         text = key
     }
+    
     public var body: some View {
         Text(text)
             .fontWeight(.bold)
@@ -27,9 +28,15 @@ public struct OnboardingItem<Content: View>: View {
     let imageColor: Color
     
     init(systemName: String,imageColor: Color,@ViewBuilder content: () -> Content) {
-            self.content = content()
+        self.content = content()
         self.systemName = systemName
         self.imageColor = imageColor
+    }
+    
+    init(systemName: String,@ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.systemName = systemName
+        self.imageColor = Color.accentColor
     }
     
     public var body: some View {
@@ -84,27 +91,43 @@ public struct ItemContent: View {
 //続けるボタン
 @available(iOS 14.0,macOS 11,*)
 public struct ContinueButton: View {
+    var color: Color = Color.accentColor
     let action: () -> Void
     public var body: some View {
-        #if os(iOS)
         Button(action: action) {
             Text("Continue")
                 .bold()
                 .foregroundColor(.white)
+#if os(iOS)
                 .frame(minWidth: 0, maxWidth: .infinity)
+#elseif os(OSX)
+                .frame(minWidth: 0, maxWidth: 130)
+#endif
         }
-        .padding([.top, .bottom], 15)
-        .background(Color.accentColor)
-        .cornerRadius(15)
-        .padding(OnboardingEdgeInsets)
+        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .accentColor))
         .accessibilityInputLabels(["Continue","Start","Close","Button"])
+    }
+}
+//ボタンスタイル
+@available(iOS 14.0,macOS 11,*)
+public struct ColorButtonStyle: ButtonStyle {
+    var foregroundColor: Color = .white
+    var backgroundColor: Color = .accentColor
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+        #if os(iOS)
+            .padding([.top, .bottom], 15)
         #elseif os(OSX)
-        Button(action: action) {
-            Text("Continue")
-                .bold()
-                .foregroundColor(.white)
-        }
-        .padding()
+            .padding([.top, .bottom], 10)
+        #endif
+            .foregroundColor(foregroundColor)
+            .background(backgroundColor)
+        #if os(iOS)
+            .cornerRadius(15)
+            .padding(OnboardingEdgeInsets)
+        #elseif os(OSX)
+            .cornerRadius(7)
+            .padding(OnboardingEdgeInsets)
         #endif
     }
 }
