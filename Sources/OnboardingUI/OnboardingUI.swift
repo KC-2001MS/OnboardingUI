@@ -1,9 +1,10 @@
 import SwiftUI
 
-//寸法関連
+//寸法関連（完成）
 @available(iOS 14.0,macOS 11,*)
 public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
-//オンボーディング画面タイトル（完成）
+
+//タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingTitle: View {
     let localizedText: LocalizedStringKey
@@ -37,7 +38,7 @@ public struct OnboardingTitle: View {
         }
     }
 }
-//項目とシステムイメージ（完成）
+//項目View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingItem<Content: View>: View {
     let content: Content
@@ -73,7 +74,7 @@ public struct OnboardingItem<Content: View>: View {
         .padding(OnboardingEdgeInsets)
     }
 }
-//項目タイトル
+//項目タイトルView
 @available(iOS 14.0,macOS 11,*)
 public struct ItemTitle: View {
     let localizedText: LocalizedStringKey
@@ -108,7 +109,7 @@ public struct ItemTitle: View {
         }
     }
 }
-//項目内容
+//項目内容View
 @available(iOS 14.0,macOS 11,*)
 public struct ItemContent: View {
     let localizedText: LocalizedStringKey
@@ -144,7 +145,7 @@ public struct ItemContent: View {
         }
     }
 }
-//続けるボタン
+//続けるボタンView
 @available(iOS 14.0,macOS 11,*)
 public struct ContinueButton: View {
     var color: Color = Color.accentColor
@@ -238,4 +239,16 @@ protocol OnboardingStyle {
 struct TitleOnboardingStyle: OnboardingStyle {
     static var title = "test"
 }
-
+@available(iOS 14.0,macOS 11,*)
+struct OnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        OnboardingTitle("Onboarding Title")
+        ItemTitle("ItemTitle")
+        ItemContent("ItemContent")
+        
+        OnboardingItem(systemName: "doc") {
+            ItemTitle("OnboardingItem")
+            ItemContent("OnboardingItem")
+        }
+    }
+}
