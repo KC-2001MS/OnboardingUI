@@ -3,24 +3,43 @@ import SwiftUI
 //寸法関連
 @available(iOS 14.0,macOS 11,*)
 public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
-//オンボーディング画面タイトル
+//オンボーディング画面タイトル（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingTitle: View {
-    let text: LocalizedStringKey
-    
+    let localizedText: LocalizedStringKey
+    let stringText: String
     init(_ key: LocalizedStringKey){
-        text = key
+        self.localizedText = key
+        self.stringText = ""
+    }
+    
+    init(_ text: String) {
+        self.localizedText = ""
+        self.stringText = text
     }
     
     public var body: some View {
-        Text(text)
-            .fontWeight(.bold)
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
-            .accessibilityLabel(Text(text))
+        Group {
+            if localizedText != "" {
+                Text(localizedText)
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .accessibilityLabel(Text(localizedText))
+            } else if stringText != "" {
+                Text(stringText)
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .accessibilityLabel(Text(stringText))
+            } else {
+                
+            }
+        }
+
     }
 }
-//オンボーディング画面項目
+//項目とシステムイメージ（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingItem<Content: View>: View {
     let content: Content
@@ -108,27 +127,38 @@ public struct ContinueButton: View {
         .accessibilityInputLabels(["Continue","Start","Close","Button"])
     }
 }
-//ボタンスタイル
+//ボタンスタイル（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ColorButtonStyle: ButtonStyle {
     var foregroundColor: Color = .white
     var backgroundColor: Color = .accentColor
+    
+    init() {
+        self.foregroundColor = .white
+        self.backgroundColor = .accentColor
+    }
+    
+    init(foregroundColor: Color,backgroundColor: Color) {
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+    }
+    
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-        #if os(iOS)
+#if os(iOS)
             .padding([.top, .bottom], 15)
-        #elseif os(OSX)
+#elseif os(OSX)
             .padding([.top, .bottom], 10)
-        #endif
+#endif
             .foregroundColor(foregroundColor)
             .background(backgroundColor)
-        #if os(iOS)
+#if os(iOS)
             .cornerRadius(15)
             .padding(OnboardingEdgeInsets)
-        #elseif os(OSX)
+#elseif os(OSX)
             .cornerRadius(7)
             .padding(OnboardingEdgeInsets)
-        #endif
+#endif
     }
 }
 //実装中
