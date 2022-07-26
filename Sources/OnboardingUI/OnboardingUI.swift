@@ -239,6 +239,7 @@ protocol OnboardingStyle {
 struct TitleOnboardingStyle: OnboardingStyle {
     static var title = "test"
 }
+
 @available(iOS 14.0,macOS 11,*)
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
@@ -250,5 +251,9 @@ struct OnboardingView_Previews: PreviewProvider {
             ItemTitle("OnboardingItem")
             ItemContent("OnboardingItem")
         }
+        
+        ContinueButton(action: {
+            
+        })
     }
 }
