@@ -74,7 +74,7 @@ public struct OnboardingItem<Content: View>: View {
         .padding(OnboardingEdgeInsets)
     }
 }
-//項目タイトルView
+//項目タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemTitle: View {
     let localizedText: LocalizedStringKey
@@ -109,7 +109,7 @@ public struct ItemTitle: View {
         }
     }
 }
-//項目内容View
+//項目内容View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemContent: View {
     let localizedText: LocalizedStringKey
@@ -145,13 +145,11 @@ public struct ItemContent: View {
         }
     }
 }
-//続けるボタンView
+//続けるボタンView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ContinueButton: View {
     var color: Color = Color.accentColor
     let action: () -> Void
-    
-    
     
     public var body: some View {
         Button(action: action) {

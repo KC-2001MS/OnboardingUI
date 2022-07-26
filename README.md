@@ -1,20 +1,20 @@
 # OnboardingUI
 Apple純正アプリのようなオンボーディングを実装できるSwiftUIライブラリ
 
-##概要(Description)
+## 概要(Description)
 このライブラリではAppleの純正アプリで実装されているようなオンボーディングのデザインを自身のアプリに実装できるライブラリです。
 SwiftUI製のライブラリなので、より少ない行数でオンボーディングを実装できます。新機能の紹介や初回起動時の表示に最適です。
 
-##実演(Demo)
+## 実演(Demo)
 以下のような、オンボーディングを実装することができます。
-###macOS
+### macOS
 
-###iPadOS
+### iPadOS
 
-###iOS
+### iOS
 
 
-##必要条件(Requirement)
+## 必要条件(Requirement)
 このライブラリを使用するには以下の環境が必要です。
 Mac: macOS Big sur 11 以上
 iPad: iPadOS 15 以上
@@ -23,30 +23,30 @@ iOS: iOS 15 以上
 このため、Xcodeは以上のバージョンである必要があります。
 Xcode 12 以上
 ## 使い方(Usage)
-###オンボーディングのタイトル表示するためのメゾット
+### オンボーディングのタイトル表示するためのメゾット
 ```swift
 
 ```
-###オンボーディングの項目のタイトルを表示するためのメゾット
+### オンボーディングの項目のタイトルを表示するためのメゾット
 ```swift
 
 ```
-###オンボーディングの項目を作成するためのメゾット
-```swift
-
-```
-
-###オンボーディングのボタンを作成するメゾット
+### オンボーディングの項目を作成するためのメゾット
 ```swift
 
 ```
 
-##インストール(Install)
+### オンボーディングのボタンを作成するメゾット
+```swift
+
+```
+
+## インストール(Install)
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
-##貢献(Contribution)
+## 貢献(Contribution)
 
-##ライセンス(Licence)
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-##作者(Author)
-[tcnksm](https://github.com/tcnksm)
+## ライセンス(Licence)
+[OnboardingUI](https://github.com/KC-2001MS/OnboardingUI)
+## 作者(Author)
+[KC-2001MS](https://github.com/KC-2001MS)
