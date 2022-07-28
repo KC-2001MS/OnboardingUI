@@ -96,6 +96,6 @@ Xcode 12 以上
 ## 貢献(Contribution)
 
 ## ライセンス(Licence)
-[OnboardingUI](https://github.com/KC-2001MS/OnboardingUI)
+[OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
 ## 作者(Author)
 [KC-2001MS](https://github.com/KC-2001MS)
