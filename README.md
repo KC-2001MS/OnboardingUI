@@ -23,22 +23,70 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 このため、Xcodeは以上のバージョンである必要があります。
 Xcode 12 以上
 ## 使い方(Usage)
-### オンボーディングのタイトル表示するためのメゾット
+### オンボーディングのタイトル表示する
+以下のように、二つの方法で簡単にオンボーディングのタイトルを作成することができます。
 ```swift
-
+        OnboardingTitle("Onboarding Title")
 ```
-### オンボーディングの項目のタイトルを表示するためのメゾット
+または
 ```swift
-
+        Text("Onboarding Title")
+            .onboardingStyle(style: .title)
 ```
-### オンボーディングの項目を作成するためのメゾット
-```swift
 
+### オンボーディングの項目のタイトルを表示する
+以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
+```swift
+        ItemTitle("ItemTitle")
+```
+または
+```swift
+        Text("ItemTitle")
+            .onboardingStyle(style: .itemTitle)
+```
+
+### オンボーディングの項目内のテキストを表示する
+以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
+```swift
+        ItemContent("ItemContent")
+```
+または
+```swift
+        Text("ItemContent")
+                .onboardingStyle(style: .itemContent)
+```
+### オンボーディングの項目を作成する
+```swift
+        OnboardingItem(systemName: "doc",imageColor: .red) {
+            ItemTitle("ItemTitle")
+            ItemContent("ItemContent")
+        }
+```
+または
+```swift
+        OnboardingItem(systemName: "doc",imageColor: .red) {
+            Text("ItemTitle")
+                .onboardingStyle(style: .itemTitle)
+            Text("ItemContent")
+                .onboardingStyle(style: .itemContent)
+        }
 ```
 
 ### オンボーディングのボタンを作成するメゾット
 ```swift
-
+        ContinueButton(color: .red){
+            
+        }
+```
+または
+```swift
+        Button(action: {
+            
+        }) {
+            Text("Continue")
+                .onboardingStyle(style: .button)
+        }
+        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
 
 ## インストール(Install)

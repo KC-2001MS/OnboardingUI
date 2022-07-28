@@ -23,21 +23,18 @@ public struct OnboardingTitle: View {
         Group {
             if localizedText != "" {
                 Text(localizedText)
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
+                    .onboardingStyle(style: .title)
                     .accessibilityLabel(Text(localizedText))
             }
             if stringText != "" {
                 Text(stringText)
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
+                    .onboardingStyle(style: .title)
                     .accessibilityLabel(Text(stringText))
             }
         }
     }
 }
+
 //項目View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingItem<Content: View>: View {
@@ -74,6 +71,7 @@ public struct OnboardingItem<Content: View>: View {
         .padding(OnboardingEdgeInsets)
     }
 }
+
 //項目タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemTitle: View {
@@ -94,21 +92,16 @@ public struct ItemTitle: View {
         Group {
             if localizedText != "" {
                 Text(localizedText)
-                    .font(.system(size: 15))
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .bold()
+                    .onboardingStyle(style: .itemTitle)
             }
             if stringText != "" {
                 Text(stringText)
-                    .font(.system(size: 15))
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .bold()
+                    .onboardingStyle(style: .itemTitle)
             }
         }
     }
 }
+
 //項目内容View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemContent: View {
@@ -129,43 +122,41 @@ public struct ItemContent: View {
         Group {
             if localizedText != "" {
                 Text(localizedText)
-                    .font(.system(size: 15))
-                    .font(.body)
-                    .lineSpacing(3)
-                    .foregroundColor(.secondary)
+                    .onboardingStyle(style: .itemContent)
             }
             if stringText != "" {
                 Text(stringText)
-                    .font(.system(size: 15))
-                    .font(.body)
-                    .lineSpacing(3)
-                    .foregroundColor(.secondary)
-
+                    .onboardingStyle(style: .itemContent)
             }
         }
     }
 }
+
 //続けるボタンView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ContinueButton: View {
     var color: Color = Color.accentColor
     let action: () -> Void
+    init(action: @escaping () -> Void){
+        self.color = .accentColor
+        self.action = action
+    }
+    
+    init(color: Color,action: @escaping () -> Void) {
+        self.color = color
+        self.action = action
+    }
     
     public var body: some View {
         Button(action: action) {
             Text("Continue")
-                .bold()
-                .foregroundColor(.white)
-#if os(iOS)
-                .frame(minWidth: 0, maxWidth: .infinity)
-#elseif os(OSX)
-                .frame(minWidth: 0, maxWidth: 130)
-#endif
+                .onboardingStyle(style: .button)
         }
-        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .accentColor))
+        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: color))
         .accessibilityInputLabels(["Continue","Start","Close","Button"])
     }
 }
+
 //ボタンスタイル（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ColorButtonStyle: ButtonStyle {
@@ -200,58 +191,84 @@ public struct ColorButtonStyle: ButtonStyle {
 #endif
     }
 }
-//実装中
 
-//listStyleを真似しようとしている部分
-//https://developer.apple.com/documentation/swiftui/liststyle
-@available(iOS 14.0,macOS 11,*)
-public struct onboardingStyle: ViewModifier {
-    let color: Color
-    
-    init(){
-        color = .accentColor
-    }
-    
-    public func body(content: Content) -> some View {
-        content
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .padding()
-            .background(color)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
-@available(iOS 14.0,macOS 11,*)
-extension View {
-    func onboardingStyle(color: Color) -> some View {
-        self.modifier(OnboardingUI.onboardingStyle())
-    }
-}
-//ListStyleプロトコルを真似しようとしている部分
-//https://developer.apple.com/documentation/swiftui/liststyle
-protocol OnboardingStyle {
-    static var title: String { set get }
-}
-//PlainListStyle構造体を真似しようとしている部分
-//https://developer.apple.com/documentation/swiftui/plainliststyle
-struct TitleOnboardingStyle: OnboardingStyle {
-    static var title = "test"
+//列挙型(スタイル指定用)
+enum OnboardingStyle {
+    case title
+    case itemTitle
+    case itemContent
+    case button
 }
 
+//スタイル
+@available(iOS 14.0,macOS 11,*)
+extension Text {
+    func onboardingStyle(style: OnboardingStyle) -> some View {
+        Group {
+            switch style {
+            case .title:
+                self
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+            case .itemTitle:
+                self
+                    .font(.system(size: 15))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .bold()
+            case .itemContent:
+                self
+                    .font(.system(size: 15))
+                    .font(.body)
+                    .lineSpacing(3)
+                    .foregroundColor(.secondary)
+            case .button:
+                self
+                    .bold()
+                    .foregroundColor(.white)
+    #if os(iOS)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+    #elseif os(OSX)
+                    .frame(minWidth: 0, maxWidth: 130)
+    #endif
+            }
+        }
+    }
+}
+
+//表示確認
 @available(iOS 14.0,macOS 11,*)
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingTitle("Onboarding Title")
-        ItemTitle("ItemTitle")
-        ItemContent("ItemContent")
         
         OnboardingItem(systemName: "doc") {
-            ItemTitle("OnboardingItem")
-            ItemContent("OnboardingItem")
+            ItemTitle("ItemTitle")
+            ItemContent("ItemContent")
         }
         
-        ContinueButton(action: {
+        ContinueButton(color: .accentColor){
             
-        })
+        }
+        
+        Text("Onboarding Title")
+            .onboardingStyle(style: .title)
+        
+        OnboardingItem(systemName: "doc",imageColor: .red) {
+            Text("ItemTitle")
+                .onboardingStyle(style: .itemTitle)
+            Text("ItemContent")
+                .onboardingStyle(style: .itemContent)
+        }
+        
+        
+        Button(action: {
+            
+        }) {
+            Text("Continue")
+                .onboardingStyle(style: .button)
+        }
+        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
     }
 }
