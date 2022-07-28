@@ -1,5 +1,6 @@
 import SwiftUI
 
+let userDefaults = UserDefaults.standard
 //寸法関連（完成）
 @available(iOS 14.0,macOS 11,*)
 public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
@@ -237,6 +238,52 @@ extension Text {
     }
 }
 
+//初期画面実装
+@available(iOS 14.0,macOS 11,*)
+final class VersionStateObject: ObservableObject {
+    //現在のバージョン
+    private var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    //最後に開いたときのバージョン
+    private var lastOpenedVersion: String {
+        didSet {
+            userDefaults.set(lastOpenedVersion, forKey: "LastOpenedVersion")
+        }
+    }
+    //開いたことがあるか
+    @Published var isFirstLaunch: Bool
+    //アップデート後開いたことがあるか
+    @Published var isFirstLaunchAfterUpdate: Bool
+    //初期化
+    init() {
+        userDefaults.register(defaults:[
+            "LastOpenedVersion" : ""
+        ])
+        lastOpenedVersion = userDefaults.string(forKey: "LastOpenedVersion")!
+        isFirstLaunch = lastOpenedVersion == ""
+        let lhsComponents = filled(splitByDot(lastOpenedVersion), count: 3)
+        let rhsComponents = filled(splitByDot(version), count: 3)
+        isFirstLaunchAfterUpdate =
+        (lhsComponents[0] < rhsComponents[0] || lhsComponents[1] < rhsComponents[1]) && lastOpenedVersion != ""
+    }
+    //値の更新
+    func opened() {
+        lastOpenedVersion = version
+    }
+    
+}
+//バージョン番号をドットで分けて配列化
+func splitByDot(_ versionNumber: String) -> [Int] {
+    return versionNumber.split(separator: ".").map { string -> Int in
+        return Int(string) ?? 0
+    }
+}
+//配列の要素数を統一
+func filled(_ target: [Int], count: Int) -> [Int] {
+    return (0..<count).map { i -> Int in
+        (i < target.count) ? target[i] : 0
+    }
+}
+
 //表示確認
 @available(iOS 14.0,macOS 11,*)
 struct OnboardingView_Previews: PreviewProvider {
@@ -255,7 +302,7 @@ struct OnboardingView_Previews: PreviewProvider {
         Text("Onboarding Title")
             .onboardingStyle(style: .title)
         
-        OnboardingItem(systemName: "doc",imageColor: .red) {
+        OnboardingItem(systemName: "doc.fill",imageColor: .red) {
             Text("ItemTitle")
                 .onboardingStyle(style: .itemTitle)
             Text("ItemContent")
