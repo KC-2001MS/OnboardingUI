@@ -228,11 +228,11 @@ extension Text {
                 self
                     .bold()
                     .foregroundColor(.white)
-    #if os(iOS)
+#if os(iOS)
                     .frame(minWidth: 0, maxWidth: .infinity)
-    #elseif os(OSX)
+#elseif os(OSX)
                     .frame(minWidth: 0, maxWidth: 130)
-    #endif
+#endif
             }
         }
     }
@@ -317,5 +317,7 @@ struct OnboardingView_Previews: PreviewProvider {
                 .onboardingStyle(style: .button)
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
+        
+        
     }
 }
