@@ -34,7 +34,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ```
 
 のコードで以下のようなビューを作成できます。
-![iOS版]("images/iOS_Onboarding Title.png")
+![iOS版](images/iOS_OnboardingTitle.png "iOS_Onboarding Title")
 ### オンボーディングの項目のタイトルを表示する
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
 ```swift
