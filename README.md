@@ -33,6 +33,8 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
             .onboardingStyle(style: .title)
 ```
 
+のコードで以下のようなビューを作成できます。
+![iOS版](images/iOS_Onboarding Title.png "iOS_Onboarding Title")
 ### オンボーディングの項目のタイトルを表示する
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
 ```swift
@@ -43,7 +45,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         Text("ItemTitle")
             .onboardingStyle(style: .itemTitle)
 ```
-
+のコードで以下のようなビューを作成できます。
 ### オンボーディングの項目内のテキストを表示する
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
 ```swift
@@ -54,6 +56,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         Text("ItemContent")
                 .onboardingStyle(style: .itemContent)
 ```
+のコードで以下のようなビューを作成できます。
 ### オンボーディングの項目を作成する
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
@@ -70,6 +73,8 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
                 .onboardingStyle(style: .itemContent)
         }
 ```
+のコードで以下のようなビューを作成できます。
+(imageColorはオプションで省略可能です。)
 
 ### オンボーディングのボタンを作成する
 ```swift
@@ -87,7 +92,8 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
-
+のコードで以下のようなビューを作成できます。
+(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)
 ## インストール(Install)
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
