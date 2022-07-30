@@ -107,7 +107,11 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
 ## 貢献(Contribution)
-
+1. Fork it
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create new Pull Request
 ## ライセンス(Licence)
 [OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
 ## 作者(Author)
