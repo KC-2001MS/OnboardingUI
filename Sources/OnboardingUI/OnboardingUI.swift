@@ -302,7 +302,7 @@ struct OnboardingView_Previews: PreviewProvider {
         Text("Onboarding Title")
             .onboardingStyle(style: .title)
         
-        OnboardingItem(systemName: "doc.fill",imageColor: .red) {
+        OnboardingItem(systemName: "doc",imageColor: .red) {
             Text("ItemTitle")
                 .onboardingStyle(style: .itemTitle)
             Text("ItemContent")

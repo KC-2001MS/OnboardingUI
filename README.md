@@ -23,7 +23,6 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ※　watchOSおよびtvOSには対応しません。理由は、私がこの二つのOSが動くハードを所有していないからです。私のモチベーションとみなさまのご協力によっては、実装されるかも知れませんので、これらでの対応をお望みでしたら、プルリクエストをお願いいたします。
 ## 使い方(Usage)
 ### オンボーディングのタイトル表示する
-以下のように、二つの方法で簡単にオンボーディングのタイトルを作成することができます。
 ```swift
         OnboardingTitle("Onboarding Title")
 ```
@@ -34,8 +33,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ```
 
 のコードで以下のようなビューを作成できます。
-![iOS版](images/iOS_OnboardingTitle.png "iOS_Onboarding Title")
-### オンボーディングの項目のタイトルを表示する
+![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")
+
+### オンボーディングの項目のタイトルのテキストを表示する
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
 ```swift
         ItemTitle("ItemTitle")
@@ -45,9 +45,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         Text("ItemTitle")
             .onboardingStyle(style: .itemTitle)
 ```
-のコードで以下のようなビューを作成できます。
+
 ### オンボーディングの項目内のテキストを表示する
-以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
+以下のように、二つの方法で簡単にオンボーディングの項目内のテキストを作成することができます。
 ```swift
         ItemContent("ItemContent")
 ```
@@ -56,7 +56,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         Text("ItemContent")
                 .onboardingStyle(style: .itemContent)
 ```
-のコードで以下のようなビューを作成できます。
+
 ### オンボーディングの項目を作成する
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
@@ -73,8 +73,8 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
                 .onboardingStyle(style: .itemContent)
         }
 ```
-のコードで以下のようなビューを作成できます。
-(imageColorはオプションで省略可能です。)
+のコードで以下のようなビューを作成できます。(imageColorはオプションで省略可能です。)
+![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")
 
 ### オンボーディングのボタンを作成する
 ```swift
@@ -92,8 +92,8 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
-のコードで以下のようなビューを作成できます。
-(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)
+のコードで以下のようなビューを作成できます。(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)
+![iOS版](images/iOS_ContinueButton.png "Continue Button")
 ## インストール(Install)
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
