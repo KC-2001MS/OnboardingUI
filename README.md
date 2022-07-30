@@ -32,8 +32,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
             .onboardingStyle(style: .title)
 ```
 
-のコードで以下のようなビューを作成できます。
-![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")
+のコードで以下のようなビューを作成できます。  
+![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")  
+![macOS版](images/macOS_OnboardingTitle.png "Onboarding Title")  
 
 ### オンボーディングの項目のタイトルのテキストを表示する
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
@@ -73,8 +74,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
                 .onboardingStyle(style: .itemContent)
         }
 ```
-のコードで以下のようなビューを作成できます。(imageColorはオプションで省略可能です。)
-![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")
+のコードで以下のようなビューを作成できます。(imageColorはオプションで省略可能です。)  
+![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")  
+![macOS版](images/macOS_OnboardingItem.png "Onboarding Item")  
 
 ### オンボーディングのボタンを作成する
 ```swift
@@ -92,8 +94,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
-のコードで以下のようなビューを作成できます。(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)
-![iOS版](images/iOS_ContinueButton.png "Continue Button")
+のコードで以下のようなビューを作成できます。(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
+![iOS版](images/iOS_ContinueButton.png "Continue Button")  
+![macOS版](images/macOS_ContinueButton.png "Continue Button")  
 ## インストール(Install)
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
