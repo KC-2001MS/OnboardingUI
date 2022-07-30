@@ -8,11 +8,11 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ## 実演(Demo)
 以下のような、オンボーディングを実装することができます。
 ### macOS
-
+![macOS](images/macOS_Preview.png "macOS Preview")
 ### iPadOS
-
+![iPadOS](images/iPadOS_Preview.png "iPadOS Preview")
 ### iOS
-
+![iOS](images/iOS_Preview.png "iOS Preview")  
 
 ## 必要条件(Requirement)
 このライブラリを使用するには以下の環境が必要です。
@@ -33,7 +33,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ```
 
 のコードで以下のようなビューを作成できます。  
+#### iOS版
 ![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")  
+#### macOS版
 ![macOS版](images/macOS_OnboardingTitle.png "Onboarding Title")  
 
 ### オンボーディングの項目のタイトルのテキストを表示する
@@ -75,7 +77,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         }
 ```
 のコードで以下のようなビューを作成できます。(imageColorはオプションで省略可能です。)  
+#### iOS版
 ![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")  
+#### macOS版
 ![macOS版](images/macOS_OnboardingItem.png "Onboarding Item")  
 
 ### オンボーディングのボタンを作成する
@@ -95,7 +99,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
 のコードで以下のようなビューを作成できます。(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
+#### iOS版
 ![iOS版](images/iOS_ContinueButton.png "Continue Button")  
+#### macOS版
 ![macOS版](images/macOS_ContinueButton.png "Continue Button")  
 ## インストール(Install)
 このライブラリを使うには、Xcodeが必要です。
@@ -105,4 +111,5 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ## ライセンス(Licence)
 [OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
 ## 作者(Author)
-[KC-2001MS](https://github.com/KC-2001MS)
+[Keisuke Chinone(Iroiro)](https://github.com/KC-2001MS)
+
