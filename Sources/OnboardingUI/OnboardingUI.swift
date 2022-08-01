@@ -135,22 +135,25 @@ public struct ItemContent: View {
 
 //続けるボタンView（完成）
 @available(iOS 14.0,macOS 11,*)
-public struct ContinueButton: View {
+public struct OnboardingButton: View {
     var color: Color = Color.accentColor
+    var text: String
     let action: () -> Void
-    init(action: @escaping () -> Void){
+    init(text: String,action: @escaping () -> Void){
         self.color = .accentColor
+        self.text = text
         self.action = action
     }
     
-    init(color: Color,action: @escaping () -> Void) {
+    init(color: Color,text: String,action: @escaping () -> Void) {
         self.color = color
+        self.text = text
         self.action = action
     }
     
     public var body: some View {
         Button(action: action) {
-            Text("Continue")
+            Text(text)
                 .onboardingStyle(style: .button)
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: color))
@@ -284,10 +287,107 @@ func filled(_ target: [Int], count: Int) -> [Int] {
     }
 }
 
+//うまくいかないフレームワーク実装
+@available(iOS 14.0,macOS 11,*)
+struct OnboardingView: View {
+    let title: String
+    let content: Array<OnboardingItemData>
+    let action: () -> Void
+    
+    init(title: String,
+         content: Array<OnboardingItemData>,
+         action: @escaping () -> Void) {
+        self.title = title
+        self.content = content
+        self.action = action
+        
+    }
+    
+    var body: some View {
+#if os(OSX)
+        VStack {
+            Group {
+                Spacer()
+                    .frame(height: 50)
+                OnboardingTitle(title)
+                Spacer()
+                    .frame(height: 50)
+                VStack(alignment: .leading, spacing: 40) {
+                    ForEach(content, id: \.title) { content in
+                        OnboardingItem(systemName: content.systemImage,
+                                       imageColor: content.color){
+                            ItemTitle(content.title)
+                            ItemContent(content.content)
+                        }
+                    }
+                }
+            }
+            
+            Spacer()
+                .frame(height: 70)
+            OnboardingButton(text: "Continue",action: action)
+            Spacer()
+                .frame(height: 30)
+        }
+#elseif os(iOS)
+        GeometryReader { geom in
+            VStack {
+                ScrollView {
+                    Spacer()
+                        .frame(height: geom.size.height/9.5)
+                    OnboardingTitle(title)
+                    Spacer()
+                        .frame(height: geom.size.height/14.5)
+                    VStack(alignment: .leading, spacing: 40) {
+                        ForEach(content, id: \.title) { content in
+                            OnboardingItem(systemName: content.systemImage,
+                                           imageColor: content.color){
+                                ItemTitle(content.title)
+                                ItemContent(content.content)
+                            }
+                        }
+                    }
+                }
+                Spacer()
+                OnboardingButton(text: "Continue",action: action)
+                Spacer()
+                    .frame(height: geom.size.height/14.5)
+            }
+        }
+#endif
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+struct OnboardingItemData {
+    var title: String
+    var content: String
+    var systemImage: String
+    var color: Color
+}
+
 //表示確認
 @available(iOS 14.0,macOS 11,*)
 struct OnboardingView_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
+        
+        let content = [
+            OnboardingItemData(title: "Editing Text",
+                               content: "Editing Text Content",
+                               systemImage: "doc.plaintext",
+                               color: .red),
+            OnboardingItemData(title: "Editing Text",
+                               content: "Editing Text Content",
+                               systemImage: "doc.plaintext",
+                               color: .red),
+            OnboardingItemData(title: "Editing Text",
+                               content: "Editing Text Content",
+                               systemImage: "doc.plaintext",
+                               color: .red)
+        ]
+        
         OnboardingTitle("Onboarding Title")
         
         OnboardingItem(systemName: "doc") {
@@ -295,7 +395,7 @@ struct OnboardingView_Previews: PreviewProvider {
             ItemContent("ItemContent")
         }
         
-        ContinueButton(color: .accentColor){
+        OnboardingButton(color: .accentColor, text: "Continue"){
             
         }
         
@@ -318,6 +418,10 @@ struct OnboardingView_Previews: PreviewProvider {
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
         
-        
+        OnboardingView(title: "title",
+                       content: content,
+                       action: {
+            
+        })
     }
 }
