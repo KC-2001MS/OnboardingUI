@@ -137,27 +137,201 @@ public struct ItemContent: View {
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingButton: View {
     var color: Color = Color.accentColor
-    var text: String
+    var localizedText: LocalizedStringKey
+    var stringText: String
     let action: () -> Void
-    init(text: String,action: @escaping () -> Void){
+    init(_ text: String,action: @escaping () -> Void){
         self.color = .accentColor
-        self.text = text
+        self.stringText = text
+        self.localizedText = ""
         self.action = action
     }
     
-    init(color: Color,text: String,action: @escaping () -> Void) {
+    init(color: Color,_ text: String,action: @escaping () -> Void) {
         self.color = color
-        self.text = text
+        self.stringText = text
+        self.localizedText = ""
         self.action = action
     }
+    
+    init(_ key: LocalizedStringKey,action: @escaping () -> Void){
+        self.color = .accentColor
+        self.stringText = ""
+        self.localizedText = key
+        self.action = action
+    }
+    
+    init(color: Color,_ key: LocalizedStringKey,action: @escaping () -> Void) {
+        self.color = color
+        self.stringText = ""
+        self.localizedText = key
+        self.action = action
+    }
+    
+    
     
     public var body: some View {
         Button(action: action) {
-            Text(text)
-                .onboardingStyle(style: .button)
+            if localizedText != "" {
+                Text(localizedText)
+                    .onboardingStyle(style: .button)
+            }
+            if stringText != "" {
+                Text(stringText)
+                    .onboardingStyle(style: .button)
+            }
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: color))
         .accessibilityInputLabels(["Continue","Start","Close","Button"])
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+struct OnboardingView: View {
+    let title: String
+    let content: Array<OnboardingItemData>
+    let stringButton: String
+    let localizedButton: LocalizedStringKey
+    let action: () -> Void
+    
+    init(title: String,
+         content: Array<OnboardingItemData>,
+         button: String,
+         action: @escaping () -> Void) {
+        self.title = title
+        self.content = content
+        self.stringButton = button
+        self.localizedButton = ""
+        self.action = action
+        
+    }
+    
+    init(title: String,
+         content: Array<OnboardingItemData>,
+         button: LocalizedStringKey,
+         action: @escaping () -> Void) {
+        self.title = title
+        self.content = content
+        self.stringButton = ""
+        self.localizedButton = button
+        self.action = action
+        
+    }
+    
+    var body: some View {
+#if os(OSX)
+        VStack {
+            Group {
+                Spacer()
+                    .frame(height: 50)
+                OnboardingTitle(title)
+                Spacer()
+                    .frame(height: 50)
+                VStack(alignment: .leading, spacing: 40) {
+                    ForEach(content) { content in
+                        if content.stringTitle != "" && content.stringContent != "" {
+                            OnboardingItem(systemName: content.systemName,
+                                           imageColor: content.color){
+                                ItemTitle(content.stringTitle)
+                                ItemContent(content.stringContent)
+                            }
+                        }
+                        if content.localizedTitle != "" && content.localizedContent != "" {
+                            OnboardingItem(systemName: content.systemName,
+                                           imageColor: content.color){
+                                ItemTitle(content.localizedTitle)
+                                ItemContent(content.localizedContent)
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+            Spacer()
+                .frame(height: 70)
+            Group {
+                if localizedButton != "" {
+                    OnboardingButton(localizedButton,action: action)
+                }
+                if stringButton != "" {
+                    OnboardingButton(stringButton,action: action)
+                }
+            }
+            Spacer()
+                .frame(height: 30)
+        }
+#elseif os(iOS)
+        GeometryReader { geom in
+            VStack {
+                ScrollView {
+                    Spacer()
+                        .frame(height: geom.size.height/9.5)
+                    OnboardingTitle(title)
+                    Spacer()
+                        .frame(height: geom.size.height/14.5)
+                    VStack(alignment: .leading, spacing: 40) {
+                        ForEach(content) { content in
+                            if content.stringTitle != "" && content.stringContent != "" {
+                                OnboardingItem(systemName: content.systemName,
+                                               imageColor: content.color){
+                                    ItemTitle(content.stringTitle)
+                                    ItemContent(content.stringContent)
+                                }
+                            }
+                            if content.localizedTitle != "" && content.localizedContent != "" {
+                                OnboardingItem(systemName: content.systemName,
+                                               imageColor: content.color){
+                                    ItemTitle(content.localizedTitle)
+                                    ItemContent(content.localizedContent)
+                                }
+                            }
+                        }
+                    }
+                }
+                Spacer()
+                Group {
+                    if localizedButton != "" {
+                        OnboardingButton(localizedButton,action: action)
+                    }
+                    if stringButton != "" {
+                        OnboardingButton(stringButton,action: action)
+                    }
+                }
+                Spacer()
+                    .frame(height: geom.size.height/14.5)
+            }
+        }
+#endif
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+struct OnboardingItemData: Identifiable {
+    var id = UUID()
+    var stringTitle: String
+    var stringContent: String
+    var localizedTitle: LocalizedStringKey
+    var localizedContent: LocalizedStringKey
+    var systemName: String
+    var color: Color
+    
+    init(title: String, content: String, systemName: String,color: Color) {
+        self.stringTitle = title
+        self.stringContent = content
+        self.systemName = systemName
+        self.localizedTitle = ""
+        self.localizedContent = ""
+        self.color = color
+    }
+    
+    init(title: LocalizedStringKey, content: LocalizedStringKey, systemName: String,color: Color) {
+        self.stringTitle = ""
+        self.stringContent = ""
+        self.systemName = systemName
+        self.localizedTitle = title
+        self.localizedContent = content
+        self.color = color
     }
 }
 
@@ -287,85 +461,6 @@ func filled(_ target: [Int], count: Int) -> [Int] {
     }
 }
 
-//うまくいかないフレームワーク実装
-@available(iOS 14.0,macOS 11,*)
-struct OnboardingView: View {
-    let title: String
-    let content: Array<OnboardingItemData>
-    let action: () -> Void
-    
-    init(title: String,
-         content: Array<OnboardingItemData>,
-         action: @escaping () -> Void) {
-        self.title = title
-        self.content = content
-        self.action = action
-        
-    }
-    
-    var body: some View {
-#if os(OSX)
-        VStack {
-            Group {
-                Spacer()
-                    .frame(height: 50)
-                OnboardingTitle(title)
-                Spacer()
-                    .frame(height: 50)
-                VStack(alignment: .leading, spacing: 40) {
-                    ForEach(content, id: \.title) { content in
-                        OnboardingItem(systemName: content.systemImage,
-                                       imageColor: content.color){
-                            ItemTitle(content.title)
-                            ItemContent(content.content)
-                        }
-                    }
-                }
-            }
-            
-            Spacer()
-                .frame(height: 70)
-            OnboardingButton(text: "Continue",action: action)
-            Spacer()
-                .frame(height: 30)
-        }
-#elseif os(iOS)
-        GeometryReader { geom in
-            VStack {
-                ScrollView {
-                    Spacer()
-                        .frame(height: geom.size.height/9.5)
-                    OnboardingTitle(title)
-                    Spacer()
-                        .frame(height: geom.size.height/14.5)
-                    VStack(alignment: .leading, spacing: 40) {
-                        ForEach(content, id: \.title) { content in
-                            OnboardingItem(systemName: content.systemImage,
-                                           imageColor: content.color){
-                                ItemTitle(content.title)
-                                ItemContent(content.content)
-                            }
-                        }
-                    }
-                }
-                Spacer()
-                OnboardingButton(text: "Continue",action: action)
-                Spacer()
-                    .frame(height: geom.size.height/14.5)
-            }
-        }
-#endif
-    }
-}
-
-@available(iOS 14.0,macOS 11,*)
-struct OnboardingItemData {
-    var title: String
-    var content: String
-    var systemImage: String
-    var color: Color
-}
-
 //表示確認
 @available(iOS 14.0,macOS 11,*)
 struct OnboardingView_Previews: PreviewProvider {
@@ -376,15 +471,15 @@ struct OnboardingView_Previews: PreviewProvider {
         let content = [
             OnboardingItemData(title: "Editing Text",
                                content: "Editing Text Content",
-                               systemImage: "doc.plaintext",
+                               systemName: "doc.plaintext",
                                color: .red),
             OnboardingItemData(title: "Editing Text",
                                content: "Editing Text Content",
-                               systemImage: "doc.plaintext",
+                               systemName: "doc.plaintext",
                                color: .red),
             OnboardingItemData(title: "Editing Text",
                                content: "Editing Text Content",
-                               systemImage: "doc.plaintext",
+                               systemName: "doc.plaintext",
                                color: .red)
         ]
         
@@ -395,7 +490,7 @@ struct OnboardingView_Previews: PreviewProvider {
             ItemContent("ItemContent")
         }
         
-        OnboardingButton(color: .accentColor, text: "Continue"){
+        OnboardingButton(color: .accentColor,"Continue"){
             
         }
         
@@ -420,6 +515,7 @@ struct OnboardingView_Previews: PreviewProvider {
         
         OnboardingView(title: "title",
                        content: content,
+                       button: "Continue",
                        action: {
             
         })
