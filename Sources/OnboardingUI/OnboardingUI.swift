@@ -10,12 +10,12 @@ public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, tra
 public struct OnboardingTitle: View {
     let localizedText: LocalizedStringKey
     let stringText: String
-    init(_ key: LocalizedStringKey){
+    public init(_ key: LocalizedStringKey){
         self.localizedText = key
         self.stringText = ""
     }
     
-    init(_ text: String) {
+    public init(_ text: String) {
         self.localizedText = ""
         self.stringText = text
     }
@@ -43,13 +43,13 @@ public struct OnboardingItem<Content: View>: View {
     let systemName: String
     let imageColor: Color
     
-    init(systemName: String,imageColor: Color,@ViewBuilder content: () -> Content) {
+    public init(systemName: String,imageColor: Color,@ViewBuilder content: () -> Content) {
         self.content = content()
         self.systemName = systemName
         self.imageColor = imageColor
     }
     
-    init(systemName: String,@ViewBuilder content: () -> Content) {
+    public init(systemName: String,@ViewBuilder content: () -> Content) {
         self.content = content()
         self.systemName = systemName
         self.imageColor = Color.accentColor
@@ -79,12 +79,12 @@ public struct ItemTitle: View {
     let localizedText: LocalizedStringKey
     let stringText: String
     
-    init(_ key: LocalizedStringKey){
+    public init(_ key: LocalizedStringKey){
         self.localizedText = key
         self.stringText = ""
     }
     
-    init(_ text: String) {
+    public init(_ text: String) {
         self.localizedText = ""
         self.stringText = text
     }
@@ -109,12 +109,12 @@ public struct ItemContent: View {
     let localizedText: LocalizedStringKey
     let stringText: String
     
-    init(_ key: LocalizedStringKey){
+    public init(_ key: LocalizedStringKey){
         self.localizedText = key
         self.stringText = ""
     }
     
-    init(_ text: String) {
+    public init(_ text: String) {
         self.localizedText = ""
         self.stringText = text
     }
@@ -140,28 +140,28 @@ public struct OnboardingButton: View {
     var localizedText: LocalizedStringKey
     var stringText: String
     let action: () -> Void
-    init(_ text: String,action: @escaping () -> Void){
+    public init(_ text: String,action: @escaping () -> Void){
         self.color = .accentColor
         self.stringText = text
         self.localizedText = ""
         self.action = action
     }
     
-    init(color: Color,_ text: String,action: @escaping () -> Void) {
+    public init(color: Color,_ text: String,action: @escaping () -> Void) {
         self.color = color
         self.stringText = text
         self.localizedText = ""
         self.action = action
     }
     
-    init(_ key: LocalizedStringKey,action: @escaping () -> Void){
+    public init(_ key: LocalizedStringKey,action: @escaping () -> Void){
         self.color = .accentColor
         self.stringText = ""
         self.localizedText = key
         self.action = action
     }
     
-    init(color: Color,_ key: LocalizedStringKey,action: @escaping () -> Void) {
+    public init(color: Color,_ key: LocalizedStringKey,action: @escaping () -> Void) {
         self.color = color
         self.stringText = ""
         self.localizedText = key
@@ -194,7 +194,7 @@ struct OnboardingView: View {
     let localizedButton: LocalizedStringKey
     let action: () -> Void
     
-    init(title: String,
+    public init(title: String,
          content: Array<OnboardingItemData>,
          button: String,
          action: @escaping () -> Void) {
@@ -206,7 +206,7 @@ struct OnboardingView: View {
         
     }
     
-    init(title: String,
+    public init(title: String,
          content: Array<OnboardingItemData>,
          button: LocalizedStringKey,
          action: @escaping () -> Void) {
@@ -316,7 +316,7 @@ struct OnboardingItemData: Identifiable {
     var systemName: String
     var color: Color
     
-    init(title: String, content: String, systemName: String,color: Color) {
+    public init(title: String, content: String, systemName: String,color: Color) {
         self.stringTitle = title
         self.stringContent = content
         self.systemName = systemName
@@ -325,7 +325,7 @@ struct OnboardingItemData: Identifiable {
         self.color = color
     }
     
-    init(title: LocalizedStringKey, content: LocalizedStringKey, systemName: String,color: Color) {
+    public init(title: LocalizedStringKey, content: LocalizedStringKey, systemName: String,color: Color) {
         self.stringTitle = ""
         self.stringContent = ""
         self.systemName = systemName
@@ -341,12 +341,12 @@ public struct ColorButtonStyle: ButtonStyle {
     var foregroundColor: Color = .white
     var backgroundColor: Color = .accentColor
     
-    init() {
+    public init() {
         self.foregroundColor = .white
         self.backgroundColor = .accentColor
     }
     
-    init(foregroundColor: Color,backgroundColor: Color) {
+    public init(foregroundColor: Color,backgroundColor: Color) {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
     }
@@ -431,7 +431,7 @@ final class VersionStateObject: ObservableObject {
     //アップデート後開いたことがあるか
     @Published var isFirstLaunchAfterUpdate: Bool
     //初期化
-    init() {
+    public init() {
         userDefaults.register(defaults:[
             "LastOpenedVersion" : ""
         ])
