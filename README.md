@@ -1,6 +1,7 @@
 # OnboardingUI
 
 SwiftUI library to implement first-party app-like onboarding  
+<br>
 Apple純正アプリのようなオンボーディングを実装できるSwiftUIライブラリ  
 
 ## Description(概要)
@@ -14,6 +15,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ## Demo(概要)
 
 The following can be implemented for onboarding  
+<br>
 以下のような、オンボーディングを実装することができます。  
 ### macOS
 ![macOS](images/macOS_Preview.png "macOS Preview")
@@ -26,7 +28,7 @@ The following can be implemented for onboarding
 
 The following environment is required to use this library.  
 <br>
-このライブラリを使用するには以下の環境が必要です。  
+このライブラリを使用するには以下の環境が必要です。 
 - iOS 14.0+ / iPadOS 14.0+ / macOS 11+ /
 - Xcode 12.0+
 - Swift 5.1+
@@ -35,7 +37,14 @@ The following environment is required to use this library.
 <br>
 ※　watchOSおよびtvOSには対応しません。理由は、私がこの二つのOSが動くハードを所有していないからです。私のモチベーションとみなさまのご協力によっては、実装されるかも知れませんので、これらでの対応をお望みでしたら、プルリクエストをお願いいたします。  
 ## Usage(使い方)
-### Display on-boarding titles (オンボーディングのタイトル表示する)
+This framework has two methods: a method that can easily implement the entire onboarding process and a method that can easily implement a portion of it.  
+<br>
+このフレームワークはオンボーディング全体を簡単に実装できるメソットと一部を簡単に実装できるメソットの二つがあります。
+
+### オンボードを作るビュー
+
+
+### Display on-boarding titles  (オンボーディングのタイトル表示する)
 ```swift
         OnboardingTitle("Onboarding Title")
 ```
@@ -47,13 +56,12 @@ or
 Below is the result of this execution.  
 <br>
 下はこの実行結果です。  
-#### iOS版
+#### iOS
 ![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")  
-#### macOS版
+#### macOS
 ![macOS版](images/macOS_OnboardingTitle.png "Onboarding Title")  
 
-### Display the text of the title of the onboarding item (オンボーディングの項目のタイトルのテキストを表示する)
-以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。  
+### Display the text of the title of the onboarding item  (オンボーディングの項目のタイトルのテキストを表示する)
 ```swift
         ItemTitle("ItemTitle")
 ```
@@ -63,8 +71,7 @@ or
             .onboardingStyle(style: .itemTitle)
 ```
 
-### オンボーディングの項目内のテキストを表示する
-以下のように、二つの方法で簡単にオンボーディングの項目内のテキストを作成することができます。  
+### Display text within onboarding items  (オンボーディングの項目内のテキストを表示する) 
 ```swift
         ItemContent("ItemContent")
 ```
@@ -74,7 +81,7 @@ or
                 .onboardingStyle(style: .itemContent)
 ```
 
-### オンボーディングの項目を作成する
+### Create onboarding items  (オンボーディングの項目を作成する)
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
             ItemTitle("ItemTitle")
@@ -138,7 +145,7 @@ However, it is currently under development and cannot be installed. We will let 
 3. Commit your changes
 4. Push to the branch
 5. Create new Pull Request
-
+<br>
 1. フォークする
 2. あなたの機能ブランチを作成する
 3. 変更をコミットする
