@@ -42,7 +42,39 @@ This framework has two methods: a method that can easily implement the entire on
 このフレームワークはオンボーディング全体を簡単に実装できるメソットと一部を簡単に実装できるメソットの二つがあります。
 
 ### オンボードを作るビュー
-
+This is the easiest code to onboard.  
+<br>
+これが最も簡単にオンボードを作成できるコードです。
+```swift
+        let content = [
+            OnboardingItemData(title: "Editing Text",
+                               content: "Editing Text Content",
+                               systemName: "doc.plaintext",
+                               color: .red),
+            OnboardingItemData(title: "Speechreading Function",
+                               content: "Speechreading Function Content",
+                               systemName: "speaker.wave.3",
+                               color: .blue),
+            OnboardingItemData(title: "Synchronization of Settings",
+                               content: "Synchronization of Settings Content",
+                               systemName: "icloud",
+                               color: .orange)
+        ]
+        
+        OnboardingView(title: "Welcome to\nSimple Editor X",
+                       content: content,
+                       button: "Continue",
+                       action: {
+            
+        })
+```
+Below is the result of this execution.  
+<br>
+下はこの実行結果です。  
+#### iOS
+![iOS版](images/iOS_Onboarding.png "Onboarding")  
+#### macOS
+![macOS版](images/macOS_Onboarding.png "Onboarding")  
 
 ### Display on-boarding titles  (オンボーディングのタイトル表示する)
 ```swift
@@ -101,14 +133,14 @@ Below is the result of this execution.
 <br>
 下はこの実行結果です。  
 (imageColorはオプションで省略可能です。)  
-#### iOS版
+#### iOS
 ![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")  
-#### macOS版
+#### macOS
 ![macOS版](images/macOS_OnboardingItem.png "Onboarding Item")  
 
 ### オンボーディングのボタンを作成する
 ```swift
-        ContinueButton(color: .red){
+        OnboardingButton(color: .red,"Continue"){
             
         }
 ```
@@ -126,9 +158,9 @@ Below is the result of this execution.
 <br>
 下はこの実行結果です。  
 (color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
-#### iOS版
+#### iOS
 ![iOS版](images/iOS_ContinueButton.png "Continue Button")  
-#### macOS版
+#### macOS
 ![macOS版](images/macOS_ContinueButton.png "Continue Button")  
 ## Install (インストール)
 
@@ -146,11 +178,11 @@ However, it is currently under development and cannot be installed. We will let 
 4. Push to the branch
 5. Create new Pull Request
 <br>
-1. フォークする
-2. あなたの機能ブランチを作成する
-3. 変更をコミットする
-4. ブランチにプッシュする
-5. 新しいプルリクエストを作成する
+1. フォークする  
+2. あなたの機能ブランチを作成する  
+3. 変更をコミットする  
+4. ブランチにプッシュする  
+5. 新しいプルリクエストを作成する  
 
 ## Licence (ライセンス)
 

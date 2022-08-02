@@ -473,14 +473,14 @@ struct OnboardingView_Previews: PreviewProvider {
                                content: "Editing Text Content",
                                systemName: "doc.plaintext",
                                color: .red),
-            OnboardingItemData(title: "Editing Text",
-                               content: "Editing Text Content",
-                               systemName: "doc.plaintext",
-                               color: .red),
-            OnboardingItemData(title: "Editing Text",
-                               content: "Editing Text Content",
-                               systemName: "doc.plaintext",
-                               color: .red)
+            OnboardingItemData(title: "Speechreading Function",
+                               content: "Speechreading Function Content",
+                               systemName: "speaker.wave.3",
+                               color: .blue),
+            OnboardingItemData(title: "Synchronization of Settings",
+                               content: "Synchronization of Settings Content",
+                               systemName: "icloud",
+                               color: .orange)
         ]
         
         OnboardingTitle("Onboarding Title")
@@ -513,7 +513,7 @@ struct OnboardingView_Previews: PreviewProvider {
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
         
-        OnboardingView(title: "title",
+        OnboardingView(title: "Welcome to\nSimple Editor X",
                        content: content,
                        button: "Continue",
                        action: {
