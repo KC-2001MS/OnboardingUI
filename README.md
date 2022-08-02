@@ -7,6 +7,7 @@ Apple純正アプリのようなオンボーディングを実装できるSwiftU
 
 This library allows you to implement onboarding designs as implemented in first-party apps in your own apps.
 Since the library is made by SwiftUI, you can implement onboarding with fewer lines. It is ideal for introducing new features or displaying at first launch.  
+<br>
 このライブラリではAppleの純正アプリで実装されているようなオンボーディングのデザインを自身のアプリに実装できるライブラリです。
 SwiftUI製のライブラリなので、より少ない行数でオンボーディングを実装できます。新機能の紹介や初回起動時の表示に最適です。  
 
@@ -24,12 +25,14 @@ The following can be implemented for onboarding
 ## Requirement(必要条件)
 
 The following environment is required to use this library.  
+<br>
 このライブラリを使用するには以下の環境が必要です。  
 - iOS 14.0+ / iPadOS 14.0+ / macOS 11+ /
 - Xcode 12.0+
 - Swift 5.1+
 
 ※　watchOS and tvOS are not supported. The reason is that I do not own hardware that runs these two operating systems. If you want to support these OS, please send me a pull request.  
+<br>
 ※　watchOSおよびtvOSには対応しません。理由は、私がこの二つのOSが動くハードを所有していないからです。私のモチベーションとみなさまのご協力によっては、実装されるかも知れませんので、これらでの対応をお望みでしたら、プルリクエストをお願いいたします。  
 ## Usage(使い方)
 ### Display on-boarding titles (オンボーディングのタイトル表示する)
@@ -42,6 +45,7 @@ or
             .onboardingStyle(style: .title)
 ``` 
 Below is the result of this execution.  
+<br>
 下はこの実行結果です。  
 #### iOS版
 ![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")  
@@ -87,6 +91,7 @@ or
         }
 ```
 Below is the result of this execution.  
+<br>
 下はこの実行結果です。  
 (imageColorはオプションで省略可能です。)  
 #### iOS版
@@ -111,6 +116,7 @@ or
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
 Below is the result of this execution.  
+<br>
 下はこの実行結果です。  
 (color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
 #### iOS版
@@ -121,7 +127,7 @@ Below is the result of this execution.
 
 Xcode is required to use this library.
 However, it is currently under development and cannot be installed. We will let you know as soon as possible.  
-
+<br>
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
 
