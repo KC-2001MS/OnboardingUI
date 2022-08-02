@@ -1,11 +1,18 @@
 # OnboardingUI
+
+SwiftUI library to implement first-party app-like onboarding
 Apple純正アプリのようなオンボーディングを実装できるSwiftUIライブラリ
 
-## 概要(Description)
+## Description(概要)
+
+This library allows you to implement onboarding designs as implemented in first-party apps in your own apps.
+Since the library is made by SwiftUI, you can implement onboarding with fewer lines. It is ideal for introducing new features or displaying at first launch.
 このライブラリではAppleの純正アプリで実装されているようなオンボーディングのデザインを自身のアプリに実装できるライブラリです。
 SwiftUI製のライブラリなので、より少ない行数でオンボーディングを実装できます。新機能の紹介や初回起動時の表示に最適です。
 
-## 実演(Demo)
+## Demo(概要)
+
+The following can be implemented for onboarding
 以下のような、オンボーディングを実装することができます。
 ### macOS
 ![macOS](images/macOS_Preview.png "macOS Preview")
@@ -14,36 +21,39 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ### iOS
 ![iOS](images/iOS_Preview.png "iOS Preview")  
 
-## 必要条件(Requirement)
+## Requirement(必要条件)
+
+The following environment is required to use this library.
 このライブラリを使用するには以下の環境が必要です。
 - iOS 14.0+ / iPadOS 14.0+ / macOS 11+ /
 - Xcode 12.0+
 - Swift 5.1+
 
+※　watchOS and tvOS are not supported. The reason is that I do not own hardware that runs these two operating systems. If you want to support these OS, please send me a pull request.
 ※　watchOSおよびtvOSには対応しません。理由は、私がこの二つのOSが動くハードを所有していないからです。私のモチベーションとみなさまのご協力によっては、実装されるかも知れませんので、これらでの対応をお望みでしたら、プルリクエストをお願いいたします。
-## 使い方(Usage)
-### オンボーディングのタイトル表示する
+## Usage(使い方)
+### Display on-boarding titles (オンボーディングのタイトル表示する)
 ```swift
         OnboardingTitle("Onboarding Title")
 ```
-または
+or
 ```swift
         Text("Onboarding Title")
             .onboardingStyle(style: .title)
-```
-
-のコードで以下のようなビューを作成できます。  
+``` 
+Below is the result of this execution.
+下はこの実行結果です。
 #### iOS版
 ![iOS版](images/iOS_OnboardingTitle.png "Onboarding Title")  
 #### macOS版
 ![macOS版](images/macOS_OnboardingTitle.png "Onboarding Title")  
 
-### オンボーディングの項目のタイトルのテキストを表示する
+### Display the text of the title of the onboarding item (オンボーディングの項目のタイトルのテキストを表示する)
 以下のように、二つの方法で簡単にオンボーディングの項目のタイトルを作成することができます。
 ```swift
         ItemTitle("ItemTitle")
 ```
-または
+or
 ```swift
         Text("ItemTitle")
             .onboardingStyle(style: .itemTitle)
@@ -54,7 +64,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
 ```swift
         ItemContent("ItemContent")
 ```
-または
+or
 ```swift
         Text("ItemContent")
                 .onboardingStyle(style: .itemContent)
@@ -67,7 +77,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
             ItemContent("ItemContent")
         }
 ```
-または
+or
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
             Text("ItemTitle")
@@ -76,7 +86,9 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
                 .onboardingStyle(style: .itemContent)
         }
 ```
-のコードで以下のようなビューを作成できます。(imageColorはオプションで省略可能です。)  
+Below is the result of this execution.
+下はこの実行結果です。
+(imageColorはオプションで省略可能です。)  
 #### iOS版
 ![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")  
 #### macOS版
@@ -88,7 +100,7 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
             
         }
 ```
-または
+or
 ```swift
         Button(action: {
             
@@ -98,22 +110,39 @@ SwiftUI製のライブラリなので、より少ない行数でオンボーデ�
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
-のコードで以下のようなビューを作成できます。(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
+Below is the result of this execution.
+下はこの実行結果です。
+(color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
 #### iOS版
 ![iOS版](images/iOS_ContinueButton.png "Continue Button")  
 #### macOS版
 ![macOS版](images/macOS_ContinueButton.png "Continue Button")  
-## インストール(Install)
+## Install (インストール)
+
+Xcode is required to use this library.
+However, it is currently under development and cannot be installed. We will let you know as soon as possible.
+
 このライブラリを使うには、Xcodeが必要です。
 ただ、現在開発中のため、インストールはできません。追ってお知らせします。
-## 貢献(Contribution)
+
+## Contribution(貢献)
+
 1. Fork it
 2. Create your feature branch
 3. Commit your changes
 4. Push to the branch
 5. Create new Pull Request
-## ライセンス(Licence)
-[OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
-## 作者(Author)
-[Keisuke Chinone(Iroiro)](https://github.com/KC-2001MS)
 
+1. フォークする
+2. あなたの機能ブランチを作成する
+3. 変更をコミットする
+4. ブランチにプッシュする
+5. 新しいプルリクエストを作成する
+
+## Licence (ライセンス)
+
+[OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
+
+## Author (作者)
+
+[Keisuke Chinone 茅根 啓介 (Iroiro いろいろ)](https://github.com/KC-2001MS)
