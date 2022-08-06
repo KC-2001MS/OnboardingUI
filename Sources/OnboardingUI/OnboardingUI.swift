@@ -277,7 +277,12 @@ public struct OnboardingView: View {
                 ScrollView {
                     Spacer()
                         .frame(height: geom.size.height/9.5)
-                    OnboardingTitle(title)
+                    if localizedTitle != "" {
+                        OnboardingTitle(localizedTitle)
+                    }
+                    if stringTitle != "" {
+                        OnboardingTitle(stringTitle)
+                    }
                     Spacer()
                         .frame(height: geom.size.height/14.5)
                     VStack(alignment: .leading, spacing: 40) {
