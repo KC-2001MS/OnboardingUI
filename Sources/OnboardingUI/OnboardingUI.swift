@@ -10,6 +10,7 @@ public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, tra
 public struct OnboardingTitle: View {
     let localizedText: LocalizedStringKey
     let stringText: String
+    
     public init(_ key: LocalizedStringKey){
         self.localizedText = key
         self.stringText = ""
@@ -187,7 +188,7 @@ public struct OnboardingButton: View {
 }
 
 @available(iOS 14.0,macOS 11,*)
-struct OnboardingView: View {
+public struct OnboardingView: View {
     let title: String
     let content: Array<OnboardingItemData>
     let stringButton: String
@@ -218,7 +219,7 @@ struct OnboardingView: View {
         
     }
     
-    var body: some View {
+    public var body: some View {
 #if os(OSX)
         VStack {
             Group {
@@ -307,8 +308,8 @@ struct OnboardingView: View {
 }
 
 @available(iOS 14.0,macOS 11,*)
-struct OnboardingItemData: Identifiable {
-    var id = UUID()
+public struct OnboardingItemData: Identifiable {
+    public var id = UUID()
     var stringTitle: String
     var stringContent: String
     var localizedTitle: LocalizedStringKey
@@ -371,7 +372,7 @@ public struct ColorButtonStyle: ButtonStyle {
 }
 
 //列挙型(スタイル指定用)
-enum OnboardingStyle {
+public enum OnboardingStyle {
     case title
     case itemTitle
     case itemContent
@@ -380,7 +381,7 @@ enum OnboardingStyle {
 
 //スタイル
 @available(iOS 14.0,macOS 11,*)
-extension Text {
+public extension Text {
     func onboardingStyle(style: OnboardingStyle) -> some View {
         Group {
             switch style {
