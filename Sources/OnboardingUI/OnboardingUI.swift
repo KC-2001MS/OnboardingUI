@@ -8,30 +8,30 @@ public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, tra
 //タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingTitle: View {
-    let localizedText: LocalizedStringKey
-    let stringText: String
+    let localizedStringKey: LocalizedStringKey
+    let string: String
     
     public init(_ key: LocalizedStringKey){
-        self.localizedText = key
-        self.stringText = ""
+        self.localizedStringKey = key
+        self.string = ""
     }
     
     public init(_ text: String) {
-        self.localizedText = ""
-        self.stringText = text
+        self.localizedStringKey = ""
+        self.string = NSLocalizedString(text, comment: "")
     }
     
     public var body: some View {
         Group {
-            if localizedText != "" {
-                Text(localizedText)
+            if localizedStringKey != "" {
+                Text(localizedStringKey)
                     .onboardingStyle(style: .title)
-                    .accessibilityLabel(Text(localizedText))
+                    .accessibilityLabel(Text(localizedStringKey))
             }
-            if stringText != "" {
-                Text(stringText)
+            if string != "" {
+                Text(string)
                     .onboardingStyle(style: .title)
-                    .accessibilityLabel(Text(stringText))
+                    .accessibilityLabel(Text(string))
             }
         }
     }
@@ -77,27 +77,28 @@ public struct OnboardingItem<Content: View>: View {
 //項目タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemTitle: View {
-    let localizedText: LocalizedStringKey
-    let stringText: String
+    let localizedStringKey: LocalizedStringKey
+    let string: String
     
     public init(_ key: LocalizedStringKey){
-        self.localizedText = key
-        self.stringText = ""
+        self.localizedStringKey = key
+        self.string = ""
     }
     
     public init(_ text: String) {
-        self.localizedText = ""
-        self.stringText = text
+        self.localizedStringKey = ""
+        self.string = NSLocalizedString(text, comment: "")
     }
+    
     
     public var body: some View {
         Group {
-            if localizedText != "" {
-                Text(localizedText)
+            if localizedStringKey != "" {
+                Text(localizedStringKey)
                     .onboardingStyle(style: .itemTitle)
             }
-            if stringText != "" {
-                Text(stringText)
+            if string != "" {
+                Text(string)
                     .onboardingStyle(style: .itemTitle)
             }
         }
@@ -107,27 +108,28 @@ public struct ItemTitle: View {
 //項目内容View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct ItemContent: View {
-    let localizedText: LocalizedStringKey
-    let stringText: String
+    let localizedStringKey: LocalizedStringKey
+    let string: String
     
     public init(_ key: LocalizedStringKey){
-        self.localizedText = key
-        self.stringText = ""
+        self.localizedStringKey = key
+        self.string = ""
     }
     
     public init(_ text: String) {
-        self.localizedText = ""
-        self.stringText = text
+        self.localizedStringKey = ""
+        self.string = NSLocalizedString(text, comment: "")
     }
+    
     
     public var body: some View {
         Group {
-            if localizedText != "" {
-                Text(localizedText)
+            if localizedStringKey != "" {
+                Text(localizedStringKey)
                     .onboardingStyle(style: .itemContent)
             }
-            if stringText != "" {
-                Text(stringText)
+            if string != "" {
+                Text(string)
                     .onboardingStyle(style: .itemContent)
             }
         }
@@ -138,34 +140,34 @@ public struct ItemContent: View {
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingButton: View {
     var color: Color = Color.accentColor
-    var localizedText: LocalizedStringKey
-    var stringText: String
+    var localizedStringKey: LocalizedStringKey
+    let string: String
     let action: () -> Void
     public init(_ text: String,action: @escaping () -> Void){
         self.color = .accentColor
-        self.stringText = text
-        self.localizedText = ""
+        self.string = NSLocalizedString(text, comment: "")
+        self.localizedStringKey = ""
         self.action = action
     }
     
     public init(color: Color,_ text: String,action: @escaping () -> Void) {
         self.color = color
-        self.stringText = text
-        self.localizedText = ""
+        self.string = NSLocalizedString(text, comment: "")
+        self.localizedStringKey = ""
         self.action = action
     }
     
     public init(_ key: LocalizedStringKey,action: @escaping () -> Void){
         self.color = .accentColor
-        self.stringText = ""
-        self.localizedText = key
+        self.string = ""
+        self.localizedStringKey = key
         self.action = action
     }
     
     public init(color: Color,_ key: LocalizedStringKey,action: @escaping () -> Void) {
         self.color = color
-        self.stringText = ""
-        self.localizedText = key
+        self.string = ""
+        self.localizedStringKey = key
         self.action = action
     }
     
@@ -173,12 +175,12 @@ public struct OnboardingButton: View {
     
     public var body: some View {
         Button(action: action) {
-            if localizedText != "" {
-                Text(localizedText)
+            if localizedStringKey != "" {
+                Text(localizedStringKey)
                     .onboardingStyle(style: .button)
             }
-            if stringText != "" {
-                Text(stringText)
+            if string != "" {
+                Text(string)
                     .onboardingStyle(style: .button)
             }
         }
@@ -318,8 +320,8 @@ public struct OnboardingItemData: Identifiable {
     var color: Color
     
     public init(title: String, content: String, systemName: String,color: Color) {
-        self.stringTitle = title
-        self.stringContent = content
+        self.stringTitle = NSLocalizedString(title, comment: "")
+        self.stringContent = NSLocalizedString(content, comment: "")
         self.systemName = systemName
         self.localizedTitle = ""
         self.localizedContent = ""
