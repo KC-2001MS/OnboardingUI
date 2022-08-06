@@ -191,7 +191,8 @@ public struct OnboardingButton: View {
 
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingView: View {
-    let title: String
+    let stringTitle: String
+    let localizedTitle: LocalizedStringKey
     let content: Array<OnboardingItemData>
     let stringButton: String
     let localizedButton: LocalizedStringKey
@@ -201,7 +202,8 @@ public struct OnboardingView: View {
          content: Array<OnboardingItemData>,
          button: String,
          action: @escaping () -> Void) {
-        self.title = title
+        self.stringTitle = NSLocalizedString(title, comment: "")
+        self.localizedTitle = ""
         self.content = content
         self.stringButton = button
         self.localizedButton = ""
@@ -209,16 +211,16 @@ public struct OnboardingView: View {
         
     }
     
-    public init(title: String,
+    public init(title: LocalizedStringKey,
          content: Array<OnboardingItemData>,
          button: LocalizedStringKey,
          action: @escaping () -> Void) {
-        self.title = title
+        self.stringTitle = ""
+        self.localizedTitle = title
         self.content = content
         self.stringButton = ""
         self.localizedButton = button
         self.action = action
-        
     }
     
     public var body: some View {
@@ -227,7 +229,12 @@ public struct OnboardingView: View {
             Group {
                 Spacer()
                     .frame(height: 50)
-                OnboardingTitle(title)
+                if localizedTitle != "" {
+                    OnboardingTitle(localizedTitle)
+                }
+                if stringTitle != "" {
+                    OnboardingTitle(stringTitle)
+                }
                 Spacer()
                     .frame(height: 50)
                 VStack(alignment: .leading, spacing: 40) {
