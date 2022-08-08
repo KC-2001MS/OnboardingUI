@@ -432,19 +432,19 @@ public extension Text {
 
 //初期画面実装
 @available(iOS 14.0,macOS 11,*)
-final class VersionStateObject: ObservableObject {
+public class VersionStateObject: ObservableObject {
     //現在のバージョン
-    private var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    public var version: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     //最後に開いたときのバージョン
-    private var lastOpenedVersion: String {
+    public var lastOpenedVersion: String {
         didSet {
             userDefaults.set(lastOpenedVersion, forKey: "LastOpenedVersion")
         }
     }
     //開いたことがあるか
-    @Published var isFirstLaunch: Bool
+    @Published public var isFirstLaunch: Bool
     //アップデート後開いたことがあるか
-    @Published var isFirstLaunchAfterUpdate: Bool
+    @Published public var isFirstLaunchAfterUpdate: Bool
     //初期化
     public init() {
         userDefaults.register(defaults:[
@@ -458,10 +458,9 @@ final class VersionStateObject: ObservableObject {
         (lhsComponents[0] < rhsComponents[0] || lhsComponents[1] < rhsComponents[1]) && lastOpenedVersion != ""
     }
     //値の更新
-    func opened() {
+    public func opened() {
         lastOpenedVersion = version
     }
-    
 }
 //バージョン番号をドットで分けて配列化
 func splitByDot(_ versionNumber: String) -> [Int] {
