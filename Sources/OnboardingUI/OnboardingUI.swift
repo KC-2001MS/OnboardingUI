@@ -441,7 +441,6 @@ public class VersionStateObject: ObservableObject {
             userDefaults.set(lastOpenedVersion, forKey: "LastOpenedVersion")
         }
     }
-    
     //開いたことがあるか
     @Published public var isFirstLaunch: Bool
     //アップデート後開いたことがあるか
