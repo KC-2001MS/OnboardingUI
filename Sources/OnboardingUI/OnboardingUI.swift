@@ -456,7 +456,7 @@ public class VersionStateObject: ObservableObject {
         let lhsComponents = filled(splitByDot(lastOpenedVersion), count: 3)
         let rhsComponents = filled(splitByDot(version), count: 3)
         isFirstLaunchAfterUpdate =
-        (lhsComponents[0] < rhsComponents[0] || lhsComponents[1] < rhsComponents[1]) && lastOpenedVersion != ""
+        (lhsComponents[0] != rhsComponents[0] || lhsComponents[1] != rhsComponents[1]) && lastOpenedVersion != ""
     }
     //値の更新
     public func opened() {
