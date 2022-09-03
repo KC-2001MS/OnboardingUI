@@ -404,18 +404,21 @@ public extension Text {
                     .fontWeight(.bold)
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
+                    .lineLimit(nil)
             case .itemTitle:
                 self
                     .font(.system(size: 15))
                     .font(.headline)
                     .foregroundColor(.primary)
                     .bold()
+                    .lineLimit(nil)
             case .itemContent:
                 self
                     .font(.system(size: 15))
                     .font(.body)
                     .lineSpacing(3)
                     .foregroundColor(.secondary)
+                    .lineLimit(nil)
             case .button:
                 self
                     .bold()
