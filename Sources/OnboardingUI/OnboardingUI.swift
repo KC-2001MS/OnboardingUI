@@ -274,7 +274,7 @@ public struct OnboardingView: View {
             Spacer()
                 .frame(height: 30)
         }
-        .frame(maxWidth: 700)
+        .frame(maxWidth: 700, maxHeight: .infinity, alignment: .center)
 #elseif os(iOS)
         GeometryReader { geom in
             VStack {
