@@ -200,9 +200,9 @@ public struct OnboardingView: View {
     let action: () -> Void
     
     public init(title: String,
-         content: Array<OnboardingItemData>,
-         button: String,
-         action: @escaping () -> Void) {
+                content: Array<OnboardingItemData>,
+                button: String,
+                action: @escaping () -> Void) {
         self.stringTitle = NSLocalizedString(title, comment: "")
         self.localizedTitle = ""
         self.content = content
@@ -213,9 +213,9 @@ public struct OnboardingView: View {
     }
     
     public init(title: LocalizedStringKey,
-         content: Array<OnboardingItemData>,
-         button: LocalizedStringKey,
-         action: @escaping () -> Void) {
+                content: Array<OnboardingItemData>,
+                button: LocalizedStringKey,
+                action: @escaping () -> Void) {
         self.stringTitle = ""
         self.localizedTitle = title
         self.content = content
@@ -226,18 +226,16 @@ public struct OnboardingView: View {
     
     public var body: some View {
 #if os(OSX)
-        VStack {
+        ScrollView {
+            VStack {
                 Spacer()
                     .frame(height: 50)
-                Group {
-                    if localizedTitle != "" {
-                        OnboardingTitle(localizedTitle)
-                    }
-                    if stringTitle != "" {
-                        OnboardingTitle(stringTitle)
-                    }
+                if localizedTitle != "" {
+                    OnboardingTitle(localizedTitle)
                 }
-
+                if stringTitle != "" {
+                    OnboardingTitle(stringTitle)
+                }
                 Spacer()
                     .frame(height: 50)
                 VStack(alignment: .leading, spacing: 40) {
@@ -256,10 +254,9 @@ public struct OnboardingView: View {
                                 ItemContent(content.localizedContent)
                             }
                         }
-                        
                     }
                 }
-                .frame(maxHeight: .infinity)
+            }
             
             Spacer()
                 .frame(height: 70)
@@ -422,10 +419,7 @@ public extension Text {
                 self
                     .font(.system(size: 15))
                     .font(.body)
-                    .lineSpacing(3)
-                    .fixedSize()
                     .foregroundColor(.secondary)
-       
             case .button:
                 self
                     .bold()
