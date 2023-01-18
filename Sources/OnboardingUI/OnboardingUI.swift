@@ -238,28 +238,30 @@ public struct OnboardingView: View {
                     OnboardingTitle(stringTitle)
                 }
             }
-
+            
             Spacer()
             
             ScrollView {
-                ForEach(content) { content in
-                    if content.stringTitle != "" && content.stringContent != "" {
-                        OnboardingItem(systemName: content.systemName,
-                                       imageColor: content.color){
-                            ItemTitle(content.stringTitle)
-                            ItemContent(content.stringContent)
+                VStack(alignment: .leading, spacing: 40) {
+                    ForEach(content) { content in
+                        if content.stringTitle != "" && content.stringContent != "" {
+                            OnboardingItem(systemName: content.systemName,
+                                           imageColor: content.color){
+                                ItemTitle(content.stringTitle)
+                                ItemContent(content.stringContent)
+                            }
                         }
-                    }
-                    if content.localizedTitle != "" && content.localizedContent != "" {
-                        OnboardingItem(systemName: content.systemName,
-                                       imageColor: content.color){
-                            ItemTitle(content.localizedTitle)
-                            ItemContent(content.localizedContent)
+                        if content.localizedTitle != "" && content.localizedContent != "" {
+                            OnboardingItem(systemName: content.systemName,
+                                           imageColor: content.color){
+                                ItemTitle(content.localizedTitle)
+                                ItemContent(content.localizedContent)
+                            }
                         }
                     }
                 }
             }
-
+            
             Spacer()
             
             
