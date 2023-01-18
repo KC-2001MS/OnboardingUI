@@ -256,10 +256,12 @@ public struct OnboardingView: View {
                         
                     }
                 }
+                .frame(maxHeight: .infinity)
             }
             
             Spacer()
                 .frame(height: 70)
+            
             Group {
                 if localizedButton != "" {
                     OnboardingButton(localizedButton,action: action)
@@ -268,6 +270,7 @@ public struct OnboardingView: View {
                     OnboardingButton(stringButton,action: action)
                 }
             }
+            
             Spacer()
                 .frame(height: 30)
         }
