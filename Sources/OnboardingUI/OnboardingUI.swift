@@ -418,7 +418,7 @@ public extension Text {
                     .font(.body)
                     .lineSpacing(3)
                     .foregroundColor(.secondary)
-                    .lineLimit(nil)
+       
             case .button:
                 self
                     .bold()
