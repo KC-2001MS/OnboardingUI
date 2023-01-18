@@ -227,15 +227,17 @@ public struct OnboardingView: View {
     public var body: some View {
 #if os(OSX)
         VStack {
-            Group {
                 Spacer()
                     .frame(height: 50)
-                if localizedTitle != "" {
-                    OnboardingTitle(localizedTitle)
+                Group {
+                    if localizedTitle != "" {
+                        OnboardingTitle(localizedTitle)
+                    }
+                    if stringTitle != "" {
+                        OnboardingTitle(stringTitle)
+                    }
                 }
-                if stringTitle != "" {
-                    OnboardingTitle(stringTitle)
-                }
+
                 Spacer()
                     .frame(height: 50)
                 VStack(alignment: .leading, spacing: 40) {
@@ -258,7 +260,6 @@ public struct OnboardingView: View {
                     }
                 }
                 .frame(maxHeight: .infinity)
-            }
             
             Spacer()
                 .frame(height: 70)
@@ -422,6 +423,7 @@ public extension Text {
                     .font(.system(size: 15))
                     .font(.body)
                     .lineSpacing(3)
+                    .fixedSize()
                     .foregroundColor(.secondary)
        
             case .button:
@@ -493,15 +495,15 @@ struct OnboardingView_Previews: PreviewProvider {
         
         let content = [
             OnboardingItemData(title: "Editing Text",
-                               content: "Editing Text Content",
+                               content: "Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text",
                                systemName: "doc.plaintext",
                                color: .red),
             OnboardingItemData(title: "Speechreading Function",
-                               content: "Speechreading Function Content",
+                               content: "Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text",
                                systemName: "speaker.wave.3",
                                color: .blue),
             OnboardingItemData(title: "Synchronization of Settings",
-                               content: "Synchronization of Settings Content",
+                               content: "Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text",
                                systemName: "icloud",
                                color: .orange)
         ]
@@ -521,9 +523,9 @@ struct OnboardingView_Previews: PreviewProvider {
             .onboardingStyle(style: .title)
         
         OnboardingItem(systemName: "doc",imageColor: .red) {
-            Text("ItemTitle")
+            Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
                 .onboardingStyle(style: .itemTitle)
-            Text("ItemContent")
+            Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
                 .onboardingStyle(style: .itemContent)
         }
         
