@@ -69,6 +69,7 @@ public struct OnboardingItem<Content: View>: View {
             VStack(alignment: .leading, spacing: 5) {
                 content
             }
+            .frame(maxHeight: .infinity)
         }
         .padding(OnboardingEdgeInsets)
     }
@@ -418,7 +419,10 @@ public extension Text {
                     .lineLimit(1)
             case .itemContent:
                 self
-  
+                    .font(.system(size: 15))
+                    .font(.body)
+                    .lineSpacing(3)
+                    .foregroundColor(.secondary)
        
             case .button:
                 self
