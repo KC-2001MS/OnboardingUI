@@ -405,6 +405,7 @@ public extension Text {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
             case .itemTitle:
                 self
                     .font(.system(size: 15))
@@ -412,6 +413,7 @@ public extension Text {
                     .foregroundColor(.primary)
                     .bold()
                     .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
             case .itemContent:
                 self
                     .font(.system(size: 15))
@@ -419,6 +421,7 @@ public extension Text {
                     .lineSpacing(3)
                     .foregroundColor(.secondary)
                     .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
             case .button:
                 self
                     .bold()
