@@ -418,10 +418,7 @@ public extension Text {
                     .lineLimit(1)
             case .itemContent:
                 self
-                    .font(.system(size: 15))
-                    .font(.body)
-                    .lineSpacing(3)
-                    .foregroundColor(.secondary)
+  
        
             case .button:
                 self
