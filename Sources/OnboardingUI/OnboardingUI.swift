@@ -37,6 +37,37 @@ public struct OnboardingTitle: View {
     }
 }
 
+//項目タイトルView（完成）
+@available(iOS 14.0,macOS 11,*)
+public struct ItemTitle: View {
+    let localizedStringKey: LocalizedStringKey
+    let string: String
+    
+    public init(_ key: LocalizedStringKey){
+        self.localizedStringKey = key
+        self.string = ""
+    }
+    
+    public init(_ text: String) {
+        self.localizedStringKey = ""
+        self.string = NSLocalizedString(text, comment: "")
+    }
+    
+    
+    public var body: some View {
+        Group {
+            if localizedStringKey != "" {
+                Text(localizedStringKey)
+                    .onboardingStyle(style: .itemTitle)
+            }
+            if string != "" {
+                Text(string)
+                    .onboardingStyle(style: .itemTitle)
+            }
+        }
+    }
+}
+
 //項目View（完成）
 @available(iOS 14.0,macOS 11,*)
 public struct OnboardingItem<Content: View>: View {
@@ -72,37 +103,6 @@ public struct OnboardingItem<Content: View>: View {
             .frame(maxHeight: .infinity)
         }
         .padding(OnboardingEdgeInsets)
-    }
-}
-
-//項目タイトルView（完成）
-@available(iOS 14.0,macOS 11,*)
-public struct ItemTitle: View {
-    let localizedStringKey: LocalizedStringKey
-    let string: String
-    
-    public init(_ key: LocalizedStringKey){
-        self.localizedStringKey = key
-        self.string = ""
-    }
-    
-    public init(_ text: String) {
-        self.localizedStringKey = ""
-        self.string = NSLocalizedString(text, comment: "")
-    }
-    
-    
-    public var body: some View {
-        Group {
-            if localizedStringKey != "" {
-                Text(localizedStringKey)
-                    .onboardingStyle(style: .itemTitle)
-            }
-            if string != "" {
-                Text(string)
-                    .onboardingStyle(style: .itemTitle)
-            }
-        }
     }
 }
 
@@ -226,40 +226,42 @@ public struct OnboardingView: View {
     
     public var body: some View {
 #if os(OSX)
-        ScrollView {
-            VStack {
-                Spacer()
-                    .frame(height: 50)
+        VStack {
+            Spacer()
+                .frame(height: 50)
+            
+            Group {
                 if localizedTitle != "" {
                     OnboardingTitle(localizedTitle)
                 }
                 if stringTitle != "" {
                     OnboardingTitle(stringTitle)
                 }
-                Spacer()
-                    .frame(height: 50)
-                VStack(alignment: .leading, spacing: 40) {
-                    ForEach(content) { content in
-                        if content.stringTitle != "" && content.stringContent != "" {
-                            OnboardingItem(systemName: content.systemName,
-                                           imageColor: content.color){
-                                ItemTitle(content.stringTitle)
-                                ItemContent(content.stringContent)
-                            }
+            }
+
+            Spacer()
+            
+            ScrollView {
+                ForEach(content) { content in
+                    if content.stringTitle != "" && content.stringContent != "" {
+                        OnboardingItem(systemName: content.systemName,
+                                       imageColor: content.color){
+                            ItemTitle(content.stringTitle)
+                            ItemContent(content.stringContent)
                         }
-                        if content.localizedTitle != "" && content.localizedContent != "" {
-                            OnboardingItem(systemName: content.systemName,
-                                           imageColor: content.color){
-                                ItemTitle(content.localizedTitle)
-                                ItemContent(content.localizedContent)
-                            }
+                    }
+                    if content.localizedTitle != "" && content.localizedContent != "" {
+                        OnboardingItem(systemName: content.systemName,
+                                       imageColor: content.color){
+                            ItemTitle(content.localizedTitle)
+                            ItemContent(content.localizedContent)
                         }
                     }
                 }
             }
-            
+
             Spacer()
-                .frame(height: 70)
+            
             
             Group {
                 if localizedButton != "" {
