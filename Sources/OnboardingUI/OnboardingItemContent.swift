@@ -16,6 +16,17 @@ public struct OnboardingItemContent: View {
         TextView = Text(content)
     }
     
+    public init(verbatim content: String) {
+        TextView = Text(verbatim: content)
+    }
+    public var body: some View {
+        TextView
+            .onboardingStyle(style: .itemContent)
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+extension OnboardingItemContent {
     public init(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -23,14 +34,6 @@ public struct OnboardingItemContent: View {
         comment: StaticString? = nil
     ){
         TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
-    }
-    
-    public init(verbatim content: String) {
-        TextView = Text(verbatim: content)
-    }
-    public var body: some View {
-        TextView
-            .onboardingStyle(style: .itemContent)
     }
 }
 

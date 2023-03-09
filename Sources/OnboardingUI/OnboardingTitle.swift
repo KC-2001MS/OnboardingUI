@@ -16,15 +16,6 @@ public struct OnboardingTitle: View {
         TextView = Text(content)
     }
     
-    public init(
-        _ key: LocalizedStringKey,
-        tableName: String? = nil,
-        bundle: Bundle? = nil,
-        comment: StaticString? = nil
-    ){
-        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
-    }
-    
     public init(verbatim content: String) {
         TextView = Text(verbatim: content)
     }
@@ -33,6 +24,18 @@ public struct OnboardingTitle: View {
         TextView
             .onboardingStyle(style: .title)
             .accessibilityLabel(TextView)
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+extension OnboardingTitle {
+    public init(
+        _ key: LocalizedStringKey,
+        tableName: String? = nil,
+        bundle: Bundle? = nil,
+        comment: StaticString? = nil
+    ){
+        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
     }
 }
 
