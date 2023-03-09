@@ -110,14 +110,14 @@ public struct OnboardingView: View {
                         ForEach(content) { content in
                             if content.stringTitle != "" && content.stringContent != "" {
                                 OnboardingItem(systemName: content.systemName,
-                                               imageColor: content.color){
+                                               color: content.color){
                                     ItemTitle(content.stringTitle)
                                     ItemContent(content.stringContent)
                                 }
                             }
                             if content.localizedTitle != "" && content.localizedContent != "" {
                                 OnboardingItem(systemName: content.systemName,
-                                               imageColor: content.color){
+                                               color: content.color){
                                     ItemTitle(content.localizedTitle)
                                     ItemContent(content.localizedContent)
                                 }
