@@ -55,6 +55,6 @@ struct OnboardingItemTitle_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        OnboardingItemTitle("Onboarding Title")
+        OnboardingItemTitle("Confirmation Display")
     }
 }

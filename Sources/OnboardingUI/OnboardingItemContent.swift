@@ -51,6 +51,6 @@ extension OnboardingItemContent {
 
 struct OnboardingItemContent_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingItemContent("ItemContent")
+        OnboardingItemContent("Please check the display of this text")
     }
 }
