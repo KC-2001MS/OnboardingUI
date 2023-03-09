@@ -12,8 +12,13 @@ import SwiftUI
 public struct OnboardingItemContent: View {
     var TextView: Text
     
-    public init<S>(_ content: S) where S : StringProtocol {
-        TextView = Text(content)
+    public init(
+        _ key: LocalizedStringKey,
+        tableName: String? = nil,
+        bundle: Bundle? = nil,
+        comment: StaticString? = nil
+    ){
+        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
     }
     
     public init(verbatim content: String) {
@@ -41,13 +46,8 @@ extension OnboardingItemContent {
 
 @available(iOS 14.0,macOS 11,*)
 extension OnboardingItemContent {
-    public init(
-        _ key: LocalizedStringKey,
-        tableName: String? = nil,
-        bundle: Bundle? = nil,
-        comment: StaticString? = nil
-    ){
-        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
+    public init<S>(_ content: S) where S : StringProtocol {
+        TextView = Text(content)
     }
 }
 
