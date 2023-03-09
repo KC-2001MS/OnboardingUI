@@ -20,6 +20,7 @@ public struct OnboardingTitle: View {
         }
     }
     
+    
     public init(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
