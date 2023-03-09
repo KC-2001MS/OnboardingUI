@@ -14,6 +14,7 @@ public struct OnboardingButton: View {
     var localizedStringKey: LocalizedStringKey
     let string: String
     let action: () -> Void
+    
     public init(_ text: String,action: @escaping () -> Void){
         self.color = .accentColor
         self.string = NSLocalizedString(text, comment: "")

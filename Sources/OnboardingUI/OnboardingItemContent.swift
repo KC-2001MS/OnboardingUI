@@ -12,6 +12,10 @@ import SwiftUI
 public struct OnboardingItemContent: View {
     var TextView: Text
     
+    public init<S>(_ content: S) where S : StringProtocol {
+        TextView = Text(content)
+    }
+    
     public init(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -19,10 +23,6 @@ public struct OnboardingItemContent: View {
         comment: StaticString? = nil
     ){
         TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
-    }
-    
-    public init<S>(_ content: S) where S : StringProtocol {
-        TextView = Text(content)
     }
     
     public init(verbatim content: String) {
