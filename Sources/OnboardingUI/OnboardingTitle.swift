@@ -27,18 +27,6 @@ public struct OnboardingTitle: View {
     }
 }
 
-@available(iOS 14.0,macOS 11,*)
-extension OnboardingTitle {
-    public init(
-        _ key: LocalizedStringKey,
-        tableName: String? = nil,
-        bundle: Bundle? = nil,
-        comment: StaticString? = nil
-    ){
-        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
-    }
-}
-
 @available(iOS 15.0,macOS 12,*)
 extension OnboardingTitle {
     public init(_ attributedContent: AttributedString) {
@@ -50,6 +38,18 @@ extension OnboardingTitle {
 extension OnboardingTitle {
     public init(_ resource: LocalizedStringResource) {
         TextView = Text(resource)
+    }
+}
+
+@available(iOS 14.0,macOS 11,*)
+extension OnboardingTitle {
+    public init(
+        _ key: LocalizedStringKey,
+        tableName: String? = nil,
+        bundle: Bundle? = nil,
+        comment: StaticString? = nil
+    ){
+        TextView = Text(key,tableName: tableName,bundle: bundle,comment: comment)
     }
 }
 
