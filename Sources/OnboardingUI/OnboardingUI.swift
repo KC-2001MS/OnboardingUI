@@ -60,15 +60,15 @@ public struct OnboardingView: View {
                         if content.stringTitle != "" && content.stringContent != "" {
                             OnboardingItem(systemName: content.systemName,
                                            color: content.color){
-                                ItemTitle(content.stringTitle)
-                                ItemContent(content.stringContent)
+                                OnboardingItemTitle(content.stringTitle)
+                                OnboardingItemContent(content.stringContent)
                             }
                         }
                         if content.localizedTitle != "" && content.localizedContent != "" {
                             OnboardingItem(systemName: content.systemName,
                                            color: content.color){
-                                ItemTitle(content.localizedTitle)
-                                ItemContent(content.localizedContent)
+                                OnboardingItemTitle(content.localizedTitle)
+                                OnboardingItemContent(content.localizedContent)
                             }
                         }
                     }

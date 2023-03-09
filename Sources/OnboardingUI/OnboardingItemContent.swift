@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  OnboardingItemContent.swift
 //  
 //
 //  Created by 茅根啓介 on 2023/03/09.
@@ -9,7 +9,7 @@ import SwiftUI
 
 //項目内容View（完成）
 @available(iOS 14.0,macOS 11,*)
-public struct ItemContent: View {
+public struct OnboardingItemContent: View {
     var TextView: Text
     
     public init(
@@ -35,22 +35,22 @@ public struct ItemContent: View {
 }
 
 @available(iOS 15.0,macOS 12,*)
-extension ItemContent {
+extension OnboardingItemContent {
     public init(_ attributedContent: AttributedString) {
         TextView = Text(attributedContent)
     }
 }
 
 @available(iOS 16.0,macOS 13,*)
-extension ItemContent {
+extension OnboardingItemContent {
     public init(_ resource: LocalizedStringResource) {
         TextView = Text(resource)
     }
 }
 
 
-struct ItemContent_Previews: PreviewProvider {
+struct OnboardingItemContent_Previews: PreviewProvider {
     static var previews: some View {
-        ItemContent("ItemContent")
+        OnboardingItemContent("ItemContent")
     }
 }

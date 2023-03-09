@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  OnboardingButton.swift
 //  
 //
 //  Created by 茅根啓介 on 2023/03/09.

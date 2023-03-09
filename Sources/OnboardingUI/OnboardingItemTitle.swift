@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  OnboardingItemTitle.swift
 //  
 //
 //  Created by 茅根啓介 on 2023/03/09.
@@ -9,7 +9,7 @@ import SwiftUI
 
 //項目タイトルView（完成）
 @available(iOS 14.0,macOS 11,*)
-public struct ItemTitle: View {
+public struct OnboardingItemTitle: View {
     var TextView: Text
     
     public init(
@@ -36,14 +36,14 @@ public struct ItemTitle: View {
 }
 
 @available(iOS 15.0,macOS 12,*)
-extension ItemTitle {
+extension OnboardingItemTitle {
     public init(_ attributedContent: AttributedString) {
         TextView = Text(attributedContent)
     }
 }
 
 @available(iOS 16.0,macOS 13,*)
-extension ItemTitle {
+extension OnboardingItemTitle {
     public init(_ resource: LocalizedStringResource) {
         TextView = Text(resource)
     }
@@ -55,6 +55,6 @@ struct OnboardingItemTitle_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        ItemTitle("Onboarding Title")
+        OnboardingItemTitle("Onboarding Title")
     }
 }

@@ -12,18 +12,12 @@ import SwiftUI
 public struct OnboardingItem<Content: View>: View {
     let content: Content
     let systemName: String
-    let color: Color
+    let color: Color?
     
-    public init(systemName: String,color: Color,@ViewBuilder content: () -> Content) {
+    public init(systemName: String,color: Color? = .accentColor,@ViewBuilder content: () -> Content) {
         self.content = content()
         self.systemName = systemName
         self.color = color
-    }
-    
-    public init(systemName: String,@ViewBuilder content: () -> Content) {
-        self.content = content()
-        self.systemName = systemName
-        self.color = Color.accentColor
     }
     
     public var body: some View {
@@ -31,10 +25,47 @@ public struct OnboardingItem<Content: View>: View {
             Image(systemName: systemName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 35, height: 35)
-                .padding(5)
                 .font(.largeTitle)
                 .foregroundColor(color)
+                .frame(width: 35, height: 35)
+                .padding(5)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 5) {
+                content
+            }
+            .frame(maxHeight: .infinity)
+        }
+        .padding(OnboardingEdgeInsets)
+    }
+}
+
+@available(iOS 15.0,macOS 12,*)
+public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
+    let content: Content
+    let systemName: String
+    var mode: SymbolRenderingMode?
+    let shape: S
+    
+    
+    public init(systemName: String,mode: SymbolRenderingMode? = nil,shape: S = Color.accentColor,@ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.systemName = systemName
+        self.mode = mode
+        self.shape = shape
+    }
+    
+    
+    
+    public var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: systemName)
+                .resizable()
+                .scaledToFit()
+                .font(.largeTitle)
+                .symbolRenderingMode(mode)
+                .foregroundStyle(shape)
+                .frame(width: 35, height: 35)
+                .padding(5)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 5) {
                 content
@@ -54,5 +85,29 @@ struct OnboardingItem_Previews: PreviewProvider {
             Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
                 .onboardingStyle(style: .itemContent)
         }
+        
+        OnboardingItem(systemName: "doc") {
+            Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                .onboardingStyle(style: .itemTitle)
+            Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                .onboardingStyle(style: .itemContent)
+        }
+        
+        if #available(macOS 12, *) {
+            OnboardingItemParts(systemName: "doc",shape: .red) {
+                Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                    .onboardingStyle(style: .itemTitle)
+                Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                    .onboardingStyle(style: .itemContent)
+            }
+            
+            OnboardingItemParts(systemName: "doc") {
+                Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                    .onboardingStyle(style: .itemTitle)
+                Text("Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text")
+                    .onboardingStyle(style: .itemContent)
+            }
+        }
+
     }
 }
