@@ -28,7 +28,7 @@ public struct ColorButtonStyle: ButtonStyle {
         configuration.label
 #if os(iOS)
             .padding([.top, .bottom], 15)
-#elseif os(OSX)
+#elseif os(macOS)
             .padding([.top, .bottom], 10)
 #endif
             .foregroundColor(foregroundColor)
@@ -36,7 +36,7 @@ public struct ColorButtonStyle: ButtonStyle {
 #if os(iOS)
             .cornerRadius(15)
             .padding(OnboardingEdgeInsets)
-#elseif os(OSX)
+#elseif os(macOS)
             .cornerRadius(7)
             .padding(OnboardingEdgeInsets)
 #endif
@@ -81,7 +81,7 @@ public extension Text {
                     .foregroundColor(.white)
 #if os(iOS)
                     .frame(minWidth: 0, maxWidth: .infinity)
-#elseif os(OSX)
+#elseif os(macOS)
                     .frame(minWidth: 0, maxWidth: 130)
 #endif
             }
