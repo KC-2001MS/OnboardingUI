@@ -188,6 +188,13 @@ However, it is currently under development and cannot be installed. We will let 
 
 [OnboardingUI](https://github.com/KC-2001MS/OnboardingUI/blob/main/LICENSE)
 
+## Supporting（サポート）
+
+If you would like to make a donation to this project, please click here. The money you give will be used to improve my programming skills and maintain the application.
+<br>
+このプロジェクトに寄付をされたい場合は、こちらをご覧ください。いただいたお金は、私のプログラミングスキルの向上とアプリケーションのメンテナンスに使わせていただきます。
+
+[Pay by PayPal（PayPalで支払う）](https://paypal.me/iroiroWork?country.x=JP&locale.x=ja_JP)
 ## Author (作者)
 
 [Keisuke Chinone 茅根 啓介 (Iroiro いろいろ)](https://github.com/KC-2001MS)
