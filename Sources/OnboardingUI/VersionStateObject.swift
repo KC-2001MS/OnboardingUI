@@ -39,6 +39,10 @@ public class VersionStateObject: ObservableObject {
     //値の更新
     public func opened() {
         lastOpenedVersion = version
+        let lhsComponents = filled(splitByDot(lastOpenedVersion), count: 3)
+        let rhsComponents = filled(splitByDot(version), count: 3)
+        isFirstLaunchAfterUpdate =
+        (lhsComponents[0] != rhsComponents[0] || lhsComponents[1] != rhsComponents[1]) && lastOpenedVersion != ""
     }
 }
 //バージョン番号をドットで分けて配列化
