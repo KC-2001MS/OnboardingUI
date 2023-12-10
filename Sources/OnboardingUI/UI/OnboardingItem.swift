@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-//項目View（完成）
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingItem<Content: View>: View {
     let content: Content
     let systemName: String
@@ -39,7 +38,7 @@ public struct OnboardingItem<Content: View>: View {
     }
 }
 
-@available(iOS 15.0,macOS 12,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
     var content: Content
     var systemName: String

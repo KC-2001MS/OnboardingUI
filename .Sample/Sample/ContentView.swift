@@ -7,26 +7,27 @@
 
 
 import SwiftUI
+import OnboardingUI
 
 struct ContentView: View {
     @State private var isOpenSheet = false
     
+    @Environment(\.appVersionManager) private var appVersionManager
+    
     var body: some View {
+        @Bindable var appVersionManager = appVersionManager
         NavigationStack {
             List {
-                Button(action: {
-                    isOpenSheet.toggle()
-                }) {
-                    Text("Onboarding Sheet")
-                }
                 NavigationLink("Onboarding Card") {
                     OnboardingCardView()
                 }
             }
             .navigationTitle("Onboarding Sample App")
         }
-        .sheet(isPresented: $isOpenSheet) {
-            OnboardingSheetView()
+        .sheet(isPresented: $appVersionManager.isMajorVersionUpdated) {
+            OnboardingSheetView(action: {
+                appVersionManager.isMajorVersionUpdated = false
+            })
         }
     }
 }

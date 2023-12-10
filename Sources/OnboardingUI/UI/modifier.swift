@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-
-//ボタンスタイル（完成）
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct ColorButtonStyle: ButtonStyle {
     var foregroundColor: Color = .white
     var backgroundColor: Color = .accentColor
@@ -43,7 +41,7 @@ public struct ColorButtonStyle: ButtonStyle {
     }
 }
 
-//列挙型(スタイル指定用)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public enum OnboardingStyle {
     case title
     case itemTitle
@@ -51,8 +49,7 @@ public enum OnboardingStyle {
     case button
 }
 
-//スタイル
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public extension Text {
     func onboardingStyle(style: OnboardingStyle) -> some View {
         Group {
@@ -89,8 +86,6 @@ public extension Text {
     }
 }
 
-//表示確認
-@available(iOS 14.0,macOS 11,*)
 #Preview("Modifier") {
     Group {
         Text("Onboarding Title")

@@ -10,9 +10,15 @@ import SwiftUI
 import OnboardingUI
 
 struct OnboardingSheetView: View {
+    var action: () -> Void
+    
+    init(action: @escaping () -> Void) {
+        self.action = action
+    }
+    
     var body: some View {
         OnboardingSheet(
-            title: OnboardingTitle("Welcome to\nOnboardingUI"),
+            title: OnboardingTitle("Welcome to\nOnboardingUI Sample App"),
             content: {
                 OnboardingItem(systemName: "keyboard",color: .red) {
                     OnboardingItemTitle("Easy to Make")
@@ -31,13 +37,11 @@ struct OnboardingSheetView: View {
                     }
                 }
             },
-            button: OnboardingButton("Continue", action: {
-                
-            })
+            button: OnboardingButton("Continue", action: action)
         )
     }
 }
 
 #Preview {
-    OnboardingSheetView()
+    OnboardingSheetView(action: {})
 }

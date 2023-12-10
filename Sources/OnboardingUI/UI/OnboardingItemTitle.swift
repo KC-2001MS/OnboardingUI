@@ -1,5 +1,5 @@
 //
-//  OnboardingItemContent.swift
+//  OnboardingItemTitle.swift
 //  
 //
 //  Created by 茅根啓介 on 2023/03/09.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-//項目内容View（完成）
-@available(iOS 14.0,macOS 11,*)
-public struct OnboardingItemContent: View {
+//項目タイトルView（完成）
+@available(iOS 17.0,macOS 14,visionOS 1,*)
+public struct OnboardingItemTitle: View {
     var TextView: Text
     
     public init<S>(_ content: S) where S : StringProtocol {
@@ -33,27 +33,30 @@ public struct OnboardingItemContent: View {
     public init(verbatim content: String) {
         TextView = Text(verbatim: content)
     }
+    
     public var body: some View {
         TextView
-            .onboardingStyle(style: .itemContent)
+            .onboardingStyle(style: .itemTitle)
     }
 }
 
-@available(iOS 15.0,macOS 12,*)
-extension OnboardingItemContent {
+@available(iOS 17.0,macOS 14,visionOS 1,*)
+extension OnboardingItemTitle {
     public init(_ attributedContent: AttributedString) {
         TextView = Text(attributedContent)
     }
 }
 
-@available(iOS 16.0,macOS 13,*)
-extension OnboardingItemContent {
+@available(iOS 17.0,macOS 14,visionOS 1,*)
+extension OnboardingItemTitle {
     public init(_ resource: LocalizedStringResource) {
         TextView = Text(resource)
     }
 }
 
 
-#Preview("OnboardingItemContent") {
-        OnboardingItemContent("Please check the display of this text")
+//表示確認
+@available(iOS 17.0,macOS 14,visionOS 1,*)
+#Preview("OnboardingItemTitle") {
+        OnboardingItemTitle("Confirmation Display")
 }

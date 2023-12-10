@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-//続けるボタンView（完成）
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingButton: View {
     var color: Color = Color.accentColor
     var localizedStringKey: LocalizedStringKey

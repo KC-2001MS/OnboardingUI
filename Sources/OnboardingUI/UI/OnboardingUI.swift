@@ -1,10 +1,10 @@
 import SwiftUI
 
 //寸法関連（完成）
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
 
-@available(iOS 14.0,macOS 11,*)
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     var title: V1
     var content: V2
@@ -42,7 +42,7 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
                 .frame(height: 30)
         }
         .frame(maxWidth: 700,minHeight: 500, alignment: .center)
-#elseif os(iOS)
+#else
         GeometryReader { geom in
             VStack {
                 ScrollView {
@@ -69,7 +69,7 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     }
 }
 
-
+@available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingCard<V1: View,V2: View>: View {
     var title: V1
     var content: V2
@@ -119,7 +119,6 @@ public struct OnboardingCard<V1: View,V2: View>: View {
     }
 }
 
-@available(iOS 16.0,macOS 13,*)
 #Preview("OnboardingSheet") {
     OnboardingSheet(
         title: OnboardingTitle("Welcome to\nOnboardingUI"),
@@ -147,7 +146,6 @@ public struct OnboardingCard<V1: View,V2: View>: View {
     )
 }
 
-@available(iOS 16.0,macOS 13,*)
 #Preview("OnboardingCard") {
     OnboardingCard(
         title: OnboardingTitle("Welcome to\nOnboardingUI"),
