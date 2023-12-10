@@ -91,9 +91,8 @@ public extension Text {
 
 //表示確認
 @available(iOS 14.0,macOS 11,*)
-struct modifier_Previews: PreviewProvider {
-    static var previews: some View {
-        
+#Preview("Modifier") {
+    Group {
         Text("Onboarding Title")
             .onboardingStyle(style: .title)
         

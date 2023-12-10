@@ -56,11 +56,7 @@ extension OnboardingTitle {
 }
 
 //表示確認
-@available(iOS 14.0,macOS 11,*)
-struct OnboardingTitle_Previews: PreviewProvider {
-    
-    
-    static var previews: some View {
-        OnboardingTitle("Confirmation Display")
-    }
+@available(iOS 16.0,macOS 13,*)
+#Preview("OnboardingTitle") {
+    OnboardingTitle("Confirmation Display")
 }

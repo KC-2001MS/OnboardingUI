@@ -1,6 +1,6 @@
 //
 //  OnboardingButton.swift
-//  
+//
 //
 //  Created by 茅根啓介 on 2023/03/09.
 //
@@ -61,11 +61,8 @@ public struct OnboardingButton: View {
     }
 }
 
-struct OnboardingButton_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview("Onboarding Button") {
+    OnboardingButton(color: .accentColor,"Continue"){
         
-        OnboardingButton(color: .accentColor,"Continue"){
-            
-        }
     }
 }

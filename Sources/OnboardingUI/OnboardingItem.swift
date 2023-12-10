@@ -138,8 +138,8 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
     }
 }
 
-struct OnboardingItem_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview("Onboarding Item") {
+    Group {
         OnboardingItem(systemName: "doc",color: .red) {
             Text("Sample Title")
                 .onboardingStyle(style: .itemTitle)
@@ -176,6 +176,5 @@ struct OnboardingItem_Previews: PreviewProvider {
                     .onboardingStyle(style: .itemContent)
             }
         }
-
     }
 }
