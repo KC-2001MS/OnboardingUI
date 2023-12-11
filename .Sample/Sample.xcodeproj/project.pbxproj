@@ -12,6 +12,7 @@
 		F710462C2B2353F10044BCE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F710462B2B2353F10044BCE6 /* Assets.xcassets */; };
 		F71046302B2353F10044BCE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F710462F2B2353F10044BCE6 /* Preview Assets.xcassets */; };
 		F71046382B23587C0044BCE6 /* OnboardingUI in Frameworks */ = {isa = PBXBuildFile; productRef = F71046372B23587C0044BCE6 /* OnboardingUI */; };
+		F742079B2B26BD790061AF69 /* Onboardings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F742079A2B26BD790061AF69 /* Onboardings.swift */; };
 		F7A6E4502B25762300D093AF /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E44F2B25762300D093AF /* OnboardingSheetView.swift */; };
 		F7A6E4522B25779C00D093AF /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,7 @@
 		F710462B2B2353F10044BCE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F710462D2B2353F10044BCE6 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
 		F710462F2B2353F10044BCE6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F742079A2B26BD790061AF69 /* Onboardings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboardings.swift; sourceTree = "<group>"; };
 		F7A6E44F2B25762300D093AF /* OnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetView.swift; sourceTree = "<group>"; };
 		F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 			children = (
 				F71046272B2353F00044BCE6 /* SampleApp.swift */,
 				F71046292B2353F00044BCE6 /* ContentView.swift */,
+				F742079A2B26BD790061AF69 /* Onboardings.swift */,
 				F7A6E44E2B2574E900D093AF /* SampleUI */,
 				F710462B2B2353F10044BCE6 /* Assets.xcassets */,
 				F710462D2B2353F10044BCE6 /* Sample.entitlements */,
@@ -124,7 +127,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					F71046232B2353F00044BCE6 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -138,6 +141,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = F710461B2B2353F00044BCE6;
 			productRefGroup = F71046252B2353F00044BCE6 /* Products */;
@@ -167,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F710462A2B2353F00044BCE6 /* ContentView.swift in Sources */,
+				F742079B2B26BD790061AF69 /* Onboardings.swift in Sources */,
 				F7A6E4502B25762300D093AF /* OnboardingSheetView.swift in Sources */,
 				F71046282B2353F00044BCE6 /* SampleApp.swift in Sources */,
 				F7A6E4522B25779C00D093AF /* OnboardingCardView.swift in Sources */,
@@ -181,6 +186,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -210,6 +216,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -242,6 +249,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -271,6 +279,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -298,6 +307,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sample/Sample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Sample/Preview Content\"";
 				DEVELOPMENT_TEAM = 7AA87AZ875;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -337,6 +347,7 @@
 				CODE_SIGN_ENTITLEMENTS = Sample/Sample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Sample/Preview Content\"";
 				DEVELOPMENT_TEAM = 7AA87AZ875;
 				ENABLE_HARDENED_RUNTIME = YES;

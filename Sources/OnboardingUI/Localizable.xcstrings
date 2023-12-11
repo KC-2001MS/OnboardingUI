@@ -1,0 +1,44 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "Button" : {
+
+    },
+    "Close" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける"
+          }
+        }
+      }
+    },
+    "Onboarding Title" : {
+
+    },
+    "Sample Title" : {
+
+    },
+    "Start" : {
+
+    },
+    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview." : {
+
+    }
+  },
+  "version" : "1.0"
+}

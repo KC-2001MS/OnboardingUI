@@ -59,7 +59,7 @@ public struct AppVersionManagerKey: EnvironmentKey {
 }
 
 public extension EnvironmentValues {
-    public var appVersionManager: AppVersionManager {
+    var appVersionManager: AppVersionManager {
         get { self[AppVersionManagerKey.self] }
         set { self[AppVersionManagerKey.self] = newValue }
     }

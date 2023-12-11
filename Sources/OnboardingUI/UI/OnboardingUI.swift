@@ -65,6 +65,9 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
                     .frame(height: geom.size.height/14.5)
             }
         }
+#if os(visionOS)
+        .frame(width: 960,height: 540, alignment: .center)
+#endif
 #endif
     }
 }
@@ -133,17 +136,16 @@ public struct OnboardingCard<V1: View,V2: View>: View {
                 OnboardingItemContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
             }
             
-            if #available(macOS 12,iOS 15, *) {
-                OnboardingItemParts(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
-                    OnboardingItemTitle("Customize SF Symbols")
-                    OnboardingItemContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
-                }
+            OnboardingItemParts(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
+                OnboardingItemTitle("Customize SF Symbols")
+                OnboardingItemContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
             }
         },
         button: OnboardingButton("Continue", action: {
             
         })
     )
+    .environment(\.locale, .init(identifier: "ja"))
 }
 
 #Preview("OnboardingCard") {

@@ -60,6 +60,31 @@ public struct OnboardingButton: View {
     }
 }
 
+@available(iOS 17.0,macOS 14,visionOS 1,*)
+public struct ContinueButton: View {
+    var color: Color = Color.accentColor
+    let action: () -> Void
+        
+    public init(action: @escaping () -> Void){
+        self.color = .accentColor
+        self.action = action
+    }
+    
+    public init(color: Color,action: @escaping () -> Void) {
+        self.color = color
+        self.action = action
+    }
+    
+    public var body: some View {
+        Button(action: action) {
+            Text("Continue", bundle: .module)
+                    .onboardingStyle(style: .button)
+        }
+        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: color))
+        .accessibilityInputLabels(["Continue","Start","Close"])
+    }
+}
+
 #Preview("Onboarding Button") {
     OnboardingButton(color: .accentColor,"Continue"){
         

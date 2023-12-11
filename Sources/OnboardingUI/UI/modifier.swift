@@ -24,20 +24,19 @@ public struct ColorButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-#if os(iOS)
-            .padding([.top, .bottom], 15)
-#elseif os(macOS)
+#if os(macOS)
             .padding([.top, .bottom], 10)
+#else
+            .padding([.top, .bottom], 15)
 #endif
             .foregroundColor(foregroundColor)
             .background(backgroundColor)
-#if os(iOS)
-            .cornerRadius(15)
-            .padding(OnboardingEdgeInsets)
-#elseif os(macOS)
+#if os(macOS)
             .cornerRadius(7)
-            .padding(OnboardingEdgeInsets)
+#else
+            .cornerRadius(15)
 #endif
+            .padding(OnboardingEdgeInsets)
     }
 }
 
@@ -76,10 +75,10 @@ public extension Text {
                 self
                     .bold()
                     .foregroundColor(.white)
-#if os(iOS)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-#elseif os(macOS)
+#if os(macOS)
                     .frame(minWidth: 0, maxWidth: 130)
+#else
+                    .frame(minWidth: 0, maxWidth: .infinity)
 #endif
             }
         }
