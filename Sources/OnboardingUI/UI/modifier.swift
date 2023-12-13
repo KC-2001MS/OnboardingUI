@@ -8,44 +8,10 @@
 import SwiftUI
 
 @available(iOS 17.0,macOS 14,visionOS 1,*)
-public struct ColorButtonStyle: ButtonStyle {
-    var foregroundColor: Color = .white
-    var backgroundColor: Color = .accentColor
-    
-    public init() {
-        self.foregroundColor = .white
-        self.backgroundColor = .accentColor
-    }
-    
-    public init(foregroundColor: Color,backgroundColor: Color) {
-        self.foregroundColor = foregroundColor
-        self.backgroundColor = backgroundColor
-    }
-    
-    public func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-#if os(macOS)
-            .padding([.top, .bottom], 10)
-#else
-            .padding([.top, .bottom], 15)
-#endif
-            .foregroundColor(foregroundColor)
-            .background(backgroundColor)
-#if os(macOS)
-            .cornerRadius(7)
-#else
-            .cornerRadius(15)
-#endif
-            .padding(OnboardingEdgeInsets)
-    }
-}
-
-@available(iOS 17.0,macOS 14,visionOS 1,*)
 public enum OnboardingStyle {
     case title
     case itemTitle
     case itemContent
-    case button
 }
 
 @available(iOS 17.0,macOS 14,visionOS 1,*)
@@ -71,15 +37,6 @@ public extension Text {
                     .font(.system(size: 15))
                     .font(.body)
                     .foregroundColor(.secondary)
-            case .button:
-                self
-                    .bold()
-                    .foregroundColor(.white)
-#if os(macOS)
-                    .frame(minWidth: 0, maxWidth: 130)
-#else
-                    .frame(minWidth: 0, maxWidth: .infinity)
-#endif
             }
         }
     }
@@ -87,16 +44,7 @@ public extension Text {
 
 #Preview("Modifier") {
     Group {
-        Text("Onboarding Title")
+        Text("Sample Title")
             .onboardingStyle(style: .title)
-        
-        
-        Button(action: {
-            
-        }) {
-            Text("Continue")
-                .onboardingStyle(style: .button)
-        }
-        .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
     }
 }

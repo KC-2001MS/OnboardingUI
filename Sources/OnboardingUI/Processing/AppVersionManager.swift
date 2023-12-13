@@ -9,6 +9,7 @@ import Foundation
 import Observation
 import SwiftUI
 
+/// A general-purpose operation recorder capable of determining the initial startup of an application or the startup of an application after an upgrade.
 @available(iOS 17.0,macOS 14,visionOS 1,*)
 @Observable
 public class AppVersionManager {
@@ -21,12 +22,22 @@ public class AppVersionManager {
             userDefaults.set(lastOpenedVersion, forKey: "LastOpenedVersion")
         }
     }
+    /// Whether or not this is the first activation.
+    public var isTheFirstActivation: Bool {
+        get {
+            return lastOpenedVersion == ""
+        }
+        
+        set {
+            lastOpenedVersion = version
+        }
+    }
     /// Variable to detect if the major version number has increased.
     public var isMajorVersionUpdated: Bool {
         get {
             let lastOpenedComponents = filled(splitByDot(lastOpenedVersion), count: 3)
             let currentComponents = filled(splitByDot(version), count: 3)
-            return lastOpenedComponents[0] < currentComponents[0] || lastOpenedVersion == ""
+            return lastOpenedComponents[0] < currentComponents[0]
         }
         
         set {

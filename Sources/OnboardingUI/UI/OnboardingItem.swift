@@ -13,7 +13,11 @@ public struct OnboardingItem<Content: View>: View {
     let systemName: String
     let color: Color?
     
-    public init(systemName: String,color: Color? = .accentColor,@ViewBuilder content: () -> Content) {
+    public init(
+        systemName: String,
+        color: Color? = .accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.systemName = systemName
         self.color = color

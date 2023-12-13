@@ -19,7 +19,6 @@ public struct OnboardingItemContent: View {
         }
     }
     
-    
     public init(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -51,7 +50,6 @@ extension OnboardingItemContent {
         TextView = Text(resource)
     }
 }
-
 
 #Preview("OnboardingItemContent") {
         OnboardingItemContent("Please check the display of this text")

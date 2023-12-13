@@ -21,14 +21,19 @@ struct ContentView: View {
                 NavigationLink("Onboarding Card") {
                     OnboardingCardView()
                 }
+                
+                Button("test") {
+                    isOpenSheet.toggle()
+                }
             }
             .navigationTitle("Onboarding Sample App")
         }
-        .sheet(isPresented: $appVersionManager.isMajorVersionUpdated) {
+        .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
             OnboardingSheetView(action: {
-                appVersionManager.isMajorVersionUpdated = false
+                appVersionManager.isTheFirstActivation = false
             })
         }
+        .sheetOnboarding(isPresented: $isOpenSheet, WhatIsNewOnboarding())
     }
 }
 

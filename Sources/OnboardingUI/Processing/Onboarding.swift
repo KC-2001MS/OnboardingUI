@@ -22,7 +22,7 @@ public protocol Onboarding: Identifiable, Sendable {
 public struct Feature: Identifiable, Sendable {
     public var id: UUID = UUID()
     
-    public var title: Text = Text("")
+    public var title: Text = Text(verbatim: "")
     
     public var image: Image? = nil
     
@@ -30,7 +30,7 @@ public struct Feature: Identifiable, Sendable {
     
     public init() {
         self.id = UUID()
-        self.title = Text("")
+        self.title = Text(verbatim: "")
         self.image = nil
         self.message = nil
     }

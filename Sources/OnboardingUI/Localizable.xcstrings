@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "Button" : {
-
-    },
     "Close" : {
       "localizations" : {
         "ja" : {
@@ -27,17 +21,58 @@
         }
       }
     },
-    "Onboarding Title" : {
-
+    "Open Onboarding" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンボーディングを開く"
+          }
+        }
+      }
     },
     "Sample Title" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルのタイトル"
+          }
+        }
+      }
     },
     "Start" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
+        }
+      }
+    },
+    "test" : {
 
     },
     "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview." : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これはサンプルテキストです。このテキストで、このフレームワークでどのように表示されるかを確認できます。プレビューをご覧ください。"
+          }
+        }
+      }
+    },
+    "What's New in\nOnboardingUI" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OnboardingUIの新機能"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

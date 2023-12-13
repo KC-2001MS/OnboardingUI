@@ -10,12 +10,14 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     var content: V2
     var button: V3
     
-    public init(title: V1,
-                @ViewBuilder content: () -> V2,
-                button: V3) {
-        self.title = title
+    public init(
+        @ViewBuilder title: () -> V1,
+        @ViewBuilder content: () -> V2,
+        @ViewBuilder button: () -> V3
+    ) {
+        self.title = title()
         self.content = content()
-        self.button = button
+        self.button = button()
     }
     
     public var body: some View {
@@ -78,10 +80,10 @@ public struct OnboardingCard<V1: View,V2: View>: View {
     var content: V2
     let action: () -> Void
     
-    public init(title: V1,
+    public init(@ViewBuilder title: () -> V1,
                 @ViewBuilder content: () -> V2,
                 action: @escaping () -> Void) {
-        self.title = title
+        self.title = title()
         self.content = content()
         self.action = action
     }
@@ -122,54 +124,53 @@ public struct OnboardingCard<V1: View,V2: View>: View {
     }
 }
 
-#Preview("OnboardingSheet") {
-    OnboardingSheet(
-        title: OnboardingTitle("Welcome to\nOnboardingUI"),
-        content: {
-            OnboardingItem(systemName: "keyboard",color: .red) {
-                OnboardingItemTitle("Easy to Make")
-                OnboardingItemContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
-            }
+#Preview("Onboarding Sheet") {
+    OnboardingSheet {
+        OnboardingTitle("Welcome to\nOnboardingUI")
+    } content: {
+        OnboardingItem(systemName: "keyboard",color: .red) {
+            OnboardingItemTitle("Easy to Make")
+            OnboardingItemContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+        }
+        
+        OnboardingItem(systemName: "macbook.and.ipad") {
+            OnboardingItemTitle("Not only for iPhone, but also for Mac and iPad")
+            OnboardingItemContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+        }
+        
+        OnboardingItemParts(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
+            OnboardingItemTitle("Customize SF Symbols")
+            OnboardingItemContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
+        }
+    } button: {
+        ContinueButton(color: .accentColor) {
             
-            OnboardingItem(systemName: "macbook.and.ipad") {
-                OnboardingItemTitle("Not only for iPhone, but also for Mac and iPad")
-                OnboardingItemContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
-            }
-            
+        }
+    }
+    .environment(\.locale, .init(identifier: "ja"))
+}
+
+#Preview("Onboarding Card") {
+    OnboardingCard {
+        OnboardingTitle("Welcome to\nOnboardingUI")
+    } content: {
+        OnboardingItem(systemName: "keyboard",color: .red) {
+            OnboardingItemTitle("Easy to Make")
+            OnboardingItemContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+        }
+        
+        OnboardingItem(systemName: "macbook.and.ipad") {
+            OnboardingItemTitle("Not only for iPhone, but also for Mac and iPad")
+            OnboardingItemContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+        }
+        
+        if #available(macOS 12,iOS 15, *) {
             OnboardingItemParts(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
                 OnboardingItemTitle("Customize SF Symbols")
                 OnboardingItemContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
             }
-        },
-        button: OnboardingButton("Continue", action: {
-            
-        })
-    )
-    .environment(\.locale, .init(identifier: "ja"))
-}
-
-#Preview("OnboardingCard") {
-    OnboardingCard(
-        title: OnboardingTitle("Welcome to\nOnboardingUI"),
-        content: {
-            OnboardingItem(systemName: "keyboard",color: .red) {
-                OnboardingItemTitle("Easy to Make")
-                OnboardingItemContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
-            }
-            
-            OnboardingItem(systemName: "macbook.and.ipad") {
-                OnboardingItemTitle("Not only for iPhone, but also for Mac and iPad")
-                OnboardingItemContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
-            }
-            
-            if #available(macOS 12,iOS 15, *) {
-                OnboardingItemParts(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
-                    OnboardingItemTitle("Customize SF Symbols")
-                    OnboardingItemContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
-                }
-            }
         }
-    ){
+    } action: {
         
     }
 }

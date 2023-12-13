@@ -54,8 +54,6 @@ extension OnboardingItemTitle {
     }
 }
 
-
-//表示確認
 @available(iOS 17.0,macOS 14,visionOS 1,*)
 #Preview("OnboardingItemTitle") {
         OnboardingItemTitle("Confirmation Display")
