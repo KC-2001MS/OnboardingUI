@@ -10,7 +10,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @State private var isPresented = true
-   
+    
     public let onboarding: any Onboarding
     
     var body: some View {
@@ -36,25 +36,25 @@ struct OnboardingView: View {
                 imageName: "keyboard",
                 message: "Onboarding screens like Apple's stock apps can be easily created with SwiftUI."
             )
-            #if os(iOS)
+#if os(iOS)
             Feature(
                 "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
                 imageName: "ipad.and.iphone",
                 message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
             )
-            #elseif os(macOS)
+#elseif os(macOS)
             Feature(
                 "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
                 imageName: "macbook",
                 message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
             )
-            #elseif os(visionOS)
+#elseif os(visionOS)
             Feature(
                 "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
                 imageName: "visionpro",
                 message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
             )
-            #endif
+#endif
             Feature(
                 "Customize SF Symbols" ,
                 imageName: "macbook.and.iphone",

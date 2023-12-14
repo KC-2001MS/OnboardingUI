@@ -1,5 +1,5 @@
 //
-//  OnboardingItemContent.swift
+//  OnboardingSubtitle.swift
 //  
 //
 //  Created by 茅根啓介 on 2023/03/09.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+//項目タイトルView（完成）
 @available(iOS 17.0,macOS 14,visionOS 1,*)
-public struct OnboardingItemContent: View {
+public struct OnboardingSubtitle: View {
     var TextView: Text
     
     public init<S>(_ content: S) where S : StringProtocol {
@@ -18,6 +19,7 @@ public struct OnboardingItemContent: View {
             TextView = Text(content)
         }
     }
+    
     
     public init(
         _ key: LocalizedStringKey,
@@ -31,26 +33,25 @@ public struct OnboardingItemContent: View {
     public init(verbatim content: String) {
         TextView = Text(verbatim: content)
     }
-    public var body: some View {
-        TextView
-            .onboardingStyle(style: .itemContent)
-    }
-}
-
-@available(iOS 17.0,macOS 14,visionOS 1,*)
-extension OnboardingItemContent {
+    
     public init(_ attributedContent: AttributedString) {
         TextView = Text(attributedContent)
     }
-}
-
-@available(iOS 17.0,macOS 14,visionOS 1,*)
-extension OnboardingItemContent {
+    
     public init(_ resource: LocalizedStringResource) {
         TextView = Text(resource)
     }
+    
+    public init(_ text: Text) {
+        self.TextView = text
+    }
+    
+    public var body: some View {
+        TextView
+            .onboardingStyle(style: .subtitle)
+    }
 }
 
-#Preview("OnboardingItemContent") {
-        OnboardingItemContent("Please check the display of this text")
+#Preview("OnboardingItemTitle") {
+        OnboardingSubtitle("Sample Subtitle")
 }

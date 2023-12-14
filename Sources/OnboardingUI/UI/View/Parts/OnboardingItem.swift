@@ -1,6 +1,6 @@
 //
 //  OnboardingItem.swift
-//  
+//
 //
 //  Created by 茅根啓介 on 2023/03/09.
 //
@@ -8,47 +8,17 @@
 import SwiftUI
 
 @available(iOS 17.0,macOS 14,visionOS 1,*)
-public struct OnboardingItem<Content: View>: View {
-    let content: Content
-    let systemName: String
-    let color: Color?
-    
-    public init(
-        systemName: String,
-        color: Color? = .accentColor,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.content = content()
-        self.systemName = systemName
-        self.color = color
-    }
-    
-    public var body: some View {
-        HStack(spacing: 10) {
-            Image(systemName: systemName)
-                .resizable()
-                .scaledToFit()
-                .font(.largeTitle)
-                .foregroundColor(color)
-                .frame(width: 35, height: 35)
-                .padding(5)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 5) {
-                content
-            }
-            .frame(maxHeight: .infinity)
-        }
-        .padding(OnboardingEdgeInsets)
-    }
-}
-
-@available(iOS 17.0,macOS 14,visionOS 1,*)
-public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
+public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     var content: Content
     var systemName: String
     var mode: SymbolRenderingMode?
     var shape: Array<S>
     private var shapeSize: ShapeSize
+    
+    @ViewBuilder
+    var image: some View {
+        EmptyView()
+    }
     
     private enum ShapeSize {
         case none
@@ -57,7 +27,11 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
         case tertiary
     }
     
-    public init(systemName: String,mode: SymbolRenderingMode? = .monochrome,@ViewBuilder content: () -> Content) {
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .monochrome,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.systemName = systemName
         self.mode = mode
@@ -65,7 +39,12 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
         self.shapeSize = .none
     }
     
-    public init(systemName: String,mode: SymbolRenderingMode? = .monochrome,shape: S = Color.accentColor,@ViewBuilder content: () -> Content) {
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .monochrome,
+        shape: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.systemName = systemName
         self.mode = mode
@@ -73,7 +52,13 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
         self.shapeSize = .primary
     }
     
-    public init(systemName: String,mode: SymbolRenderingMode? = .palette,primary: S = Color.accentColor,secondary: S = Color.accentColor,@ViewBuilder content: () -> Content) {
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .palette,
+        primary: S = Color.accentColor,
+        secondary: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.systemName = systemName
         self.mode = mode
@@ -81,7 +66,14 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
         self.shapeSize = .secondary
     }
     
-    public init(systemName: String,mode: SymbolRenderingMode? = .palette,primary: S = Color.accentColor,tertiary: S = Color.accentColor,secondary: S = Color.accentColor,@ViewBuilder content: () -> Content) {
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .palette,
+        primary: S = Color.accentColor,
+        tertiary: S = Color.accentColor,
+        secondary: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.systemName = systemName
         self.mode = mode
@@ -135,6 +127,7 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
             VStack(alignment: .leading, spacing: 5) {
                 content
             }
+            //これいらないのでは
             .frame(maxHeight: .infinity)
         }
         .padding(OnboardingEdgeInsets)
@@ -142,42 +135,26 @@ public struct OnboardingItemParts<Content: View,S: ShapeStyle>: View {
 }
 
 #Preview("Onboarding Item") {
-    Group {
-        OnboardingItem(systemName: "doc",color: .red) {
-            Text("Sample Title")
-                .onboardingStyle(style: .itemTitle)
+    ScrollView {
+        OnboardingItem(systemName: "macbook.and.ipad",mode: .palette,primary: .red,secondary: .blue) {
+            Text("Sample Subtitle \(1)")
+                .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .itemContent)
+                .onboardingStyle(style: .content)
+        }
+        
+        OnboardingItem(systemName: "doc",shape: .red) {
+            Text("Sample Subtitle \(2)")
+                .onboardingStyle(style: .subtitle)
+            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
+                .onboardingStyle(style: .content)
         }
         
         OnboardingItem(systemName: "doc") {
-            Text("Sample Title")
-                .onboardingStyle(style: .itemTitle)
+            Text("Sample Subtitle \(3)")
+                .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .itemContent)
-        }
-        
-        if #available(macOS 12,iOS 15, *) {
-            OnboardingItemParts(systemName: "macbook.and.ipad",mode: .palette,primary: .red,secondary: .blue) {
-                Text("Sample Title")
-                    .onboardingStyle(style: .itemTitle)
-                Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                    .onboardingStyle(style: .itemContent)
-            }
-            
-            OnboardingItemParts(systemName: "doc",shape: .red) {
-                Text("Sample Title")
-                    .onboardingStyle(style: .itemTitle)
-                Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                    .onboardingStyle(style: .itemContent)
-            }
-            
-            OnboardingItemParts(systemName: "doc") {
-                Text("Sample Title")
-                    .onboardingStyle(style: .itemTitle)
-                Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                    .onboardingStyle(style: .itemContent)
-            }
+                .onboardingStyle(style: .content)
         }
     }
 }

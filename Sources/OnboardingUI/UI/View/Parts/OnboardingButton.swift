@@ -12,7 +12,7 @@ public struct ContinueButton: View {
     let foregroundColor: Color
     let backgroundColor: Color
     let action: () -> Void
-        
+    
     public init(action: @escaping () -> Void){
         self.foregroundColor = .white
         self.backgroundColor = .accentColor
