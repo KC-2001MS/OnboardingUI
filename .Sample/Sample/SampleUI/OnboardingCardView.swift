@@ -16,11 +16,9 @@ struct OnboardingCardView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text("Text Onboarding Card")
-                
                 OnboardingView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
             }
-            .navigationTitle("Onboarding Card")
+            .navigationTitle("The View with the onboarding card")
         }
     }
 }

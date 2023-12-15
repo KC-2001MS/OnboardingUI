@@ -42,16 +42,11 @@ public struct Feature: Identifiable, Sendable {
         self.message = Text(message)
     }
     
-    public init<S>(_ title: S,imageName: String, message: S) where S : StringProtocol {
+    @_disfavoredOverload public init<S>(_ title: S,imageName: String, message: S) where S : StringProtocol {
         self.id = UUID()
         self.title = Text(title)
         self.image = Image(systemName: imageName)
         self.message = Text(message)
-    }
-    
-    public mutating func featureTitle(_ title: LocalizedStringKey) -> Self {
-        self.title = Text(title)
-        return self
     }
 }
 

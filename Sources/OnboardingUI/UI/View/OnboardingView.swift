@@ -8,17 +8,17 @@
 
 import SwiftUI
 
-struct OnboardingView: View {
+public struct OnboardingView: View {
     @Binding var isPresented: Bool
     
     public let onboarding: any Onboarding
     
-    init(isPresented: Binding<Bool>, onboarding: any Onboarding) {
+    public init(isPresented: Binding<Bool>, onboarding: any Onboarding) {
         self._isPresented = isPresented
         self.onboarding = onboarding
     }
     
-    var body: some View {
+    public var body: some View {
         if isPresented {
             OnboardingCard {
                 onboarding.title

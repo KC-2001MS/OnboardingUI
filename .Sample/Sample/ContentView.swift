@@ -17,25 +17,74 @@ struct ContentView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         NavigationStack {
-            List {
-                NavigationLink("Onboarding Card") {
-                    OnboardingCardView()
+            Form {
+                Section {
+                    NavigationLink("Show views with the onboarding card") {
+                        OnboardingCardView()
+                    }
+                    
+                    Button("Show onboarding sheets") {
+                        isOpenSheet.toggle()
+                    }
+                    .buttonStyle(.borderless)
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                } header: {
+                    Text("Simple implementation using Onboarding protocol")
                 }
-                
-                Button("sheetOnboarding") {
-                    isOpenSheet.toggle()
+                #if DEBUG
+                Section {
+                    Button("Change to initial startup state") {
+                        appVersionManager.lastOpenedVersion = ""
+                    }
+                    .buttonStyle(.borderless)
+                    .foregroundStyle(Color.red)
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                    
+                    Button("Changed to first startup status after update") {
+                        appVersionManager.lastOpenedVersion = "0.0.0"
+                    }
+                    .buttonStyle(.borderless)
+                    .foregroundStyle(Color.red)
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                    Button("Changed to first startup status after update") {
+                        appVersionManager.lastOpenedVersion = "1.0.0"
+                    }
+                    .buttonStyle(.borderless)
+                    .foregroundStyle(Color.red)
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                } header: {
+                    Text("Debugging of application launch history")
                 }
-                .buttonStyle(.borderless)
+                #endif
             }
             .navigationTitle("Onboarding Sample App")
-            .listStyle(.bordered)
+            .formStyle(.grouped)
         }
         .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
             OnboardingSheetView(action: {
                 appVersionManager.isTheFirstActivation = false
             })
         }
-        .sheetOnboarding(isPresented: $isOpenSheet, WhatIsNewOnboarding())
+        .sheet(isPresented: $appVersionManager.isMajorVersionUpdated) {
+            OnboardingSheetView(action: {
+                appVersionManager.isMajorVersionUpdated = false
+            })
+        }
+        .sheet(isPresented: $appVersionManager.isMinorOrPatchVersionUpdated) {
+            OnboardingSheetView(action: {
+                appVersionManager.isMinorOrPatchVersionUpdated = false
+            })
+        }
+
+        .sheetOnboarding(isPresented: $isOpenSheet, WelcomeOnboarding())
     }
 }
 

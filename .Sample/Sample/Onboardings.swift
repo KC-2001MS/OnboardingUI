@@ -63,6 +63,7 @@ struct WhatIsNewOnboarding: Onboarding {
             imageName: "building.columns",
             message: "The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views."
         )
+        
         Feature(
             "Vision Pro Support" ,
             imageName: "visionpro",

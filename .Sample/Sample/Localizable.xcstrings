@@ -1,23 +1,225 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Onboarding Card" : {
-
+    "Change to initial startup state" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "初回起動状態に変更"
+          }
+        }
+      }
+    },
+    "Changed to first startup status after update" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アップデート後、初起動の状態変更"
+          }
+        }
+      }
+    },
+    "Customize SF Symbols" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SFシンボルのカスタマイズ"
+          }
+        }
+      }
+    },
+    "Customize the look and feel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "見た目のカスタマイズ"
+          }
+        }
+      }
+    },
+    "Debugging of application launch history" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリケーション起動履歴をデバッグ"
+          }
+        }
+      }
+    },
+    "Easy to Make" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作成をより簡単に"
+          }
+        }
+      }
+    },
+    "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS 15とmacOS 12でサポートされているマルチカラーと階層をサポートし、もっと自由にカスタマイズできます。"
+          }
+        }
+      }
+    },
+    "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhoneだけでなく、Mac、iPad、Vision Proにも対応しています。そのため、デバイスごとにコードを書き換える必要はありません。"
+          }
+        }
+      }
+    },
+    "New Onboarding protocol and Feature structure" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいOnboardingプロトコルとFeature構造体"
+          }
+        }
+      }
+    },
+    "Not only for iPhone, but also for Mac, iPad, Vision Pro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhoneだけでなく、Mac、iPad、Vision Proにも対応"
+          }
+        }
+      }
+    },
+    "Of course, it is also customizable. You can build onboarding at will." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "もちろん、カスタマイズも可能です。自由にオンボーディングを構築できます。"
+          }
+        }
+      }
     },
     "Onboarding Sample App" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンボーディングサンプルアプリ"
+          }
+        }
+      }
     },
-    "sheetOnboarding" : {
-
+    "Onboarding screens like Apple's stock apps can be easily created with SwiftUI." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appleの純正アプリのようなオンボーディング画面を、SwiftUIで簡単に作成できます。"
+          }
+        }
+      }
     },
-    "Text Onboarding Card" : {
-
+    "Show onboarding sheets" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onboardingシートを表示"
+          }
+        }
+      }
+    },
+    "Show views with the onboarding card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンボーディングのカード付きビューを表示"
+          }
+        }
+      }
+    },
+    "Simple implementation using Onboarding protocol" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンボーディングのプロトコルを使用した簡易的な実装"
+          }
+        }
+      }
+    },
+    "The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいOnboardingプロトコルとFeature構造体により、オンボーディングの作成が簡単になりました。ビューを構築する必要はありません。"
+          }
+        }
+      }
+    },
+    "The View with the onboarding card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンボーディングのカード付きビュー"
+          }
+        }
+      }
+    },
+    "Vision Pro Support" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vision Proのサポート"
+          }
+        }
+      }
+    },
+    "Vision Pro support has also been added. Onboarding can be built just like any other platform." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vision Proのサポートも追加しました。オンボーディングを他のプラットフォームと同様に構築できます。"
+          }
+        }
+      }
     },
     "Welcome to\nOnboardingUI" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OnboardingUIへようこそ"
+          }
+        }
+      }
     },
     "What's New in\nOnboardingUI" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OnboardingUIの新機能"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
