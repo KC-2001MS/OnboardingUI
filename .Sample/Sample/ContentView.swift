@@ -22,11 +22,13 @@ struct ContentView: View {
                     OnboardingCardView()
                 }
                 
-                Button("test") {
+                Button("sheetOnboarding") {
                     isOpenSheet.toggle()
                 }
+                .buttonStyle(.borderless)
             }
             .navigationTitle("Onboarding Sample App")
+            .listStyle(.bordered)
         }
         .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
             OnboardingSheetView(action: {

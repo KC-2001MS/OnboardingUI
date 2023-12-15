@@ -16,7 +16,28 @@ public struct SheetOnboarding: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .sheet(isPresented: $isPresented) {
-                Text("test")
+                OnboardingSheet {
+                    onboarding.title
+                        .onboardingStyle(style: .title)
+                } content: {
+                    ForEach(onboarding.features) { feature in
+                        if let image = feature.image {
+                            OnboardingItem {
+                                image
+                            } content: {
+                                if let message = feature.message {
+                                    OnboardingTitle(feature.title)
+                                    OnboardingContent(message)
+                                }
+                            }
+
+                        }
+                    }
+                } button: {
+                    ContinueButton {
+                        isPresented.toggle()
+                    }
+                }
             }
     }
 }
@@ -75,5 +96,8 @@ public extension View {
             isPresented = true
         }
         .sheetOnboarding(isPresented: $isPresented, WhatIsNewOnboarding())
+        #if os(macOS)
+        .frame(width: 400, height: 300)
+        #endif
     }
 }

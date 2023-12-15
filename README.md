@@ -31,8 +31,6 @@ This framework has two methods: a method that can easily implement the entire on
 
 ### オンボードを作るビュー
 This is the easiest code to onboard.  
-<br>
-これが最も簡単にオンボードを作成できるコードです。
 ```swift
         let content = [
             OnboardingItemData(title: "Editing Text",
@@ -114,7 +112,6 @@ or
         }
 ```
 Below is the result of this execution.  
-(imageColorはオプションで省略可能です。)  
 #### iOS
 ![iOS版](images/iOS_OnboardingItem.png "Onboarding Item")  
 #### macOS
@@ -136,9 +133,7 @@ or
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```
-Below is the result of this execution.  
-<br>
-下はこの実行結果です。  
+Below is the result of this execution.   
 (color/foregroundColor/backgroundColorは省略可能でデフォルトはそれぞれ.blue/.white/.redとなります。)  
 #### iOS
 ![iOS版](images/iOS_ContinueButton.png "Continue Button")  

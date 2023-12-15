@@ -32,13 +32,34 @@
       }
     },
     "Sample Content" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルの本文"
+          }
+        }
+      }
     },
     "Sample Subtitle" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルのサブタイトル"
+          }
+        }
+      }
     },
     "Sample Subtitle %lld" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルのサブタイトル %lld"
+          }
+        }
+      }
     },
     "Sample Title" : {
       "localizations" : {
@@ -59,9 +80,6 @@
           }
         }
       }
-    },
-    "test" : {
-
     },
     "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview." : {
       "localizations" : {

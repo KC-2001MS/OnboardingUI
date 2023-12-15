@@ -1,5 +1,24 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {},
+  "strings" : {
+    "Onboarding Card" : {
+
+    },
+    "Onboarding Sample App" : {
+
+    },
+    "sheetOnboarding" : {
+
+    },
+    "Text Onboarding Card" : {
+
+    },
+    "Welcome to\nOnboardingUI" : {
+
+    },
+    "What's New in\nOnboardingUI" : {
+
+    }
+  },
   "version" : "1.0"
 }

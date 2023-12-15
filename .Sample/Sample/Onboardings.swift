@@ -27,19 +27,19 @@ struct WelcomeOnboarding: Onboarding {
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "ipad.and.iphone",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
+            message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
         #elseif os(macOS)
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "macbook",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
+            message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
         #elseif os(visionOS)
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "visionpro",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
+            message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
         #endif
         Feature(
@@ -59,33 +59,19 @@ struct WhatIsNewOnboarding: Onboarding {
     
     var features: Array<Feature> {
         Feature(
-            "Easy to Make" ,
-            imageName: "keyboard",
-            message: "Onboarding screens like Apple's stock apps can be easily created with SwiftUI."
+            "New Onboarding protocol and Feature structure" ,
+            imageName: "building.columns",
+            message: "The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views."
         )
-        #if os(iOS)
         Feature(
-            "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
-            imageName: "ipad.and.iphone",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
-        )
-        #elseif os(macOS)
-        Feature(
-            "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
-            imageName: "macbook",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
-        )
-        #elseif os(visionOS)
-        Feature(
-            "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
+            "Vision Pro Support" ,
             imageName: "visionpro",
-            message: "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
+            message: "Vision Pro support has also been added. Onboarding can be built just like any other platform."
         )
-        #endif
         Feature(
-            "Customize SF Symbols" ,
-            imageName: "macbook.and.iphone",
-            message: "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."
+            "Customize the look and feel" ,
+            imageName: "wrench.and.screwdriver",
+            message: "Of course, it is also customizable. You can build onboarding at will."
         )
     }
 }

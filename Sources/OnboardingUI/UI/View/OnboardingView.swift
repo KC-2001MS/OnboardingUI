@@ -9,13 +9,38 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @State private var isPresented = true
+    @Binding var isPresented: Bool
     
     public let onboarding: any Onboarding
     
+    init(isPresented: Binding<Bool>, onboarding: any Onboarding) {
+        self._isPresented = isPresented
+        self.onboarding = onboarding
+    }
+    
     var body: some View {
         if isPresented {
-            Text("test")
+            OnboardingCard {
+                onboarding.title
+                    .onboardingStyle(style: .title)
+            } content: {
+                ForEach(onboarding.features) { feature in
+                    if let image = feature.image {
+                        OnboardingItem {
+                            image
+                        } content: {
+                            if let message = feature.message {
+                                OnboardingTitle(feature.title)
+                                OnboardingContent(message)
+                            }
+                        }
+
+                    }
+                }
+            } action: {
+                isPresented.toggle()
+            }
+
         } else {
             EmptyView()
         }
@@ -23,6 +48,8 @@ struct OnboardingView: View {
 }
 
 #Preview {
+    @State var isPresented = true
+    
     struct WhatIsNewOnboarding: Onboarding {
         var id: UUID = UUID()
         
@@ -63,5 +90,5 @@ struct OnboardingView: View {
         }
     }
     
-    return OnboardingView(onboarding: WhatIsNewOnboarding())
+    return OnboardingView(isPresented: $isPresented, onboarding: WhatIsNewOnboarding())
 }

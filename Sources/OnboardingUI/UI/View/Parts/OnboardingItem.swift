@@ -10,15 +10,10 @@ import SwiftUI
 @available(iOS 17.0,macOS 14,visionOS 1,*)
 public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     var content: Content
-    var systemName: String
+    var image: Image
     var mode: SymbolRenderingMode?
-    var shape: Array<S>
+    var shape: Array<S> = []
     private var shapeSize: ShapeSize
-    
-    @ViewBuilder
-    var image: some View {
-        EmptyView()
-    }
     
     private enum ShapeSize {
         case none
@@ -28,12 +23,64 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     }
     
     public init(
+        _ image: () -> Image,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = .monochrome
+        self.shape = []
+        self.shapeSize = .none
+    }
+    
+    public init(
+        _ image: () -> Image,
+        shape: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = .monochrome
+        self.shape = [shape]
+        self.shapeSize = .primary
+    }
+    
+    public init(
+        image: () -> Image,
+        mode: SymbolRenderingMode? = .palette,
+        primary: S = Color.accentColor,
+        secondary: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = mode
+        self.shape = [primary, secondary]
+        self.shapeSize = .secondary
+    }
+
+    public init(
+        image: () -> Image,
+        mode: SymbolRenderingMode? = .palette,
+        primary: S = Color.accentColor,
+        tertiary: S = Color.accentColor,
+        secondary: S = Color.accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = mode
+        self.shape = [primary, secondary, tertiary]
+        self.shapeSize = .tertiary
+    }
+    
+    public init(
         systemName: String,
         mode: SymbolRenderingMode? = .monochrome,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
-        self.systemName = systemName
+        self.image = Image(systemName: systemName)
         self.mode = mode
         self.shape = []
         self.shapeSize = .none
@@ -46,7 +93,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
-        self.systemName = systemName
+        self.image = Image(systemName: systemName)
         self.mode = mode
         self.shape = [shape]
         self.shapeSize = .primary
@@ -60,7 +107,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
-        self.systemName = systemName
+        self.image = Image(systemName: systemName)
         self.mode = mode
         self.shape = [primary, secondary]
         self.shapeSize = .secondary
@@ -75,7 +122,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
-        self.systemName = systemName
+        self.image = Image(systemName: systemName)
         self.mode = mode
         self.shape = [primary, secondary, tertiary]
         self.shapeSize = .tertiary
@@ -85,7 +132,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         HStack(spacing: 10) {
             switch shapeSize {
             case .none:
-                Image(systemName: systemName)
+                image
                     .resizable()
                     .scaledToFit()
                     .font(.largeTitle)
@@ -94,7 +141,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .accessibilityHidden(true)
                     .symbolRenderingMode(mode)
             case .primary:
-                Image(systemName: systemName)
+                image
                     .resizable()
                     .scaledToFit()
                     .font(.largeTitle)
@@ -104,7 +151,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .symbolRenderingMode(mode)
                     .foregroundStyle(shape[0])
             case .secondary:
-                Image(systemName: systemName)
+                image
                     .resizable()
                     .scaledToFit()
                     .font(.largeTitle)
@@ -114,7 +161,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .symbolRenderingMode(mode)
                     .foregroundStyle(shape[0],shape[1])
             case .tertiary:
-                Image(systemName: systemName)
+                image
                     .resizable()
                     .scaledToFit()
                     .font(.largeTitle)
@@ -151,6 +198,15 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         }
         
         OnboardingItem(systemName: "doc") {
+            Text("Sample Subtitle \(3)")
+                .onboardingStyle(style: .subtitle)
+            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
+                .onboardingStyle(style: .content)
+        }
+       
+        OnboardingItem {
+            Image(systemName: "doc")
+        } content: {
             Text("Sample Subtitle \(3)")
                 .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")

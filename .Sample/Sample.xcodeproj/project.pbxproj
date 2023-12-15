@@ -12,10 +12,10 @@
 		F710462C2B2353F10044BCE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F710462B2B2353F10044BCE6 /* Assets.xcassets */; };
 		F71046302B2353F10044BCE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F710462F2B2353F10044BCE6 /* Preview Assets.xcassets */; };
 		F71046382B23587C0044BCE6 /* OnboardingUI in Frameworks */ = {isa = PBXBuildFile; productRef = F71046372B23587C0044BCE6 /* OnboardingUI */; };
+		F73EE3332B2B665C008741AD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F7E968562B299D8A004B04D9 /* Localizable.xcstrings */; };
 		F742079B2B26BD790061AF69 /* Onboardings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F742079A2B26BD790061AF69 /* Onboardings.swift */; };
 		F7A6E4502B25762300D093AF /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E44F2B25762300D093AF /* OnboardingSheetView.swift */; };
 		F7A6E4522B25779C00D093AF /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */; };
-		F7E968572B299D8A004B04D9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F7E968562B299D8A004B04D9 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,7 +163,7 @@
 			files = (
 				F71046302B2353F10044BCE6 /* Preview Assets.xcassets in Resources */,
 				F710462C2B2353F10044BCE6 /* Assets.xcassets in Resources */,
-				F7E968572B299D8A004B04D9 /* Localizable.xcstrings in Resources */,
+				F73EE3332B2B665C008741AD /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
