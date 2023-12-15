@@ -30,7 +30,7 @@ public struct OnboardingView: View {
                             image
                         } content: {
                             if let message = feature.message {
-                                OnboardingTitle(feature.title)
+                                OnboardingSubtitle(feature.title)
                                 OnboardingContent(message)
                             }
                         }

@@ -58,7 +58,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         self.shape = [primary, secondary]
         self.shapeSize = .secondary
     }
-
+    
     public init(
         image: () -> Image,
         mode: SymbolRenderingMode? = .palette,
@@ -138,8 +138,12 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .font(.largeTitle)
                     .frame(width: 35, height: 35)
                     .padding(5)
+#if !os(visionOS)
                     .accessibilityHidden(true)
                     .symbolRenderingMode(mode)
+#else
+                    .foregroundStyle(Color.primary)
+#endif
             case .primary:
                 image
                     .resizable()
@@ -148,8 +152,12 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .frame(width: 35, height: 35)
                     .padding(5)
                     .accessibilityHidden(true)
+#if !os(visionOS)
                     .symbolRenderingMode(mode)
                     .foregroundStyle(shape[0])
+#else
+                    .foregroundStyle(Color.primary)
+#endif
             case .secondary:
                 image
                     .resizable()
@@ -158,8 +166,12 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .frame(width: 35, height: 35)
                     .padding(5)
                     .accessibilityHidden(true)
+#if !os(visionOS)
                     .symbolRenderingMode(mode)
                     .foregroundStyle(shape[0],shape[1])
+#else
+                    .foregroundStyle(Color.primary)
+#endif
             case .tertiary:
                 image
                     .resizable()
@@ -168,16 +180,20 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .frame(width: 35, height: 35)
                     .padding(5)
                     .accessibilityHidden(true)
+#if !os(visionOS)
                     .symbolRenderingMode(mode)
                     .foregroundStyle(shape[0],shape[1],shape[2])
+#else
+                    .foregroundStyle(Color.primary)
+#endif
             }
             VStack(alignment: .leading, spacing: 5) {
                 content
             }
             //これいらないのでは
-            .frame(maxHeight: .infinity)
+            //.frame(maxHeight: .infinity)
         }
-        .padding(OnboardingEdgeInsets)
+        .padding(.horizontal, 25)
     }
 }
 
@@ -203,7 +219,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
                 .onboardingStyle(style: .content)
         }
-       
+        
         OnboardingItem {
             Image(systemName: "doc")
         } content: {

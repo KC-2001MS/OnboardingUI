@@ -81,34 +81,34 @@ Below is the result of this execution.
 ```
 or
 ```swift
-        Text("ItemTitle")
-            .onboardingStyle(style: .itemTitle)
+        Text("Subtitle")
+            .onboardingStyle(style: .subtitle)
 ```
 
 ### Display text within onboarding items 
 ```swift
-        ItemContent("ItemContent")
+        ItemContent("Content")
 ```
 or
 ```swift
-        Text("ItemContent")
-                .onboardingStyle(style: .itemContent)
+        Text("Content")
+                .onboardingStyle(style: .content)
 ```
 
 ### Create onboarding items
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
-            ItemTitle("ItemTitle")
-            ItemContent("ItemContent")
+            ItemSubtitle("Subtitle")
+            ItemContent("Content")
         }
 ```
 or
 ```swift
         OnboardingItem(systemName: "doc",imageColor: .red) {
-            Text("ItemTitle")
-                .onboardingStyle(style: .itemTitle)
-            Text("ItemContent")
-                .onboardingStyle(style: .itemContent)
+            Text("Subtitle")
+                .onboardingStyle(style: .subtitle)
+            Text("Content")
+                .onboardingStyle(style: .content)
         }
 ```
 Below is the result of this execution.  
@@ -129,7 +129,6 @@ or
             
         }) {
             Text("Continue")
-                .onboardingStyle(style: .button)
         }
         .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 ```

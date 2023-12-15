@@ -26,7 +26,7 @@ public struct SheetOnboarding: ViewModifier {
                                 image
                             } content: {
                                 if let message = feature.message {
-                                    OnboardingTitle(feature.title)
+                                    OnboardingSubtitle(feature.title)
                                     OnboardingContent(message)
                                 }
                             }
@@ -49,7 +49,7 @@ public extension View {
 }
 
 #Preview {
-    @State var isPresented = false
+    @State var isPresented: Bool = false
     
     struct WhatIsNewOnboarding: Onboarding {
         var id: UUID = UUID()

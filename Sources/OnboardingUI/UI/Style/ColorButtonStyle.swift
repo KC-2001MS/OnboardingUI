@@ -42,7 +42,7 @@ public struct ColorButtonStyle: ButtonStyle {
 #else
             .cornerRadius(15)
 #endif
-            .padding(OnboardingEdgeInsets)
+            .padding(.horizontal, 25)
     }
 }
 
@@ -50,7 +50,7 @@ public struct ColorButtonStyle: ButtonStyle {
     Button(action: {
         
     }) {
-        Text("Continue")
+        Text("Sample ColorButtonStyle")
     }
     .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 }

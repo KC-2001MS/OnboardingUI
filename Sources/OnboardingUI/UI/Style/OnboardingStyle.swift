@@ -35,6 +35,7 @@ public extension Text {
                     .lineLimit(3)
             case .content:
                 self
+                    .font(.body)
                     .foregroundColor(.secondary)
                     .minimumScaleFactor(0.75)
                     .lineLimit(7)
@@ -44,7 +45,7 @@ public extension Text {
 }
 
 #Preview("Modifier") {
-    VStack {
+    VStack(spacing: 10){
         Text("Sample Title")
             .onboardingStyle(style: .title)
         

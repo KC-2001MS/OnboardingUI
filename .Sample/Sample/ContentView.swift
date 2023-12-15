@@ -19,7 +19,7 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 Section {
-                    NavigationLink("Show views with the onboarding card") {
+                    NavigationLink("Show onboarding card") {
                         OnboardingCardView()
                     }
                     
@@ -31,7 +31,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
                 } header: {
-                    Text("Simple implementation using Onboarding protocol")
+                    Text("Onboarding protocol")
                 }
                 #if DEBUG
                 Section {
@@ -61,25 +61,25 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
                 } header: {
-                    Text("Debugging of application launch history")
+                    Text("AppVersionManager")
                 }
                 #endif
             }
-            .navigationTitle("Onboarding Sample App")
+            .navigationTitle("OnboardingUI")
             .formStyle(.grouped)
         }
         .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
-            OnboardingSheetView(action: {
+            WelcomeOnboardingSheetView(action: {
                 appVersionManager.isTheFirstActivation = false
             })
         }
         .sheet(isPresented: $appVersionManager.isMajorVersionUpdated) {
-            OnboardingSheetView(action: {
+            NewFeatureOnboardingSheetView(action: {
                 appVersionManager.isMajorVersionUpdated = false
             })
         }
         .sheet(isPresented: $appVersionManager.isMinorOrPatchVersionUpdated) {
-            OnboardingSheetView(action: {
+            NewFeatureOnboardingSheetView(action: {
                 appVersionManager.isMinorOrPatchVersionUpdated = false
             })
         }

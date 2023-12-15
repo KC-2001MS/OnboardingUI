@@ -92,35 +92,42 @@ public struct OnboardingCard<V1: View,V2: View>: View {
         VStack {
             HStack {
                 Button(action: action) {
-                    ZStack(alignment: .center) {
-                        Circle()
-                            .frame(width: 30)
-                            .foregroundColor(.gray.opacity(0.15))
-                        
-                        Image(systemName: "multiply")
-                            .foregroundColor(.gray)
-                    }
+                    Image(systemName: "multiply")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray)
+                        .padding(7.5)
+                        .frame(width: 30, height: 30)
                 }
                 .buttonStyle(.borderless)
-                .padding(.horizontal)
-                
+                .background {
+                    Circle()
+                        .foregroundColor(.gray.opacity(0.15))
+                }
+                .clipShape(Circle())
+                .hoverEffect()
+                .padding(10)
                 
                 Spacer()
             }
-            .frame(height: 50)
             
             title
+                .padding(.bottom, 30)
             
-            Spacer()
+            
+            //Spacer()
             
             VStack(alignment: .leading) {
                 content
             }
+            .padding(.bottom, 10)
             
-            Spacer()
-                .frame(height: 50)
+           // Spacer()
+            //    .frame(height: 50)
         }
         .frame(maxWidth: .infinity)
+        .background(Material.ultraThick)
+        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .padding()
     }
 }
 

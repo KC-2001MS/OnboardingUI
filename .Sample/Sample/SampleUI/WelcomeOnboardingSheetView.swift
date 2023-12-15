@@ -9,7 +9,7 @@
 import SwiftUI
 import OnboardingUI
 
-struct OnboardingSheetView: View {
+struct WelcomeOnboardingSheetView: View {
     var action: () -> Void
     
     init(action: @escaping () -> Void) {
@@ -41,5 +41,5 @@ struct OnboardingSheetView: View {
 }
 
 #Preview {
-    OnboardingSheetView(action: {})
+    WelcomeOnboardingSheetView(action: {})
 }
