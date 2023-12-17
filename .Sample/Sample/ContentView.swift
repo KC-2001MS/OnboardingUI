@@ -1,7 +1,7 @@
 //
 //  ContentView.swift
 //  Sample
-//  
+//
 //  Created by Keisuke Chinone on 2023/12/08.
 //
 
@@ -14,15 +14,13 @@ struct ContentView: View {
     
     @Environment(\.appVersionManager) private var appVersionManager
     
+    @State private var isMajor = true
+    
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         NavigationStack {
             Form {
                 Section {
-                    NavigationLink("Show onboarding card") {
-                        OnboardingCardView()
-                    }
-                    
                     Button("Show onboarding sheets") {
                         isOpenSheet.toggle()
                     }
@@ -30,12 +28,17 @@ struct ContentView: View {
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
+                    NavigationLink("Show onboarding card") {
+                        OnboardingCardView()
+                    }
                 } header: {
                     Text("Onboarding protocol")
+                } footer: {
+                    Text("This is a simple implementation using the Onboarding protocol")
                 }
-                #if DEBUG
+#if DEBUG
                 Section {
-                    Button("Change to initial startup state") {
+                    Button("Initialization") {
                         appVersionManager.lastOpenedVersion = ""
                     }
                     .buttonStyle(.borderless)
@@ -44,7 +47,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
                     
-                    Button("Changed to first startup status after update") {
+                    Button("After major update") {
                         appVersionManager.lastOpenedVersion = "0.0.0"
                     }
                     .buttonStyle(.borderless)
@@ -52,7 +55,7 @@ struct ContentView: View {
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
-                    Button("Changed to first startup status after update") {
+                    Button("After minor update") {
                         appVersionManager.lastOpenedVersion = "1.0.0"
                     }
                     .buttonStyle(.borderless)
@@ -61,9 +64,11 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
                 } header: {
-                    Text("AppVersionManager")
+                    Text("AppVersionManager environment variables and customizable views")
+                } footer: {
+                    Text("This one is implemented with a customizable View and environment variables")
                 }
-                #endif
+#endif
             }
             .navigationTitle("OnboardingUI")
             .formStyle(.grouped)
@@ -83,7 +88,6 @@ struct ContentView: View {
                 appVersionManager.isMinorOrPatchVersionUpdated = false
             })
         }
-
         .sheetOnboarding(isPresented: $isOpenSheet, WelcomeOnboarding())
     }
 }

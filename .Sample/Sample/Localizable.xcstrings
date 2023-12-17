@@ -1,25 +1,32 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "AppVersionManager" : {
-
-    },
-    "Change to initial startup state" : {
+    "After major update" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "初回起動状態に変更"
+            "value" : "メジャーアップデート後"
           }
         }
       }
     },
-    "Changed to first startup status after update" : {
+    "After minor update" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アップデート後、初起動の状態変更"
+            "value" : "マイナーアップデート後"
+          }
+        }
+      }
+    },
+    "AppVersionManager environment variables and customizable views" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppVersionManager環境変数とカスタマイズ可能なView"
           }
         }
       }
@@ -44,17 +51,6 @@
         }
       }
     },
-    "Debugging of application launch history" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アプリケーション起動履歴をデバッグ"
-          }
-        }
-      }
-    },
     "Easy to Make" : {
       "localizations" : {
         "ja" : {
@@ -65,12 +61,23 @@
         }
       }
     },
-    "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish." : {
+    "Initialization" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iOS 15とmacOS 12でサポートされているマルチカラーと階層をサポートし、もっと自由にカスタマイズできます。"
+            "value" : "初回起動"
+          }
+        }
+      }
+    },
+    "It supports multi-colors and hierarchies of SF Symbols, which can be freely customized. However, this feature is not supported by visionOS." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。ただし、この機能はvisionOSではサポートされていません。"
           }
         }
       }
@@ -81,6 +88,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iPhoneだけでなく、Mac、iPad、Vision Proにも対応しています。そのため、デバイスごとにコードを書き換える必要はありません。"
+          }
+        }
+      }
+    },
+    "New AppVersionManager environment variable" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいAppVersionManager環境変数"
           }
         }
       }
@@ -116,18 +133,21 @@
       }
     },
     "Onboarding Card" : {
-
-    },
-    "Onboarding protocol" : {
-
-    },
-    "Onboarding Sample App" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンボーディングサンプルアプリ"
+            "value" : "Onboardingカード"
+          }
+        }
+      }
+    },
+    "Onboarding protocol" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onboardingプロトコル"
           }
         }
       }
@@ -143,10 +163,24 @@
       }
     },
     "OnboardingUI" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OnboardingUI"
+          }
+        }
+      }
     },
     "Show onboarding card" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onboardingカードを表示"
+          }
+        }
+      }
     },
     "Show onboarding sheets" : {
       "localizations" : {
@@ -158,24 +192,22 @@
         }
       }
     },
-    "Show views with the onboarding card" : {
-      "extractionState" : "stale",
+    "Some Contents %lld" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンボーディングのカード付きビューを表示"
+            "value" : "あるビュー%lld"
           }
         }
       }
     },
-    "Simple implementation using Onboarding protocol" : {
-      "extractionState" : "stale",
+    "The new AppVersionManager environment variable allows you to display onboarding at the intended time." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンボーディングのプロトコルを使用した簡易的な実装"
+            "value" : "新しいAppVersionManager環境変数により、意図した時間にオンボーディングを表示することができます。"
           }
         }
       }
@@ -190,33 +222,22 @@
         }
       }
     },
-    "The View with the onboarding card" : {
-      "extractionState" : "stale",
+    "This is a simple implementation using the Onboarding protocol" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンボーディングのカード付きビュー"
+            "value" : "これはOnboardingプロトコルを使ったシンプルな実装です"
           }
         }
       }
     },
-    "Vision Pro Support" : {
+    "This one is implemented with a customizable View and environment variables" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vision Proのサポート"
-          }
-        }
-      }
-    },
-    "Vision Pro support has also been added. Onboarding can be built just like any other platform." : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vision Proのサポートも追加しました。オンボーディングを他のプラットフォームと同様に構築できます。"
+            "value" : "これはカスタマイズ可能なViewと環境変数で実装です"
           }
         }
       }
@@ -237,6 +258,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OnboardingUIの新機能"
+          }
+        }
+      }
+    },
+    "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カスタマイズ性の高い実装方法を用いた場合、マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。ただし、この機能はvisionOSではサポートされていません。"
           }
         }
       }

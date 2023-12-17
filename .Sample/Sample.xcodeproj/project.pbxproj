@@ -14,9 +14,9 @@
 		F71046302B2353F10044BCE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F710462F2B2353F10044BCE6 /* Preview Assets.xcassets */; };
 		F71046382B23587C0044BCE6 /* OnboardingUI in Frameworks */ = {isa = PBXBuildFile; productRef = F71046372B23587C0044BCE6 /* OnboardingUI */; };
 		F742079B2B26BD790061AF69 /* Onboardings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F742079A2B26BD790061AF69 /* Onboardings.swift */; };
+		F783357E2B2DCC310022DC9C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F7B11FD22B2C46F800FBC2E0 /* Localizable.xcstrings */; };
 		F7A6E4502B25762300D093AF /* WelcomeOnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E44F2B25762300D093AF /* WelcomeOnboardingSheetView.swift */; };
 		F7A6E4522B25779C00D093AF /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */; };
-		F7B11FD32B2C46F800FBC2E0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F7B11FD22B2C46F800FBC2E0 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,7 @@
 				F71046272B2353F00044BCE6 /* SampleApp.swift */,
 				F71046292B2353F00044BCE6 /* ContentView.swift */,
 				F742079A2B26BD790061AF69 /* Onboardings.swift */,
-				F7A6E44E2B2574E900D093AF /* SampleUI */,
+				F7A6E44E2B2574E900D093AF /* UI */,
 				F710462B2B2353F10044BCE6 /* Assets.xcassets */,
 				F7B11FD22B2C46F800FBC2E0 /* Localizable.xcstrings */,
 				F710462D2B2353F10044BCE6 /* Sample.entitlements */,
@@ -92,14 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F7A6E44E2B2574E900D093AF /* SampleUI */ = {
+		F7A6E44E2B2574E900D093AF /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				F7A6E44F2B25762300D093AF /* WelcomeOnboardingSheetView.swift */,
 				F60CCCD42B2C731C004C48E5 /* NewFeatureOnboardingSheetView.swift */,
 				F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */,
 			);
-			path = SampleUI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +166,7 @@
 			files = (
 				F71046302B2353F10044BCE6 /* Preview Assets.xcassets in Resources */,
 				F710462C2B2353F10044BCE6 /* Assets.xcassets in Resources */,
-				F7B11FD32B2C46F800FBC2E0 /* Localizable.xcstrings in Resources */,
+				F783357E2B2DCC310022DC9C /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

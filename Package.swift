@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "OnboardingUI",
-    defaultLocalization: LanguageTag(rawValue: "ja"),
+    defaultLocalization: LanguageTag(rawValue: "en"),
     platforms: [.iOS(.v17),.macOS(.v14),.macCatalyst(.v17),.visionOS(.v1)],
     products: [
         .library(

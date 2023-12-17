@@ -12,14 +12,12 @@ public struct OnboardingTitle: View {
     var TextView: Text
     
     public init<S>(_ content: S) where S : StringProtocol {
-//        いらないのでは？
-//        if content is String {
-//            TextView = Text(LocalizedStringKey(content as! String))
-//        } else {
-        self.TextView = Text(content)
-//        }
+        if content is String {
+            TextView = Text(LocalizedStringKey(content as! String))
+        } else {
+            TextView = Text(content)
+        }
     }
-    
     
     public init(
         _ key: LocalizedStringKey,

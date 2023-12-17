@@ -13,7 +13,7 @@ public enum OnboardingStyle {
     case subtitle
     case content
 }
-
+    
 @available(iOS 17.0,macOS 14,visionOS 1,*)
 public extension Text {
     func onboardingStyle(style: OnboardingStyle) -> some View {

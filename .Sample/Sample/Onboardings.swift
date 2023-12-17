@@ -20,7 +20,7 @@ struct WelcomeOnboarding: Onboarding {
     var features: Array<Feature> {
         Feature(
             "Easy to Make" ,
-            imageName: "keyboard",
+            imageName: "applescript",
             message: "Onboarding screens like Apple's stock apps can be easily created with SwiftUI."
         )
         #if os(iOS)
@@ -44,8 +44,8 @@ struct WelcomeOnboarding: Onboarding {
         #endif
         Feature(
             "Customize SF Symbols" ,
-            imageName: "macbook.and.iphone",
-            message: "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."
+            imageName: "circle.badge.checkmark",
+            message: "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS."
         )
     }
 }
@@ -59,16 +59,17 @@ struct WhatIsNewOnboarding: Onboarding {
     
     var features: Array<Feature> {
         Feature(
+            "New AppVersionManager environment variable" ,
+            imageName: "wrench.and.screwdriver",
+            message: "The new AppVersionManager environment variable allows you to display onboarding at the intended time."
+        )
+        
+        Feature(
             "New Onboarding protocol and Feature structure" ,
             imageName: "building.columns",
             message: "The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views."
         )
         
-        Feature(
-            "Vision Pro Support" ,
-            imageName: "visionpro",
-            message: "Vision Pro support has also been added. Onboarding can be built just like any other platform."
-        )
         Feature(
             "Customize the look and feel" ,
             imageName: "wrench.and.screwdriver",

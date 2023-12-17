@@ -104,7 +104,9 @@ public struct OnboardingCard<V1: View,V2: View>: View {
                         .foregroundColor(.gray.opacity(0.15))
                 }
                 .clipShape(Circle())
+                #if !os(macOS)
                 .hoverEffect()
+                #endif
                 .padding(10)
                 
                 Spacer()

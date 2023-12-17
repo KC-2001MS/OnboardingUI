@@ -199,21 +199,21 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
 
 #Preview("Onboarding Item") {
     ScrollView {
-        OnboardingItem(systemName: "macbook.and.ipad",mode: .palette,primary: .red,secondary: .blue) {
+        OnboardingItem(systemName: "doc",mode: .palette,primary: .red,secondary: .blue) {
             Text("Sample Subtitle \(1)")
                 .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
                 .onboardingStyle(style: .content)
         }
         
-        OnboardingItem(systemName: "doc",shape: .red) {
+        OnboardingItem(systemName: "doc.fill",shape: .red) {
             Text("Sample Subtitle \(2)")
                 .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
                 .onboardingStyle(style: .content)
         }
         
-        OnboardingItem(systemName: "doc") {
+        OnboardingItem(systemName: "arrow.down.doc") {
             Text("Sample Subtitle \(3)")
                 .onboardingStyle(style: .subtitle)
             Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
@@ -221,7 +221,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         }
         
         OnboardingItem {
-            Image(systemName: "doc")
+            Image(systemName: "arrow.up.doc")
         } content: {
             Text("Sample Subtitle \(3)")
                 .onboardingStyle(style: .subtitle)

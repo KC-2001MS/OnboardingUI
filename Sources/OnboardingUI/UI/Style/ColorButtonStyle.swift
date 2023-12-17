@@ -38,9 +38,12 @@ public struct ColorButtonStyle: ButtonStyle {
             .foregroundColor(foregroundColor)
             .background(backgroundColor)
 #if os(macOS)
-            .cornerRadius(7)
+            .clipShape(RoundedRectangle(cornerRadius: 7))
+#elseif os(visionOS)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
 #else
-            .cornerRadius(15)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+
 #endif
             .padding(.horizontal, 25)
     }

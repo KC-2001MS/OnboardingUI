@@ -21,24 +21,6 @@
         }
       }
     },
-    "Customize SF Symbols" : {
-
-    },
-    "Easy to Make" : {
-
-    },
-    "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish." : {
-
-    },
-    "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device." : {
-
-    },
-    "Not only for iPhone, but also for Mac, iPad, Vision Pro" : {
-
-    },
-    "Onboarding screens like Apple's stock apps can be easily created with SwiftUI." : {
-
-    },
     "Open Onboarding" : {
       "localizations" : {
         "ja" : {
@@ -50,7 +32,14 @@
       }
     },
     "Sample ColorButtonStyle" : {
-
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプルのカラーボタンスタイル"
+          }
+        }
+      }
     },
     "Sample Content" : {
       "localizations" : {
