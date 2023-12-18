@@ -28,6 +28,7 @@
 		F710462D2B2353F10044BCE6 /* Sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sample.entitlements; sourceTree = "<group>"; };
 		F710462F2B2353F10044BCE6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F742079A2B26BD790061AF69 /* Onboardings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboardings.swift; sourceTree = "<group>"; };
+		F7479AA52B306C8F0077D103 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F7A6E44F2B25762300D093AF /* WelcomeOnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeOnboardingSheetView.swift; sourceTree = "<group>"; };
 		F7A6E4512B25779C00D093AF /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		F7B11FD22B2C46F800FBC2E0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 				F7A6E44E2B2574E900D093AF /* UI */,
 				F710462B2B2353F10044BCE6 /* Assets.xcassets */,
 				F7B11FD22B2C46F800FBC2E0 /* Localizable.xcstrings */,
+				F7479AA52B306C8F0077D103 /* PrivacyInfo.xcprivacy */,
 				F710462D2B2353F10044BCE6 /* Sample.entitlements */,
 				F710462E2B2353F10044BCE6 /* Preview Content */,
 			);
@@ -339,11 +341,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KCs-OnboardingSample1.Sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,7";
 			};
 			name = Debug;
 		};
@@ -379,11 +381,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KCs-OnboardingSample1.Sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,7";
 			};
 			name = Release;
 		};

@@ -24,7 +24,9 @@ struct ContentView: View {
                     Button("Show onboarding sheets") {
                         isOpenSheet.toggle()
                     }
+#if !os(tvOS)
                     .buttonStyle(.borderless)
+#endif
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
@@ -41,7 +43,9 @@ struct ContentView: View {
                     Button("Initialization") {
                         appVersionManager.lastOpenedVersion = ""
                     }
+#if !os(tvOS)
                     .buttonStyle(.borderless)
+#endif
                     .foregroundStyle(Color.red)
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -50,7 +54,9 @@ struct ContentView: View {
                     Button("After major update") {
                         appVersionManager.lastOpenedVersion = "0.0.0"
                     }
+#if !os(tvOS)
                     .buttonStyle(.borderless)
+#endif
                     .foregroundStyle(Color.red)
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -58,7 +64,9 @@ struct ContentView: View {
                     Button("After minor update") {
                         appVersionManager.lastOpenedVersion = "1.0.0"
                     }
+#if !os(tvOS)
                     .buttonStyle(.borderless)
+#endif
                     .foregroundStyle(Color.red)
 #if os(macOS)
                     .frame(maxWidth: .infinity, alignment: .center)

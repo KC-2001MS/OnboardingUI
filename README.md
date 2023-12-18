@@ -16,14 +16,14 @@ The following environment is required to use this library.
     <img src="https://img.shields.io/badge/iOS-17.0+-green.svg" />
     <img src="https://img.shields.io/badge/iPadOS-17.0+-brightgreen.svg" />
     <img src="https://img.shields.io/badge/visionOS-1.0+-blue.svg" />
+    <img src="https://img.shields.io/badge/tvOS-1.0+-white.svg" />
     <img src="https://img.shields.io/badge/Swift-5.9-DE5D43.svg" />
     <a href="https://twitter.com/IroIro1234work">
         <img src="https://img.shields.io/badge/Contact-@IroIro1234work-lightgrey.svg?style=flat" alt="Twitter: @IroIro1234work" />
     </a>
 </p>
 
-※　We do not support watchOS and tvOS. This is because the screen size is small for watchOS and we believe that onboarding will negatively impact the user experience.
-Support for tvOS is under consideration. If there are enough requests, we will support it.
+※　We do not support watchOS. This is because the screen size is small for watchOS and we believe that onboarding will negatively impact the user experience. Support for tvOS is ongoing.
 
 ## Language
 
@@ -113,6 +113,14 @@ struct SimpleImplementationView: View {
 
 <img src="images/macOS_SimpleImplementation.png" style="height:400px;object-fit: contain;"> 
 
+#### tvOS
+
+<img src="images/tvOS_SimpleImplementation.png" style="height:400px;object-fit: contain;"> 
+
+#### visionOS
+
+As it is still in beta, we refrain from posting screenshots.
+
 ### Customizable implementation
 
 ```swift
@@ -182,6 +190,14 @@ struct SimpleImplementationView: View {
 #### macOS
 
 <img src="images/macOS_CustomizableImplementation.png" style="height:400px;object-fit: contain;"> 
+
+#### tvOS
+
+<img src="images/tvOS_CustomizableImplementation.png" style="height:400px;object-fit: contain;"> 
+
+#### visionOS
+
+As it is still in beta, we refrain from posting screenshots.
 
 ## Swift-DocC
 

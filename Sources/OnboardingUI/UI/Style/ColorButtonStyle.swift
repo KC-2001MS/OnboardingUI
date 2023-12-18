@@ -10,21 +10,27 @@ import SwiftUI
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+/// Modifier to build the look and feel of buttons that continue to be used in onboarding
+@available(iOS 17.0,macOS 14.0,visionOS 1.0,*)
 public struct ColorButtonStyle: ButtonStyle {
+    /// Foreground Color
     var foregroundColor: Color = .white
+    /// Background Color
     var backgroundColor: Color = .accentColor
-    
+    /// Default initializer
     public init() {
         self.foregroundColor = .white
         self.backgroundColor = .accentColor
     }
-    
+    /// Initializer used to specify color
+    /// - Parameters:
+    ///   - foregroundColor: Foreground Color
+    ///   - backgroundColor: Background Color
     public init(foregroundColor: Color,backgroundColor: Color) {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
     }
-    
+    /// Button Looks
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .bold()
@@ -43,7 +49,6 @@ public struct ColorButtonStyle: ButtonStyle {
             .clipShape(RoundedRectangle(cornerRadius: 25))
 #else
             .clipShape(RoundedRectangle(cornerRadius: 15))
-
 #endif
             .padding(.horizontal, 25)
     }

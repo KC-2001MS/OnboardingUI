@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 struct PreviewWhatIsNewOnboarding: Onboarding {
     var id: UUID = UUID()
     

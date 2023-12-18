@@ -8,16 +8,19 @@
 
 import SwiftUI
 
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// View to show onboarding
 public struct OnboardingView: View {
+    /// Variables that control the display state
     @Binding var isPresented: Bool
-    
+    /// Display Contents
     public let onboarding: any Onboarding
-    
+    /// Default initializer
     public init(isPresented: Binding<Bool>, onboarding: any Onboarding) {
         self._isPresented = isPresented
         self.onboarding = onboarding
     }
-    
+    /// View
     public var body: some View {
         if isPresented {
             OnboardingCard {
@@ -34,13 +37,13 @@ public struct OnboardingView: View {
                                 OnboardingContent(message)
                             }
                         }
-
+                        
                     }
                 }
             } action: {
                 isPresented.toggle()
             }
-
+            
         } else {
             EmptyView()
         }

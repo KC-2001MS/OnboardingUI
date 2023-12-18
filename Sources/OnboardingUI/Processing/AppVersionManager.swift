@@ -1,6 +1,6 @@
 //
 //  AppVersionManager.swift
-//  
+//
 //
 //  Created by 茅根啓介 on 2023/03/09.
 //
@@ -10,7 +10,7 @@ import Observation
 import SwiftUI
 
 /// A general-purpose operation recorder capable of determining the initial startup of an application or the startup of an application after an upgrade.
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 @Observable
 public class AppVersionManager {
     private let userDefaults = UserDefaults.standard
@@ -64,26 +64,26 @@ public class AppVersionManager {
         self.lastOpenedVersion = userDefaults.string(forKey: "LastOpenedVersion") ?? ""
     }
 }
-
+/// AppVersionManager environment key
 public struct AppVersionManagerKey: EnvironmentKey {
     public static var defaultValue = AppVersionManager()
 }
-
+/// AppVersionManager environment values
 public extension EnvironmentValues {
     var appVersionManager: AppVersionManager {
         get { self[AppVersionManagerKey.self] }
         set { self[AppVersionManagerKey.self] = newValue }
     }
 }
-//バージョン番号をドットで分けて配列化
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+/// Function to split the version number dot by dot
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 func splitByDot(_ versionNumber: String) -> [Int] {
     return versionNumber.split(separator: ".").map { string -> Int in
         return Int(string) ?? 0
     }
 }
-//配列の要素数を統一
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+/// Function to unify the number of elements in an array
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 func filled(_ target: [Int], count: Int) -> [Int] {
     return (0..<count).map { i -> Int in
         (i < target.count) ? target[i] : 0

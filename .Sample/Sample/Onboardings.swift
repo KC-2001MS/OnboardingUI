@@ -23,25 +23,31 @@ struct WelcomeOnboarding: Onboarding {
             imageName: "applescript",
             message: "Onboarding screens like Apple's stock apps can be easily created with SwiftUI."
         )
-        #if os(iOS)
+#if os(iOS)
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "ipad.and.iphone",
             message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
-        #elseif os(macOS)
+#elseif os(macOS)
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "macbook",
             message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
-        #elseif os(visionOS)
+#elseif os(tvOS)
+        Feature(
+            "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
+            imageName: "appletv",
+            message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
+        )
+#elseif os(visionOS)
         Feature(
             "Not only for iPhone, but also for Mac, iPad, Vision Pro" ,
             imageName: "visionpro",
             message: "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device."
         )
-        #endif
+#endif
         Feature(
             "Customize SF Symbols" ,
             imageName: "circle.badge.checkmark",

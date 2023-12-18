@@ -8,7 +8,8 @@
 
 import SwiftUI
 
-public struct SheetOnboarding: ViewModifier {
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+struct SheetOnboarding: ViewModifier {
     @Binding public var isPresented: Bool
     
     public let onboarding: any Onboarding
@@ -30,7 +31,7 @@ public struct SheetOnboarding: ViewModifier {
                                     OnboardingContent(message)
                                 }
                             }
-
+                            
                         }
                     }
                 } button: {
@@ -42,7 +43,9 @@ public struct SheetOnboarding: ViewModifier {
     }
 }
 
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public extension View {
+    ///Modifier to display sheets based on Onboarding protocol compliant structures
     func sheetOnboarding<Content>(isPresented: Binding<Bool>,_ onboarding: Content) -> some View where Content : Onboarding {
         modifier(OnboardingUI.SheetOnboarding(isPresented: isPresented, onboarding: onboarding))
     }
@@ -50,14 +53,14 @@ public extension View {
 
 #Preview {
     @State var isPresented: Bool = true
-
+    
     return Group {
         Button("Open Onboarding") {
             isPresented = true
         }
-        #if os(macOS)
+#if os(macOS)
         .frame(width: 400, height: 300)
-        #endif
+#endif
         .sheetOnboarding(isPresented: $isPresented, PreviewWhatIsNewOnboarding())
     }
 }

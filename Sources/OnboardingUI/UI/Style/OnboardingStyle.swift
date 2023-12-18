@@ -7,15 +7,17 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// The three items that comprise onboarding
 public enum OnboardingStyle {
     case title
     case subtitle
     case content
 }
-    
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public extension Text {
+    /// Modifier to change the style to suit it.
     func onboardingStyle(style: OnboardingStyle) -> some View {
         Group {
             switch style {

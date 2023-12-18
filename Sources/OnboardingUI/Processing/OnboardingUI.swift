@@ -1,15 +1,19 @@
 import SwiftUI
 
-//寸法関連（完成）
-@available(iOS 17.0,macOS 14,visionOS 1,*)
-public let OnboardingEdgeInsets = EdgeInsets(top: 0, leading: 25, bottom: 0, trailing: 25)
-
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// View to show onboarding in sheets
 public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
+    /// Title View
     var title: V1
+    /// View displaying features
     var content: V2
+    /// Button view at the bottom
     var button: V3
-    
+    /// Initializer for the three Views that make up the OnboardingSheet
+    /// - Parameters:
+    ///   - title: Title View
+    ///   - content: View displaying features
+    ///   - button: Button view at the bottom
     public init(
         @ViewBuilder title: () -> V1,
         @ViewBuilder content: () -> V2,
@@ -19,7 +23,7 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
         self.content = content()
         self.button = button()
     }
-    
+    /// View
     public var body: some View {
 #if os(macOS)
         VStack {
@@ -74,12 +78,20 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     }
 }
 
-@available(iOS 17.0,macOS 14,visionOS 1,*)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// Card-like onboarding
 public struct OnboardingCard<V1: View,V2: View>: View {
+    /// Title View
     var title: V1
+    /// View displaying features
     var content: V2
+    /// Button Action
     let action: () -> Void
-    
+    /// Title View
+    /// - Parameters:
+    ///   - title: Title View
+    ///   - content: View displaying features
+    ///   - action: Button Action
     public init(@ViewBuilder title: () -> V1,
                 @ViewBuilder content: () -> V2,
                 action: @escaping () -> Void) {
@@ -87,7 +99,7 @@ public struct OnboardingCard<V1: View,V2: View>: View {
         self.content = content()
         self.action = action
     }
-    
+    /// View
     public var body: some View {
         VStack {
             HStack {
@@ -104,9 +116,9 @@ public struct OnboardingCard<V1: View,V2: View>: View {
                         .foregroundColor(.gray.opacity(0.15))
                 }
                 .clipShape(Circle())
-                #if !os(macOS)
+#if !os(macOS)
                 .hoverEffect()
-                #endif
+#endif
                 .padding(10)
                 
                 Spacer()
@@ -123,7 +135,7 @@ public struct OnboardingCard<V1: View,V2: View>: View {
             }
             .padding(.bottom, 10)
             
-           // Spacer()
+            // Spacer()
             //    .frame(height: 50)
         }
         .frame(maxWidth: .infinity)

@@ -25,6 +25,7 @@ struct OnboardingCardView: View {
                     .background(Color.red)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .padding()
+                    .focusable()
                 
                 OnboardingView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
                 
@@ -37,6 +38,7 @@ struct OnboardingCardView: View {
                     .background(Color.red)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .padding()
+                    .focusable()
             }
             .navigationTitle("Onboarding Card")
         }
