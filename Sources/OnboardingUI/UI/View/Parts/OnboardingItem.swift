@@ -263,6 +263,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             //.frame(maxHeight: .infinity)
         }
         .padding(.horizontal, 25)
+        .focusable()
     }
 }
 

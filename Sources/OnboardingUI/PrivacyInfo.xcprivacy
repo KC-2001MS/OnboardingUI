@@ -17,5 +17,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSPrivacyTrackingDomains</key>
+	<array/>
 </dict>
 </plist>
