@@ -33,22 +33,22 @@ public struct ColorButtonStyle: ButtonStyle {
     /// Button Looks
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .lineLimit(1)
             .bold()
 #if os(macOS)
-            .frame(minWidth: 0, maxWidth: 130)
-            .padding([.top, .bottom], 10)
+            .frame(minWidth: 0, maxWidth: 170)
+            .padding([.top, .bottom], 7.5)
 #else
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding([.top, .bottom], 15)
 #endif
             .foregroundColor(foregroundColor)
-            .background(backgroundColor)
 #if os(macOS)
-            .clipShape(RoundedRectangle(cornerRadius: 7))
+            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 7))
 #elseif os(visionOS)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 35))
 #else
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 15))
 #endif
             .padding(.horizontal, 25)
     }

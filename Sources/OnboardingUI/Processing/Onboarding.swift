@@ -34,6 +34,20 @@ public struct Feature: Identifiable, Sendable {
         self.image = nil
         self.message = nil
     }
+    
+    public init(title: Text,image: Image?,message: Text?) {
+        self.id = UUID()
+        self.title = title
+        self.image = image
+        self.message = message
+    }
+    
+    public init(title: () -> Text,image: () -> Image?,message: () -> Text?) {
+        self.id = UUID()
+        self.title = title()
+        self.image = image()
+        self.message = message()
+    }
     /// Initializer with LocalizedStringKey
     /// - Parameters:
     ///   - title: Title outlining the features
@@ -55,6 +69,36 @@ public struct Feature: Identifiable, Sendable {
         self.title = Text(title)
         self.image = Image(systemName: imageName)
         self.message = Text(message)
+    }
+    
+    public func title(_ string: String) -> Self {
+        .init(title: Text(string), image: self.image, message: self.message)
+    }
+    
+    public func title(
+        _ key: LocalizedStringKey,
+        tableName: String? = nil,
+        bundle: Bundle? = nil,
+        comment: StaticString? = nil
+    ) -> Self {
+        .init(title: Text(key, tableName: tableName, bundle: bundle, comment: comment), image: self.image, message: self.message)
+    }
+    
+    public func image(systemName: String) -> Self {
+        .init(title: self.title, image: Image(systemName: systemName), message: self.message)
+    }
+    
+    public func message(_ string: String) -> Self {
+        .init(title: self.title, image: self.image, message: Text(string))
+    }
+    
+    public func message(
+        _ key: LocalizedStringKey,
+        tableName: String? = nil,
+        bundle: Bundle? = nil,
+        comment: StaticString? = nil
+    ) -> Self {
+            .init(title: self.title, image: self.image, message: Text(key, tableName: tableName, bundle: bundle, comment: comment))
     }
 }
 

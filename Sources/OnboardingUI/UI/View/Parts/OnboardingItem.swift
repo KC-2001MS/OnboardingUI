@@ -256,14 +256,17 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                     .foregroundStyle(Color.primary)
 #endif
             }
+            
             VStack(alignment: .leading, spacing: 5) {
                 content
             }
-            //これいらないのでは
-            //.frame(maxHeight: .infinity)
         }
+        #if !os(macOS)
         .padding(.horizontal, 25)
+        #endif
+        #if os(tvOS)
         .focusable()
+        #endif
     }
 }
 

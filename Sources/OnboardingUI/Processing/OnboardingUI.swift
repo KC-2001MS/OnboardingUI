@@ -25,43 +25,25 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     }
     /// View
     public var body: some View {
-#if os(macOS)
-        VStack {
-            Spacer()
-                .frame(height: 50)
-            
-            title
-            
-            Spacer()
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 40) {
-                    content
-                }
-            }
-            
-            Spacer()
-            
-            button
-            
-            Spacer()
-                .frame(height: 30)
-        }
-        .frame(maxWidth: 700,minHeight: 500, alignment: .center)
-#else
         GeometryReader { geom in
-            VStack {
+            VStack(alignment: .center) {
                 ScrollView {
                     Spacer()
-                        .frame(height: geom.size.height/9.5)
+                        .frame(height: geom.size.height/10)
                     
                     title
+                    
                     
                     Spacer()
                         .frame(height: geom.size.height/14.5)
                     VStack(alignment: .leading, spacing: 40) {
                         content
                     }
+#if os(macOS)
+                    .frame(width: 350)
+#else
+                    .frame(maxWidth: .infinity)
+#endif
                 }
                 Spacer()
                 
@@ -70,10 +52,12 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
                 Spacer()
                     .frame(height: geom.size.height/14.5)
             }
+            .frame(maxWidth: .infinity)
         }
 #if os(visionOS)
         .frame(width: 960,height: 540, alignment: .center)
-#endif
+#elseif os(macOS)
+        .frame(minWidth: 600,minHeight: 700, alignment: .center)
 #endif
     }
 }
@@ -102,45 +86,47 @@ public struct OnboardingCard<V1: View,V2: View>: View {
     /// View
     public var body: some View {
         VStack {
-            HStack {
-                Button(action: action) {
-                    Image(systemName: "multiply")
-                        .font(.system(size: 20))
-                        .foregroundColor(.gray)
-                        .padding(7.5)
-                        .frame(width: 30, height: 30)
-                }
-                .buttonStyle(.borderless)
-                .background {
-                    Circle()
-                        .foregroundColor(.gray.opacity(0.15))
-                }
-                .clipShape(Circle())
-#if !os(macOS)
-                .hoverEffect()
-#endif
-                .padding(10)
-                
-                Spacer()
-            }
+            Spacer()
+                .frame(height: 50)
             
             title
                 .padding(.bottom, 30)
             
-            
-            //Spacer()
-            
             VStack(alignment: .leading) {
                 content
             }
-            .padding(.bottom, 10)
+            .frame(maxWidth: .infinity)
             
-            // Spacer()
-            //    .frame(height: 50)
+            
+            Spacer()
+                .frame(height: 50)
         }
         .frame(maxWidth: .infinity)
-        .background(Material.ultraThick)
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 25))
+        .overlay(alignment: .topLeading) {
+            Button(action: action) {
+                Image(systemName: "multiply")
+                    .font(.system(size: 20))
+#if os(visionOS)
+                    .foregroundStyle(.white)
+#else
+                    .foregroundStyle(.gray)
+#endif
+                    .frame(width: 30, height: 30)
+#if os(visionOS)
+                    .background(.ultraThinMaterial, in: Circle())
+#else
+                    .background(.gray.opacity(0.15), in: Circle())
+#endif
+#if !os(macOS)
+                    .hoverEffect()
+#endif
+            }
+            .frame(width: 30, height: 30)
+            .buttonStyle(.borderless)
+            .padding(10)
+        }
         .padding()
     }
 }

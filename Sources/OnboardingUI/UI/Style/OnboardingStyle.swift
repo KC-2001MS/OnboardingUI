@@ -24,7 +24,7 @@ public extension Text {
             case .title:
                 self
                     .fontWeight(.bold)
-                    .font(.title)
+                    .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
