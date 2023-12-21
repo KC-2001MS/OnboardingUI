@@ -28,6 +28,7 @@ struct OnboardingCardView: View {
                     .focusable()
                 
                 OnboardingView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
+                    .padding()
                 
                 Text("Some Contents \(2)")
                     .font(.title)

@@ -38,6 +38,9 @@ public struct ColorButtonStyle: ButtonStyle {
 #if os(macOS)
             .frame(minWidth: 0, maxWidth: 170)
             .padding([.top, .bottom], 7.5)
+#elseif os(visionOS)
+            .frame(minWidth: 0, maxWidth: 275)
+            .padding([.top, .bottom], 15)
 #else
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding([.top, .bottom], 15)
@@ -50,7 +53,7 @@ public struct ColorButtonStyle: ButtonStyle {
 #else
             .background(backgroundColor, in: RoundedRectangle(cornerRadius: 15))
 #endif
-            .padding(.horizontal, 25)
+            .padding(.horizontal, 40)
     }
 }
 

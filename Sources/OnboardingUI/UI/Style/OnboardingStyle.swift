@@ -24,20 +24,24 @@ public extension Text {
             case .title:
                 self
                     .fontWeight(.bold)
+                #if os(visionOS)
+                    .font(.extraLargeTitle2)
+                #else
                     .font(.largeTitle)
+                #endif
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
             case .subtitle:
                 self
-                    .font(.headline)
+                    .font(.subheadline)
                     .foregroundColor(.primary)
                     .bold()
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
             case .content:
                 self
-                    .font(.body)
+                    .font(.callout)
                     .foregroundColor(.secondary)
                     .minimumScaleFactor(0.75)
                     .lineLimit(7)

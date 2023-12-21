@@ -34,6 +34,8 @@ struct SheetOnboarding: ViewModifier {
                             
                         }
                     }
+                } link: {
+                    onboarding.link
                 } button: {
                     ContinueButton {
                         isPresented.toggle()

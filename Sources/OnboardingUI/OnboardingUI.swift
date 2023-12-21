@@ -2,13 +2,15 @@ import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// View to show onboarding in sheets
-public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
+public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
     /// Title View
     var title: V1
     /// View displaying features
     var content: V2
+    
+    var link: V3
     /// Button view at the bottom
-    var button: V3
+    var button: V4
     /// Initializer for the three Views that make up the OnboardingSheet
     /// - Parameters:
     ///   - title: Title View
@@ -17,10 +19,24 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
     public init(
         @ViewBuilder title: () -> V1,
         @ViewBuilder content: () -> V2,
-        @ViewBuilder button: () -> V3
+        @ViewBuilder link: () -> V3,
+        @ViewBuilder button: () -> V4
     ) {
         self.title = title()
         self.content = content()
+        self.link = link()
+        self.button = button()
+    }
+    
+    public init(
+        @ViewBuilder title: () -> V1,
+        @ViewBuilder content: () -> V2,
+        link: V3 = EmptyView(),
+        @ViewBuilder button: () -> V4
+    ) {
+        self.title = title()
+        self.content = content()
+        self.link = link
         self.button = button()
     }
     /// View
@@ -28,34 +44,49 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View>: View {
         GeometryReader { geom in
             VStack(alignment: .center) {
                 ScrollView {
-                    Spacer()
-                        .frame(height: geom.size.height/10)
-                    
-                    title
-                    
-                    
-                    Spacer()
-                        .frame(height: geom.size.height/14.5)
-                    VStack(alignment: .leading, spacing: 40) {
-                        content
-                    }
+                    VStack(alignment: .center,spacing: geom.size.height / 30) {
+                        VStack(spacing: 0) {
+                            
+                            title
+                                .padding(.vertical, geom.size.height / 30)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 40) {
+                            content
+                        }
 #if os(macOS)
-                    .frame(width: 350)
+                        .frame(maxWidth: 350)
+#elseif os(iOS)
+                        .frame(maxWidth: 440)
+#elseif os(visionOS)
+                        .frame(maxWidth: 555)
 #else
-                    .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity)
 #endif
+                    }
                 }
+                
                 Spacer()
+                
+                link
+                    .padding(.vertical, 5)
                 
                 button
-                
-                Spacer()
-                    .frame(height: geom.size.height/14.5)
+#if os(iOS)
+                    .frame(maxWidth: 440)
+#endif
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+#if os(visionOS)
+            .padding(.vertical, geom.size.height/25)
+#else
+            .padding(.vertical, geom.size.height/15)
+#endif
         }
 #if os(visionOS)
-        .frame(width: 960,height: 540, alignment: .center)
+        .frame(width: 655,height: 695, alignment: .center)
+#elseif os(iOS)
+        .frame(maxWidth: 500)
 #elseif os(macOS)
         .frame(minWidth: 600,minHeight: 700, alignment: .center)
 #endif
@@ -127,7 +158,6 @@ public struct OnboardingCard<V1: View,V2: View>: View {
             .buttonStyle(.borderless)
             .padding(10)
         }
-        .padding()
     }
 }
 
@@ -149,6 +179,34 @@ public struct OnboardingCard<V1: View,V2: View>: View {
             OnboardingSubtitle("Customize SF Symbols")
             OnboardingContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
         }
+    } button: {
+        ContinueButton(color: .accentColor) {
+            
+        }
+    }
+    .environment(\.locale, .init(identifier: "ja"))
+}
+
+#Preview("Onboarding Sheet 2") {
+    OnboardingSheet {
+        OnboardingTitle("Welcome to\nOnboardingUI")
+    } content: {
+        OnboardingItem(systemName: "keyboard",shape: .red) {
+            OnboardingSubtitle("Easy to Make")
+            OnboardingContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+        }
+        
+        OnboardingItem(systemName: "macbook.and.ipad") {
+            OnboardingSubtitle("Not only for iPhone, but also for Mac and iPad")
+            OnboardingContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+        }
+        
+        OnboardingItem(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
+            OnboardingSubtitle("Customize SF Symbols")
+            OnboardingContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
+        }
+    } link: {
+        Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     } button: {
         ContinueButton(color: .accentColor) {
             
@@ -187,5 +245,7 @@ public struct OnboardingCard<V1: View,V2: View>: View {
         } action: {
             
         }
+        .padding()
     }
+    
 }

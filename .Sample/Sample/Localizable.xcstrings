@@ -31,6 +31,16 @@
         }
       }
     },
+    "Check our Privacy Policy…" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシーポリシーを確認…"
+          }
+        }
+      }
+    },
     "Customize SF Symbols" : {
       "localizations" : {
         "ja" : {
@@ -71,13 +81,13 @@
         }
       }
     },
-    "It supports multi-colors and hierarchies of SF Symbols, which can be freely customized. However, this feature is not supported by visionOS." : {
+    "It supports multi-colors and hierarchies of SF Symbols, which can be freely customized. " : {
       "extractionState" : "manual",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。ただし、この機能はvisionOSではサポートされていません。"
+            "value" : "マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。"
           }
         }
       }
@@ -262,12 +272,12 @@
         }
       }
     },
-    "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS." : {
+    "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "カスタマイズ性の高い実装方法を用いた場合、マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。ただし、この機能はvisionOSではサポートされていません。"
+            "value" : "カスタマイズ性の高い実装方法を用いた場合、マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。"
           }
         }
       }

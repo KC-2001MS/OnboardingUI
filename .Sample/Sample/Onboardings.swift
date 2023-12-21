@@ -11,10 +11,12 @@ import OnboardingUI
 import SwiftUI
 
 struct WelcomeOnboarding: Onboarding {
-    var id: UUID = UUID()
-    
     var title: Text {
         Text("Welcome to\nOnboardingUI")
+    }
+    
+    var link: Link<Text>? {
+        Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     }
     
     var features: Array<Feature> {
@@ -42,7 +44,7 @@ struct WelcomeOnboarding: Onboarding {
         Feature(
             "Customize SF Symbols" ,
             imageName: "circle.badge.checkmark",
-            message: "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS."
+            message: "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized."
         )
     }
 }

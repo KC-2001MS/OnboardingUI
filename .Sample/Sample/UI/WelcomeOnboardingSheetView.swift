@@ -32,7 +32,7 @@ struct WelcomeOnboardingSheetView: View {
             
             OnboardingItem(systemName: "circle.badge.checkmark",mode: .palette,primary: .primary,secondary: .blue) {
                 OnboardingSubtitle("Customize SF Symbols")
-                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS.")
+                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized.")
             }
         } button: {
             ContinueButton(color: .accentColor, action: action)

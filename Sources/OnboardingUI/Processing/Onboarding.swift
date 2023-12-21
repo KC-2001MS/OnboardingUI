@@ -16,6 +16,18 @@ public protocol Onboarding: Identifiable, Sendable {
     var title: Text { get }
     /// Variables indicating features
     @FeatureBuilder var features: Array<Feature> { get }
+    
+    var link: Link<Text>? { get }
+}
+
+public extension Onboarding {
+    var id: UUID {
+        return UUID()
+    }
+    // デフォルト実装でnilを返す
+    var link: Link<Text>? {
+        return nil
+    }
 }
 /// Structures to build features to display onboarding
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
@@ -98,7 +110,7 @@ public struct Feature: Identifiable, Sendable {
         bundle: Bundle? = nil,
         comment: StaticString? = nil
     ) -> Self {
-            .init(title: self.title, image: self.image, message: Text(key, tableName: tableName, bundle: bundle, comment: comment))
+        .init(title: self.title, image: self.image, message: Text(key, tableName: tableName, bundle: bundle, comment: comment))
     }
 }
 

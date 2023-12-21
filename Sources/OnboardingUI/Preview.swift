@@ -11,10 +11,12 @@ import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 struct PreviewWhatIsNewOnboarding: Onboarding {
-    var id: UUID = UUID()
-    
     var title: Text {
         Text("What's New in\nOnboardingUI")
+    }
+    
+    var link: Link<Text>? {
+        Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     }
     
     var features: Array<Feature> {

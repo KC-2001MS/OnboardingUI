@@ -40,6 +40,24 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         case secondary
         case tertiary
     }
+    
+    private var iconEdge: EdgeInsets {
+        #if os(visionOS)
+        EdgeInsets(
+            top: CGFloat(10),
+            leading: CGFloat(0),
+            bottom: CGFloat(10),
+            trailing: CGFloat(20)
+        )
+        #else
+        EdgeInsets(
+            top: CGFloat(10),
+            leading: CGFloat(15),
+            bottom: CGFloat(10),
+            trailing: CGFloat(15)
+        )
+        #endif
+    }
     /// Creates an onboarding item with a custom image and content.
     ///
     /// - Parameters:
@@ -198,75 +216,142 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     }
     /// The content and layout of the onboarding item.
     public var body: some View {
-        HStack(spacing: 10) {
-            switch shapeSize {
-            case .none:
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .font(.largeTitle)
-                    .frame(width: 35, height: 35)
-                    .padding(5)
-#if !os(visionOS)
-                    .accessibilityHidden(true)
-                    .symbolRenderingMode(mode)
-#else
-                    .foregroundStyle(Color.primary)
+        ViewThatFits {
+            HStack(spacing: 0) {
+                switch shapeSize {
+                case .none:
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .font(.largeTitle)
+                        .frame(width: 35, height: 35)
+                        .padding(iconEdge)
+                        .accessibilityHidden(true)
+                        .symbolRenderingMode(mode)
+#if os(visionOS)
+                        .brightness(0.5)
+                        .opacity(0.3)
 #endif
-            case .primary:
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .font(.largeTitle)
-                    .frame(width: 35, height: 35)
-                    .padding(5)
-                    .accessibilityHidden(true)
-#if !os(visionOS)
-                    .symbolRenderingMode(mode)
-                    .foregroundStyle(shape[0])
-#else
-                    .foregroundStyle(Color.primary)
+                        .background(Color.red)
+                case .primary:
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .font(.largeTitle)
+                        .frame(width: 35, height: 35)
+                        .padding(iconEdge)
+                        .accessibilityHidden(true)
+                        .symbolRenderingMode(mode)
+                        .foregroundStyle(shape[0])
+#if os(visionOS)
+                        .brightness(0.75)
+                        .opacity(0.3)
 #endif
-            case .secondary:
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .font(.largeTitle)
-                    .frame(width: 35, height: 35)
-                    .padding(5)
-                    .accessibilityHidden(true)
-#if !os(visionOS)
-                    .symbolRenderingMode(mode)
-                    .foregroundStyle(shape[0],shape[1])
-#else
-                    .foregroundStyle(Color.primary)
+                case .secondary:
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .font(.largeTitle)
+                        .frame(width: 35, height: 35)
+                        .padding(iconEdge)
+                        .accessibilityHidden(true)
+                        .symbolRenderingMode(mode)
+                        .foregroundStyle(shape[0],shape[1])
+#if os(visionOS)
+                        .brightness(0.75)
+                        .opacity(0.3)
 #endif
-            case .tertiary:
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .font(.largeTitle)
-                    .frame(width: 35, height: 35)
-                    .padding(5)
-                    .accessibilityHidden(true)
-#if !os(visionOS)
-                    .symbolRenderingMode(mode)
-                    .foregroundStyle(shape[0],shape[1],shape[2])
-#else
-                    .foregroundStyle(Color.primary)
+                case .tertiary:
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .font(.largeTitle)
+                        .frame(width: 35, height: 35)
+                        .padding(iconEdge)
+                        .accessibilityHidden(true)
+                        .symbolRenderingMode(mode)
+                        .foregroundStyle(shape[0],shape[1],shape[2])
+#if os(visionOS)
+                        .brightness(0.75)
+                        .opacity(0.3)
 #endif
+                }
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    content
+                }
             }
             
-            VStack(alignment: .leading, spacing: 5) {
-                content
-            }
+            //            VStack(alignment: .leading) {
+            //                switch shapeSize {
+            //                case .none:
+            //                    image
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .font(.largeTitle)
+            //                        .frame(width: 35, height: 35)
+            //                        .padding(5)
+            //#if !os(visionOS)
+            //                        .accessibilityHidden(true)
+            //                        .symbolRenderingMode(mode)
+            //#else
+            //                        .foregroundStyle(Color.primary)
+            //#endif
+            //                case .primary:
+            //                    image
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .font(.largeTitle)
+            //                        .frame(width: 35, height: 35)
+            //                        .padding(5)
+            //                        .accessibilityHidden(true)
+            //#if !os(visionOS)
+            //                        .symbolRenderingMode(mode)
+            //                        .foregroundStyle(shape[0])
+            //#else
+            //                        .foregroundStyle(Color.primary)
+            //#endif
+            //                case .secondary:
+            //                    image
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .font(.largeTitle)
+            //                        .frame(width: 35, height: 35)
+            //                        .padding(5)
+            //                        .accessibilityHidden(true)
+            //#if !os(visionOS)
+            //                        .symbolRenderingMode(mode)
+            //                        .foregroundStyle(shape[0],shape[1])
+            //#else
+            //                        .foregroundStyle(Color.primary)
+            //#endif
+            //                case .tertiary:
+            //                    image
+            //                        .resizable()
+            //                        .scaledToFit()
+            //                        .font(.largeTitle)
+            //                        .frame(width: 35, height: 35)
+            //                        .padding(5)
+            //                        .accessibilityHidden(true)
+            //#if !os(visionOS)
+            //                        .symbolRenderingMode(mode)
+            //                        .foregroundStyle(shape[0],shape[1],shape[2])
+            //#else
+            //                        .foregroundStyle(Color.primary)
+            //#endif
+            //                }
+            //                
+            //                VStack(alignment: .leading, spacing: 5) {
+            //                    content
+            //                }
+            //            }
         }
-        #if !os(macOS)
-        .padding(.horizontal, 25)
-        #endif
-        #if os(tvOS)
+#if !os(macOS)
+        .padding(.horizontal, 40)
+#endif
+#if os(tvOS)
         .focusable()
-        #endif
+#endif
     }
 }
 
