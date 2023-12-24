@@ -10,7 +10,7 @@ import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// View to show onboarding
-public struct OnboardingView: View {
+public struct OnboardingCardView: View {
     /// Variables that control the display state
     @Binding var isPresented: Bool
     /// Display Contents
@@ -43,7 +43,6 @@ public struct OnboardingView: View {
             } action: {
                 isPresented.toggle()
             }
-            
         } else {
             EmptyView()
         }
@@ -53,5 +52,7 @@ public struct OnboardingView: View {
 #Preview {
     @State var isPresented = true
     
-    return OnboardingView(isPresented: $isPresented, onboarding: PreviewWhatIsNewOnboarding())
+    return ScrollView {
+        OnboardingCardView(isPresented: $isPresented, onboarding: PreviewWhatIsNewOnboarding()).padding()
+    }
 }

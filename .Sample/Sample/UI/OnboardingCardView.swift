@@ -9,7 +9,7 @@
 import SwiftUI
 import OnboardingUI
 
-struct OnboardingCardView: View {
+struct NewFeatureOnboardingCardView: View {
     @State private var isOpeningOnboarding = true
     
     
@@ -27,7 +27,7 @@ struct OnboardingCardView: View {
                     .padding()
                     .focusable()
                 
-                OnboardingView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
+                OnboardingCardView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
                     .padding()
                 
                 Text("Some Contents \(2)")
@@ -47,5 +47,5 @@ struct OnboardingCardView: View {
 }
 
 #Preview {
-    OnboardingCardView()
+    NewFeatureOnboardingCardView()
 }

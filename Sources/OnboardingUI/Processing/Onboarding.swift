@@ -20,6 +20,7 @@ public protocol Onboarding: Identifiable, Sendable {
     var link: Link<Text>? { get }
 }
 
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public extension Onboarding {
     var id: UUID {
         return UUID()
@@ -113,7 +114,6 @@ public struct Feature: Identifiable, Sendable {
         .init(title: self.title, image: self.image, message: Text(key, tableName: tableName, bundle: bundle, comment: comment))
     }
 }
-
 /// Result builder that allows you to freely build Feature structures
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 @resultBuilder

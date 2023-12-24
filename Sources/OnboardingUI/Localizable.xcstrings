@@ -24,6 +24,12 @@
         }
       }
     },
+    "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device." : {
+
+    },
+    "Not only for iPhone, but also for Mac, iPad, Vision Pro" : {
+
+    },
     "Open Onboarding" : {
       "localizations" : {
         "ja" : {

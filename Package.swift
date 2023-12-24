@@ -16,8 +16,7 @@ let package = Package(
     targets: [
         .target(
             name: "OnboardingUI",
-            dependencies: [],
-            resources: [.process("OnboardingUI")]
+            dependencies: []
         ),
         .testTarget(
             name: "OnboardingUITests",

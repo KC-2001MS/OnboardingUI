@@ -43,15 +43,21 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
     public var body: some View {
         GeometryReader { geom in
             VStack(alignment: .center) {
-                ScrollView {
-                    VStack(alignment: .center,spacing: geom.size.height / 30) {
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .center,spacing: geom.size.height / 60) {
+                        // /10
+                        
                         VStack(spacing: 0) {
                             
                             title
-                                .padding(.vertical, geom.size.height / 30)
+                                .padding(.vertical, geom.size.height / 20)
                         }
                         
-                        VStack(alignment: .leading, spacing: 40) {
+                        // /15
+                        
+                        // 4 /60
+                        
+                        VStack(alignment: .leading, spacing: 35) {
                             content
                         }
 #if os(macOS)
@@ -69,18 +75,26 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
                 Spacer()
                 
                 link
+#if !os(macOS)
                     .padding(.vertical, 5)
+#else
+                    .padding(30)
+#endif
                 
                 button
 #if os(iOS)
                     .frame(maxWidth: 440)
+                    .padding(.bottom, 70 - geom.size.height/15)
+#elseif os(macOS)
+                    .padding(.bottom, 15)
 #endif
+                // /10
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
 #if os(visionOS)
             .padding(.vertical, geom.size.height/25)
 #else
-            .padding(.vertical, geom.size.height/15)
+            .padding(.vertical, geom.size.height/20)
 #endif
         }
 #if os(visionOS)

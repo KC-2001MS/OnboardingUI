@@ -47,8 +47,6 @@ This is the easiest code to onboard.
 
 ```swift
 struct WelcomeOnboarding: Onboarding {
-    var id: UUID = UUID()
-    
     var title: Text {
         Text("Welcome to\nOnboardingUI")
     }

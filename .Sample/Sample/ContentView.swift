@@ -14,7 +14,11 @@ struct ContentView: View {
     
     @Environment(\.appVersionManager) private var appVersionManager
     
-    @State private var isMajor = true
+    @State private var isOpeningPhotos = false
+    
+    @State private var isOpeningXcode = false
+    
+    @State private var isOpeningFreeform = false
     
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
@@ -31,7 +35,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
 #endif
                     NavigationLink("Show onboarding card") {
-                        OnboardingCardView()
+                        NewFeatureOnboardingCardView()
                     }
                 } header: {
                     Text("Onboarding protocol")
@@ -77,6 +81,37 @@ struct ContentView: View {
                     Text("This one is implemented with a customizable View and environment variables")
                 }
 #endif
+                Section {
+                    Button("Photos") {
+                        isOpeningPhotos.toggle()
+                    }
+#if !os(tvOS)
+                    .buttonStyle(.borderless)
+#endif
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                    Button("Xcode") {
+                        isOpeningXcode.toggle()
+                    }
+#if !os(tvOS)
+                    .buttonStyle(.borderless)
+#endif
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                    Button("Freeform") {
+                        isOpeningFreeform.toggle()
+                    }
+#if !os(tvOS)
+                    .buttonStyle(.borderless)
+#endif
+#if os(macOS)
+                    .frame(maxWidth: .infinity, alignment: .center)
+#endif
+                } header: {
+                    Text("Imitation of Apple stock apps")
+                }
             }
             .navigationTitle("OnboardingUI")
             .formStyle(.grouped)
@@ -97,6 +132,9 @@ struct ContentView: View {
             })
         }
         .sheetOnboarding(isPresented: $isOpenSheet, WelcomeOnboarding())
+        .sheetOnboarding(isPresented: $isOpeningPhotos, PhotosFakeOnboarding())
+        .sheetOnboarding(isPresented: $isOpeningXcode, XcodeFakeOnboarding())
+        .sheetOnboarding(isPresented: $isOpeningFreeform, FreeformFakeOnboarding())
     }
 }
 

@@ -71,6 +71,26 @@
         }
       }
     },
+    "Freeform" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フリーボード(英語)"
+          }
+        }
+      }
+    },
+    "Imitation of Apple stock apps" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple純正アプリの模倣"
+          }
+        }
+      }
+    },
     "Initialization" : {
       "localizations" : {
         "ja" : {
@@ -182,6 +202,16 @@
         }
       }
     },
+    "Photos" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "写真(英語)"
+          }
+        }
+      }
+    },
     "Show onboarding card" : {
       "localizations" : {
         "ja" : {
@@ -278,6 +308,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタマイズ性の高い実装方法を用いた場合、マルチカラーやSFシンボルの階層をサポートし、自由にカスタマイズできます。"
+          }
+        }
+      }
+    },
+    "Xcode" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xcode(英語)"
           }
         }
       }

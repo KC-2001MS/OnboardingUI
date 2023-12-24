@@ -23,25 +23,41 @@ public extension Text {
             switch style {
             case .title:
                 self
+#if os(macOS)
+                    .fontWeight(.regular)
+#else
                     .fontWeight(.bold)
-                #if os(visionOS)
+#endif
+#if os(visionOS)
                     .font(.extraLargeTitle2)
-                #else
+#elseif os(macOS)
+                    .font(.custom("", size: CGFloat(40), relativeTo: .largeTitle))
+#else
                     .font(.largeTitle)
-                #endif
+#endif
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
             case .subtitle:
                 self
+#if !os(macOS)
                     .font(.subheadline)
+#else
+                    .font(.body)
+#endif
                     .foregroundColor(.primary)
                     .bold()
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
             case .content:
                 self
-                    .font(.callout)
+#if !os(macOS)
+//                    .font(.callout)
+                    .font(.custom("", size: CGFloat(15.5), relativeTo: .body))
+                    .fontWeight(.light)
+#else
+                    .font(.body)
+#endif
                     .foregroundColor(.secondary)
                     .minimumScaleFactor(0.75)
                     .lineLimit(7)
