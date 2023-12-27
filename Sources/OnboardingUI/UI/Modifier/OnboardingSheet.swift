@@ -5,11 +5,10 @@
 //  Created by Keisuke Chinone on 2023/12/13.
 //
 
-
 import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
-struct SheetOnboarding: ViewModifier {
+struct OnboardingSheet: ViewModifier {
     @Binding public var isPresented: Bool
     
     public let onboarding: any Onboarding
@@ -17,9 +16,9 @@ struct SheetOnboarding: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .sheet(isPresented: $isPresented) {
-                OnboardingSheet {
+                OnboardingSheetView {
                     onboarding.title
-                        .onboardingStyle(style: .title)
+                        .onboardingTextFormatting(style: .title)
                 } content: {
                     ForEach(onboarding.features) { feature in
                         if let image = feature.image {
@@ -49,7 +48,7 @@ struct SheetOnboarding: ViewModifier {
 public extension View {
     ///Modifier to display sheets based on Onboarding protocol compliant structures
     func sheetOnboarding<Content>(isPresented: Binding<Bool>,_ onboarding: Content) -> some View where Content : Onboarding {
-        modifier(OnboardingUI.SheetOnboarding(isPresented: isPresented, onboarding: onboarding))
+        modifier(OnboardingUI.OnboardingSheet(isPresented: isPresented, onboarding: onboarding))
     }
 }
 
