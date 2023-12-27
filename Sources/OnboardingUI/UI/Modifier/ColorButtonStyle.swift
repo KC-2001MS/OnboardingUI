@@ -54,7 +54,7 @@ public struct ColorButtonStyle: ButtonStyle {
     Button(action: {
         
     }) {
-        Text("Sample ColorButtonStyle")
+        Text(String("Sample ColorButtonStyle"))
     }
     .buttonStyle(ColorButtonStyle(foregroundColor: .white, backgroundColor: .red))
 }

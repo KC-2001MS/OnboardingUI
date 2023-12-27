@@ -58,12 +58,11 @@ public struct OnboardingTitle: View {
     /// View
     public var body: some View {
         TextView
-            .onboardingStyle(style: .title)
-            .accessibilityLabel(TextView)
+            .onboardingTextFormatting(style: .title)
     }
 }
 
 
 #Preview("OnboardingTitle") {
-    OnboardingTitle("Sample Title")
+    OnboardingTitle(String("Sample Title"))
 }

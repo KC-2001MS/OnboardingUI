@@ -59,11 +59,10 @@ public struct OnboardingSubtitle: View {
     /// View
     public var body: some View {
         TextView
-            .onboardingStyle(style: .subtitle)
-            .accessibilityLabel(TextView)
+            .onboardingTextFormatting(style: .subtitle)
     }
 }
 
 #Preview("OnboardingItemTitle") {
-    OnboardingSubtitle("Sample Subtitle")
+    OnboardingSubtitle(String("Sample Subtitle"))
 }

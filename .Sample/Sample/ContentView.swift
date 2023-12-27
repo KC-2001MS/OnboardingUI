@@ -131,10 +131,10 @@ struct ContentView: View {
                 appVersionManager.isMinorOrPatchVersionUpdated = false
             })
         }
-        .sheetOnboarding(isPresented: $isOpenSheet, WelcomeOnboarding())
-        .sheetOnboarding(isPresented: $isOpeningPhotos, PhotosFakeOnboarding())
-        .sheetOnboarding(isPresented: $isOpeningXcode, XcodeFakeOnboarding())
-        .sheetOnboarding(isPresented: $isOpeningFreeform, FreeformFakeOnboarding())
+        .onboardingSheet(isPresented: $isOpenSheet, WelcomeOnboarding())
+        .onboardingSheet(isPresented: $isOpeningPhotos, PhotosFakeOnboarding())
+        .onboardingSheet(isPresented: $isOpeningXcode, XcodeFakeOnboarding())
+        .onboardingSheet(isPresented: $isOpeningFreeform, FreeformFakeOnboarding())
     }
 }
 

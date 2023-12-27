@@ -16,7 +16,7 @@ struct NewFeatureOnboardingSheetView: View {
     }
     
     var body: some View {
-        OnboardingSheet {
+        OnboardingSheetView {
             OnboardingTitle("What's New in\nOnboardingUI")
         } content: {
             OnboardingItem(systemName: "wrench.and.screwdriver",shape: .red) {

@@ -36,6 +36,7 @@ public extension Text {
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
+                    .accessibilityLabel(self)
             case .subtitle:
                 self
 #if os(macOS)
@@ -47,17 +48,19 @@ public extension Text {
                     .bold()
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
+                    .accessibilityLabel(self)
             case .content:
                 self
 #if os(macOS)
                     .font(.body)
 #else
-//                    .font(.callout)
+                //                    .font(.callout)
                     .font(.custom("", size: CGFloat(15.5), relativeTo: .body))
 #endif
                     .foregroundColor(.secondary)
                     .minimumScaleFactor(0.75)
                     .lineLimit(7)
+                    .accessibilityLabel(self)
             }
         }
     }
@@ -65,13 +68,13 @@ public extension Text {
 
 #Preview("Modifier") {
     VStack(spacing: 10){
-        Text("Sample Title")
+        Text(String("Sample Title"))
             .onboardingTextFormatting(style: .title)
         
-        Text("Sample Subtitle")
+        Text(String("Sample Subtitle"))
             .onboardingTextFormatting(style: .subtitle)
         
-        Text("Sample Content")
+        Text(String("Sample Content"))
             .onboardingTextFormatting(style: .content)
     }
 }

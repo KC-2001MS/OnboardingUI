@@ -17,7 +17,7 @@ struct WelcomeOnboardingSheetView: View {
     }
     
     var body: some View {
-        OnboardingSheet {
+        OnboardingSheetView {
             OnboardingTitle("Welcome to\nOnboardingUI")
         } content: {
             OnboardingItem(systemName: "applescript",shape: .red) {

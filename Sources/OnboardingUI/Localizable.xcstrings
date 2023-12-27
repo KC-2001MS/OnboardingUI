@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Check our Privacy Policy…" : {
-
-    },
     "Close" : {
       "localizations" : {
         "ja" : {
@@ -24,98 +21,12 @@
         }
       }
     },
-    "It supports not only iPhone, but also Mac, iPad, and Vision Pro. Therefore, there is no need to rewrite the code for each device." : {
-
-    },
-    "Not only for iPhone, but also for Mac, iPad, Vision Pro" : {
-
-    },
-    "Open Onboarding" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "オンボーディングを開く"
-          }
-        }
-      }
-    },
-    "Sample ColorButtonStyle" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルのカラーボタンスタイル"
-          }
-        }
-      }
-    },
-    "Sample Content" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルの本文"
-          }
-        }
-      }
-    },
-    "Sample Subtitle" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルのサブタイトル"
-          }
-        }
-      }
-    },
-    "Sample Subtitle %lld" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルのサブタイトル %lld"
-          }
-        }
-      }
-    },
-    "Sample Title" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "サンプルのタイトル"
-          }
-        }
-      }
-    },
     "Start" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "開始"
-          }
-        }
-      }
-    },
-    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview." : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "これはサンプルテキストです。このテキストで、このフレームワークでどのように表示されるかを確認できます。プレビューをご覧ください。"
-          }
-        }
-      }
-    },
-    "What's New in\nOnboardingUI" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OnboardingUIの新機能"
           }
         }
       }

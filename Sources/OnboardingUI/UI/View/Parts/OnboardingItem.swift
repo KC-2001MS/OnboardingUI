@@ -43,21 +43,21 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     }
     
     private var iconEdge: EdgeInsets {
-        #if os(visionOS)
+#if os(visionOS)
         EdgeInsets(
             top: CGFloat(10),
             leading: CGFloat(0),
             bottom: CGFloat(10),
             trailing: CGFloat(18.75)
         )
-        #else
+#else
         EdgeInsets(
             top: CGFloat(10),
             leading: CGFloat(8.75),
             bottom: CGFloat(10),
             trailing: CGFloat(8.75)
         )
-        #endif
+#endif
     }
     /// Creates an onboarding item with a custom image and content.
     ///
@@ -220,129 +220,15 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         Group {
             if dynamicTypeSize <= .xxxLarge {
                 HStack(spacing: 5) {
-                    switch shapeSize {
-                    case .none:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 37.5, height: 37.5)
-                            .padding(iconEdge)
-                            .accessibilityHidden(true)
-                            .symbolRenderingMode(mode)
-#if os(visionOS)
-                            .brightness(0.5)
-                            .opacity(0.3)
-#endif
-                            .background(Color.red)
-                    case .primary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 37.5, height: 37.5)
-                            .padding(iconEdge)
-                            .accessibilityHidden(true)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0])
-#if os(visionOS)
-                            .brightness(0.75)
-                            .opacity(0.3)
-#endif
-                    case .secondary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 37.5, height: 37.5)
-                            .padding(iconEdge)
-                            .accessibilityHidden(true)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0],shape[1])
-#if os(visionOS)
-                            .brightness(0.75)
-                            .opacity(0.3)
-#endif
-                    case .tertiary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 37.5, height: 37.5)
-                            .padding(iconEdge)
-                            .accessibilityHidden(true)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0],shape[1],shape[2])
-#if os(visionOS)
-                            .brightness(0.75)
-                            .opacity(0.3)
-#endif
-                    }
+                    imageView
                     
                     VStack(alignment: .leading, spacing: 2.5) {
                         content
                     }
                 }
-                
             } else {
                 VStack(alignment: .leading) {
-                    switch shapeSize {
-                    case .none:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 35, height: 35)
-                            .padding(5)
-#if !os(visionOS)
-                            .accessibilityHidden(true)
-                            .symbolRenderingMode(mode)
-#else
-                            .foregroundStyle(Color.primary)
-#endif
-                    case .primary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 35, height: 35)
-                            .padding(5)
-                            .accessibilityHidden(true)
-#if !os(visionOS)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0])
-#else
-                            .foregroundStyle(Color.primary)
-#endif
-                    case .secondary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 35, height: 35)
-                            .padding(5)
-                            .accessibilityHidden(true)
-#if !os(visionOS)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0],shape[1])
-#else
-                            .foregroundStyle(Color.primary)
-#endif
-                    case .tertiary:
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .font(.largeTitle)
-                            .frame(width: 35, height: 35)
-                            .padding(5)
-                            .accessibilityHidden(true)
-#if !os(visionOS)
-                            .symbolRenderingMode(mode)
-                            .foregroundStyle(shape[0],shape[1],shape[2])
-#else
-                            .foregroundStyle(Color.primary)
-#endif
-                    }
+                    imageView
                     
                     VStack(alignment: .leading, spacing: 5) {
                         content
@@ -357,38 +243,99 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         .focusable()
 #endif
     }
+    
+    @ViewBuilder
+    private var imageView: some View {
+        switch shapeSize {
+        case .none:
+            image
+                .resizable()
+                .scaledToFit()
+                .font(.largeTitle)
+                .frame(width: 37.5, height: 37.5)
+                .padding(iconEdge)
+                .accessibilityHidden(true)
+                .symbolRenderingMode(mode)
+#if os(visionOS)
+                .brightness(0.5)
+                .opacity(0.3)
+#endif
+        case .primary:
+            image
+                .resizable()
+                .scaledToFit()
+                .font(.largeTitle)
+                .frame(width: 37.5, height: 37.5)
+                .padding(iconEdge)
+                .accessibilityHidden(true)
+                .symbolRenderingMode(mode)
+                .foregroundStyle(shape[0])
+#if os(visionOS)
+                .brightness(0.75)
+                .opacity(0.3)
+#endif
+        case .secondary:
+            image
+                .resizable()
+                .scaledToFit()
+                .font(.largeTitle)
+                .frame(width: 37.5, height: 37.5)
+                .padding(iconEdge)
+                .accessibilityHidden(true)
+                .symbolRenderingMode(mode)
+                .foregroundStyle(shape[0],shape[1])
+#if os(visionOS)
+                .brightness(0.75)
+                .opacity(0.3)
+#endif
+        case .tertiary:
+            image
+                .resizable()
+                .scaledToFit()
+                .font(.largeTitle)
+                .frame(width: 37.5, height: 37.5)
+                .padding(iconEdge)
+                .accessibilityHidden(true)
+                .symbolRenderingMode(mode)
+                .foregroundStyle(shape[0],shape[1],shape[2])
+#if os(visionOS)
+                .brightness(0.75)
+                .opacity(0.3)
+#endif
+        }
+    }
 }
 
 #Preview("Onboarding Item") {
     ScrollView {
         OnboardingItem(systemName: "doc",mode: .palette,primary: .red,secondary: .blue) {
-            Text("Sample Subtitle \(1)")
-                .onboardingStyle(style: .subtitle)
-            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .content)
+            Text(String("Sample Subtitle \(1)"))
+                .onboardingTextFormatting(style: .subtitle)
+            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "doc.fill",shape: .red) {
-            Text("Sample Subtitle \(2)")
-                .onboardingStyle(style: .subtitle)
-            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .content)
+            Text(String("Sample Subtitle \(2)"))
+                .onboardingTextFormatting(style: .subtitle)
+            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "arrow.down.doc") {
-            Text("Sample Subtitle \(3)")
-                .onboardingStyle(style: .subtitle)
-            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .content)
+            Text(String("Sample Subtitle \(3)"))
+                .onboardingTextFormatting(style: .subtitle)
+            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem {
             Image(systemName: "arrow.up.doc")
         } content: {
-            Text("Sample Subtitle \(3)")
-                .onboardingStyle(style: .subtitle)
-            Text("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview.")
-                .onboardingStyle(style: .content)
+            Text(String("Sample Subtitle \(3)"))
+                .onboardingTextFormatting(style: .subtitle)
+            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
+                .onboardingTextFormatting(style: .content)
         }
     }
 }

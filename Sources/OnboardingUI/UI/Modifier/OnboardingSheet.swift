@@ -47,7 +47,7 @@ struct OnboardingSheet: ViewModifier {
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public extension View {
     ///Modifier to display sheets based on Onboarding protocol compliant structures
-    func sheetOnboarding<Content>(isPresented: Binding<Bool>,_ onboarding: Content) -> some View where Content : Onboarding {
+    func onboardingSheet<Content>(isPresented: Binding<Bool>,_ onboarding: Content) -> some View where Content : Onboarding {
         modifier(OnboardingUI.OnboardingSheet(isPresented: isPresented, onboarding: onboarding))
     }
 }
@@ -56,12 +56,12 @@ public extension View {
     @State var isPresented: Bool = true
     
     return Group {
-        Button("Open Onboarding") {
+        Button(String("Open Onboarding")) {
             isPresented = true
         }
 #if os(macOS)
         .frame(width: 400, height: 300)
 #endif
-        .sheetOnboarding(isPresented: $isPresented, PreviewWhatIsNewOnboarding())
+        .onboardingSheet(isPresented: $isPresented, PreviewWhatIsNewOnboarding())
     }
 }

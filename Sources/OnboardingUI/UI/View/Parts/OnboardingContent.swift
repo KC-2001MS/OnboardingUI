@@ -58,11 +58,10 @@ public struct OnboardingContent: View {
     /// View
     public var body: some View {
         TextView
-            .onboardingStyle(style: .content)
-            .accessibilityLabel(TextView)
+            .onboardingTextFormatting(style: .content)
     }
 }
 
 #Preview("OnboardingItemContent") {
-    OnboardingContent("Please check the display of this text")
+    OnboardingContent(String("Please check the display of this text"))
 }

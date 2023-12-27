@@ -1,7 +1,7 @@
 //
-//  OnboardingSheet.swift
+//  OnboardingSheetView.swift
 //
-//  
+//
 //  Created by Keisuke Chinone on 2023/12/25.
 //
 
@@ -9,7 +9,8 @@ import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// View to show onboarding in sheets
-public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
+public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     /// Title View
     var title: V1
     /// View displaying features
@@ -70,34 +71,53 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
 #else
                         .frame(maxWidth: .infinity)
 #endif
+                        if dynamicTypeSize > .xxxLarge {
+                            link
+                            
+                            button
+#if os(iOS)
+                                .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+#elseif os(visionOS)
+                                .padding(.bottom, geom.size.height/25)
+#elseif os(macOS)
+                                .padding(.bottom, 15 + geom.size.height/20)
+#else
+                                .padding(.bottom, geom.size.height/20)
+#endif
+                        }
                     }
+#if os(visionOS)
+                    .padding(.top, geom.size.height/25)
+#else
+                    .padding(.top, geom.size.height/20)
+#endif
                 }
                 
-                Spacer()
-                
+                if dynamicTypeSize <= .xxxLarge {
+                    Spacer()
+                    
 #if !os(tvOS)
-                link
+                    link
 #if os(macOS)
-                    .padding(30)
+                        .padding(30)
 #else
-                    .padding(.vertical, 5)
+                        .padding(.vertical, 5)
 #endif
 #endif
-                
-                button
+                    
+                    button
 #if os(iOS)
-                    .frame(maxWidth: 440)
-                    .padding(.bottom, 70 - geom.size.height/15)
+                        .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+#elseif os(visionOS)
+                        .padding(.bottom, geom.size.height/25)
 #elseif os(macOS)
-                    .padding(.bottom, 15)
+                        .padding(.bottom, 15 + geom.size.height/20)
+#else
+                        .padding(.bottom, geom.size.height/20)
 #endif
+                }
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
-#if os(visionOS)
-            .padding(.vertical, geom.size.height/25)
-#else
-            .padding(.vertical, geom.size.height/20)
-#endif
         }
 #if os(iOS)
         .frame(maxWidth: 500)
@@ -110,29 +130,28 @@ public struct OnboardingSheet<V1: View,V2: View,V3: View,V4: View>: View {
 }
 
 #Preview("Onboarding Sheet 2") {
-    OnboardingSheet {
-        OnboardingTitle("Welcome to\nOnboardingUI")
+    OnboardingSheetView {
+        OnboardingTitle(String("Welcome to\nOnboardingUI"))
     } content: {
         OnboardingItem(systemName: "keyboard",shape: .red) {
-            OnboardingSubtitle("Easy to Make")
-            OnboardingContent("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+            OnboardingSubtitle(String("Easy to Make"))
+            OnboardingContent(String("Onboarding screens like Apple's stock apps can be easily created with SwiftUI."))
         }
         
         OnboardingItem(systemName: "macbook.and.ipad") {
-            OnboardingSubtitle("Not only for iPhone, but also for Mac and iPad")
-            OnboardingContent("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+            OnboardingSubtitle(String("Not only for iPhone, but also for Mac and iPad"))
+            OnboardingContent(String("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."))
         }
         
         OnboardingItem(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
-            OnboardingSubtitle("Customize SF Symbols")
-            OnboardingContent("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
+            OnboardingSubtitle(String("Customize SF Symbols"))
+            OnboardingContent(String("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."))
         }
     } link: {
-        Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
+        Link(String("Check our Privacy Policy…"), destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     } button: {
         ContinueButton(color: .accentColor) {
             
         }
     }
-    .environment(\.locale, .init(identifier: "ja"))
 }
