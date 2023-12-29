@@ -41,6 +41,8 @@ public extension Text {
                 self
 #if os(macOS)
                     .font(.body)
+#elseif os(tvOS)
+                    .font(.headline)
 #else
                     .font(.subheadline)
 #endif
@@ -52,6 +54,8 @@ public extension Text {
             case .content:
                 self
 #if os(macOS)
+                    .font(.body)
+#elseif os(tvOS)
                     .font(.body)
 #else
                 //                    .font(.callout)
