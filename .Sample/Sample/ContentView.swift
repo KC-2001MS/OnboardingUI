@@ -116,9 +116,9 @@ struct ContentView: View {
             .navigationTitle("OnboardingUI")
             .formStyle(.grouped)
         }
-        .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
+        .sheet(isPresented: $appVersionManager.isTheFirstLaunch) {
             WelcomeOnboardingSheetView(action: {
-                appVersionManager.isTheFirstActivation = false
+                appVersionManager.isTheFirstLaunch = false
             })
         }
         .sheet(isPresented: $appVersionManager.isMajorVersionUpdated) {
@@ -126,9 +126,9 @@ struct ContentView: View {
                 appVersionManager.isMajorVersionUpdated = false
             })
         }
-        .sheet(isPresented: $appVersionManager.isMinorOrPatchVersionUpdated) {
+        .sheet(isPresented: $appVersionManager.isMajorOrMinorVersionUpdated) {
             NewFeatureOnboardingSheetView(action: {
-                appVersionManager.isMinorOrPatchVersionUpdated = false
+                appVersionManager.isMajorOrMinorVersionUpdated = false
             })
         }
         .onboardingSheet(isPresented: $isOpenSheet, WelcomeOnboarding())

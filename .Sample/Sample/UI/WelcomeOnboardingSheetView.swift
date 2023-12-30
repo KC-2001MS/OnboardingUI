@@ -34,6 +34,8 @@ struct WelcomeOnboardingSheetView: View {
                 OnboardingSubtitle("Customize SF Symbols")
                 OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized.")
             }
+        } link: {
+            Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
         } button: {
             ContinueButton(color: .accentColor, action: action)
         }

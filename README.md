@@ -92,7 +92,7 @@ struct SimpleImplementationView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         SomeView()
-            .sheetOnboarding(isPresented: $appVersionManager.isTheFirstActivation, WelcomeOnboarding())
+            .onboardingSheet(isPresented: $appVersionManager.isTheFirstLaunch, WelcomeOnboarding())
     }
 }
 ```
@@ -128,7 +128,7 @@ struct WelcomeOnboardingSheetView: View {
     }
     
     var body: some View {
-        OnboardingSheet {
+        OnboardingSheetView {
             OnboardingTitle("Welcome to\nOnboardingUI")
         } content: {
             OnboardingItem(systemName: "applescript",shape: .red) {
@@ -143,16 +143,14 @@ struct WelcomeOnboardingSheetView: View {
             
             OnboardingItem(systemName: "circle.badge.checkmark",mode: .palette,primary: .primary,secondary: .blue) {
                 OnboardingSubtitle("Customize SF Symbols")
-                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS.")
+                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized.")
             }
+        } link: {
+            Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
         } button: {
             ContinueButton(color: .accentColor, action: action)
         }
     }
-}
-
-#Preview {
-    WelcomeOnboardingSheetView(action: {})
 }
 ```
 
@@ -165,9 +163,9 @@ struct SimpleImplementationView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         SomeView()
-            .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
+            .sheet(isPresented: $appVersionManager.isTheFirstLaunch) {
                 WelcomeOnboardingSheetView(action: {
-                    appVersionManager.isTheFirstActivation = false
+                    appVersionManager.isTheFirstLaunch = false
                 })
             }
     }

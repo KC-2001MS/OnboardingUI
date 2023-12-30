@@ -19,7 +19,7 @@ struct NewFeatureOnboardingSheetView: View {
         OnboardingSheetView {
             OnboardingTitle("What's New in\nOnboardingUI")
         } content: {
-            OnboardingItem(systemName: "wrench.and.screwdriver",shape: .red) {
+            OnboardingItem(systemName: "tree",shape: .green) {
                 OnboardingSubtitle("New AppVersionManager environment variable")
                 OnboardingContent("The new AppVersionManager environment variable allows you to display onboarding at the intended time.")
             }

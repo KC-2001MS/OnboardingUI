@@ -15,7 +15,7 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     var title: V1
     /// View displaying features
     var content: V2
-    
+    /// Link View
     var link: V3
     /// Button view at the bottom
     var button: V4
@@ -71,19 +71,27 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
 #else
                         .frame(maxWidth: .infinity)
 #endif
-                        if dynamicTypeSize > .xxxLarge {
-                            link
-                            
-                            button
-#if os(iOS)
-                                .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
-#elseif os(visionOS)
-                                .padding(.bottom, geom.size.height/25)
-#elseif os(macOS)
-                                .padding(.bottom, 15 + geom.size.height/20)
+                        VStack {
+                            if dynamicTypeSize > .xxxLarge {
+                                link
+#if os(macOS)
+                                    .padding(30)
 #else
-                                .padding(.bottom, geom.size.height/20)
+                                    .padding(.vertical, 5)
 #endif
+                                
+                                button
+#if os(iOS)
+                                    .padding(.top, 10)
+                                    .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+#elseif os(visionOS)
+                                    .padding(.bottom, geom.size.height/25)
+#elseif os(macOS)
+                                    .padding(.bottom, 15 + geom.size.height/20)
+#else
+                                    .padding(.bottom, geom.size.height/20)
+#endif
+                            }
                         }
                     }
 #if os(visionOS)

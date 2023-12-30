@@ -57,7 +57,7 @@ struct WhatIsNewOnboarding: Onboarding {
     var features: Array<Feature> {
         Feature(
             "New AppVersionManager environment variable" ,
-            imageName: "wrench.and.screwdriver",
+            imageName: "tree",
             message: "The new AppVersionManager environment variable allows you to display onboarding at the intended time."
         )
         
