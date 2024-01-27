@@ -65,22 +65,8 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     isPresented.toggle()
                 }) {
                     Image(systemName: "multiply")
-                        .font(.system(size: 20))
-                        .frame(width: 30, height: 30)
-#if os(visionOS)
-                        .foregroundStyle(.white)
-                        .background(.ultraThinMaterial, in: Circle())
-#else
-                        .foregroundStyle(.gray)
-                        .background(.gray.opacity(0.15), in: Circle())
-#endif
-#if !os(macOS)
-                        .hoverEffect()
-#endif
                 }
-                .frame(width: 30, height: 30)
-                .buttonStyle(.borderless)
-                .padding(10)
+                .buttonStyle(DismissButtonStyle())
             }
         } else {
             EmptyView()

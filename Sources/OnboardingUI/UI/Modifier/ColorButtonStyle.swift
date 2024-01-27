@@ -46,6 +46,10 @@ public struct ColorButtonStyle: ButtonStyle {
             .background(backgroundColor, in: RoundedRectangle(cornerRadius: 15))
 #endif
             .foregroundColor(foregroundColor)
+#if !os(macOS)
+            .hoverEffect()
+#endif
+            .buttonStyle(.borderless)
             .padding(.horizontal, 40)
     }
 }
