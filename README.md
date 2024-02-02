@@ -115,7 +115,7 @@ struct SimpleImplementationView: View {
 
 #### visionOS
 
-As it is still in beta, we refrain from posting screenshots.
+<img src="images/visionOS_SimpleImplementation.png" style="height:400px;object-fit: contain;"> 
 
 ### Customizable implementation
 
@@ -191,7 +191,7 @@ struct SimpleImplementationView: View {
 
 #### visionOS
 
-As it is still in beta, we refrain from posting screenshots.
+<img src="images/visionOS_CustomizableImplementation.png" style="height:400px;object-fit: contain;">
 
 ## Swift-DocC
 

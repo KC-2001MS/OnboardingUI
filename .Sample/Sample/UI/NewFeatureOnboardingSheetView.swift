@@ -33,6 +33,13 @@ struct NewFeatureOnboardingSheetView: View {
                 OnboardingSubtitle("Customize the look and feel")
                 OnboardingContent("Of course, it is also customizable. You can build onboarding at will.")
             }
+            
+#if os(tvOS)
+            OnboardingItem(systemName: "ellipsis",shape: .white) {
+                OnboardingSubtitle("Many other benefits")
+                OnboardingContent("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS.")
+            }
+#endif
         } button: {
             ContinueButton(color: .accentColor, action: action)
         }

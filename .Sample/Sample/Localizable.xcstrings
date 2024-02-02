@@ -122,6 +122,9 @@
         }
       }
     },
+    "Many other benefits" : {
+
+    },
     "New AppVersionManager environment variable" : {
       "localizations" : {
         "ja" : {
@@ -151,6 +154,9 @@
           }
         }
       }
+    },
+    "Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS." : {
+
     },
     "Of course, it is also customizable. You can build onboarding at will." : {
       "localizations" : {

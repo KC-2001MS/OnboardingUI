@@ -34,6 +34,13 @@ struct WelcomeOnboardingSheetView: View {
                 OnboardingSubtitle("Customize SF Symbols")
                 OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized.")
             }
+            
+#if os(tvOS)
+            OnboardingItem(systemName: "ellipsis",shape: .white) {
+                OnboardingSubtitle("Many other benefits")
+                OnboardingContent("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS.")
+            }
+#endif
         } link: {
             Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
         } button: {

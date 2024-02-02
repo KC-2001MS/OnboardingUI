@@ -55,6 +55,9 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     content
                 }
                 .frame(maxWidth: .infinity)
+                #if os(tvOS)
+                .padding(.horizontal, 150)
+                #endif
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 50)

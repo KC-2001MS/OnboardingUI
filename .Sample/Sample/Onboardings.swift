@@ -46,6 +46,14 @@ struct WelcomeOnboarding: Onboarding {
             imageName: "circle.badge.checkmark",
             message: "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized."
         )
+        
+#if os(tvOS)
+        Feature(
+            "Many other benefits" ,
+            imageName: "ellipsis",
+            message: "Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS."
+        )
+#endif
     }
 }
 
@@ -72,6 +80,14 @@ struct WhatIsNewOnboarding: Onboarding {
             imageName: "wrench.and.screwdriver",
             message: "Of course, it is also customizable. You can build onboarding at will."
         )
+        
+#if os(tvOS)
+        Feature(
+            "Many other benefits" ,
+            imageName: "ellipsis",
+            message: "Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS."
+        )
+#endif
     }
 }
 
@@ -151,20 +167,28 @@ struct FreeformFakeOnboarding: Onboarding {
     var features: Array<Feature> {
         Feature(
             String("Get Creative") ,
-            imageName: "rectangle.stack",
+            imageName: "brain.head.profile",
             message: String("Sketch out a project, design a mood board, brainstorm ideas, and so much more.")
         )
         
         Feature(
             String("Build Your Board") ,
-            imageName: "pawprint",
+            imageName: "paintbrush",
             message: String("Add media, files, links, text, and more anywhere on a board to design your creative space.")
         )
         
         Feature(
             String("Collaborate with Others") ,
-            imageName: "crop.rotate",
+            imageName: "person.2.circle",
             message: String("Invite people to your board and develop your best ideas together in real time.")
         )
+        
+#if os(tvOS)
+        Feature(
+            String("And More!") ,
+            imageName: "seal",
+            message: String("There are many other useful features.")
+        )
+#endif
     }
 }

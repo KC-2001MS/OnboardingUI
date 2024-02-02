@@ -56,9 +56,10 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
                         VStack(spacing: 0) {
                             
                             title
+                                .padding(.horizontal, 10)
                                 .padding(.vertical, geom.size.height / 20)
                         }
-                        
+#if !os(tvOS)
                         VStack(alignment: .leading, spacing: 35) {
                             content
                         }
@@ -71,6 +72,14 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
 #else
                         .frame(maxWidth: .infinity)
 #endif
+#else
+                        LazyVGrid(columns: Array(repeating: .init(.flexible()),
+                                                 count: 2), spacing: 100) {
+                            content
+                        }
+                        .padding(.horizontal, 50)
+#endif
+                        
                         VStack {
                             if dynamicTypeSize > .xxxLarge {
                                 link
@@ -155,6 +164,13 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
             OnboardingSubtitle(String("Customize SF Symbols"))
             OnboardingContent(String("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."))
         }
+        
+#if os(tvOS)
+        OnboardingItem(systemName: "ellipsis",shape: .white) {
+            OnboardingSubtitle(String("Many other benefits"))
+            OnboardingContent(String("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS."))
+        }
+#endif
     } link: {
         Link(String("Check our Privacy Policy…"), destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     } button: {

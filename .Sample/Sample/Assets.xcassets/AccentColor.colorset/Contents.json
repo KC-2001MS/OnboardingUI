@@ -1,7 +1,18 @@
 {
   "colors" : [
     {
+      "color" : {
+        "platform" : "universal",
+        "reference" : "systemBlueColor"
+      },
       "idiom" : "universal"
+    },
+    {
+      "color" : {
+        "platform" : "tvos",
+        "reference" : "systemBlueColor"
+      },
+      "idiom" : "tv"
     }
   ],
   "info" : {

@@ -42,7 +42,7 @@ public extension Text {
 #if os(macOS)
                     .font(.body)
 #elseif os(tvOS)
-                    .font(.headline)
+                    .font(.subheadline)
 #else
                     .font(.subheadline)
 #endif
@@ -56,9 +56,8 @@ public extension Text {
 #if os(macOS)
                     .font(.body)
 #elseif os(tvOS)
-                    .font(.body)
+                    .font(.caption)
 #else
-                //                    .font(.callout)
                     .font(.custom("", size: CGFloat(15.5), relativeTo: .body))
 #endif
                     .foregroundColor(.secondary)
