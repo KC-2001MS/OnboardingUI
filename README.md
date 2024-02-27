@@ -210,7 +210,9 @@ struct SimpleImplementationView: View {
 
 ## Swift-DocC
 
-Swift-DocC is not currently implemented, but will be supported when we have time.
+Swift-DocC is currently being implemented.
+
+[Documentation](https://kc-2001ms.github.io/OnboardingUI/documentation/onboardingui)
 
 ## Install
 
