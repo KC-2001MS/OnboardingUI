@@ -7,7 +7,7 @@ docc:
 		generate-documentation --target $(DOCC_TARGET) \
 		--disable-indexing \
 		--transform-for-static-hosting \
-		--hosting-base-path OnboardingUI \
+		--hosting-base-path onboardingui \
 		--output-path $(DOCC_DIR)
 
 .PHONY: docc-preview
