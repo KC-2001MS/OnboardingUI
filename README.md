@@ -234,7 +234,7 @@ However, it is currently under development and cannot be installed. We will let 
 ## Supporting
 
 If you would like to make a donation to this project, please click here. The money you give will be used to improve my programming skills and maintain the application.   
-
+<a href="https://www.buymeacoffee.com/iroiro" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>  
 [Pay by PayPal](https://paypal.me/iroiroWork?country.x=JP&locale.x=ja_JP)
 
 ## Author
