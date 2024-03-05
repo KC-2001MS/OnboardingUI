@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// x Button Style
 @available(iOS 17.0,macOS 14.0,visionOS 1.0,*)
 public struct DismissButtonStyle: ButtonStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {

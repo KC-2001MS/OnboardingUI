@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// The three items that comprise onboarding
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public enum OnboardingTextFormattingStyle {
     case title
     case subtitle

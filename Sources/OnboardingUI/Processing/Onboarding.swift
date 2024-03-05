@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+///  A protocol that allows you to easily configure what is displayed in Onboarding
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public protocol Onboarding: Identifiable, Sendable {
     var id: UUID { get }

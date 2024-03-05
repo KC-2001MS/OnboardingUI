@@ -1,0 +1,15 @@
+@Tutorials(name: "OnboardingUI") {
+    @Intro(title: "Meat OnboardingUI") {
+        Create an Onboarding screen in OnboardingUI by defining a structure that conforms to the Onboarding protocol. Get started with OnboardingUI by incorporating this framework into your app.
+        
+        @Image(source: mock.png, alt: "Onboarding for iOS, iPadOS, macOS, and tvOS is shown.")
+    }
+    
+    @Chapter(name: "OnboardingUI Essentials") {
+        Use the OnboardingUI Framework to incorporate easy Onboarding into your apps.
+        
+        @Image(source: OnboardingUI-Icon.png, alt: "Onboarding parts are shown.")
+        
+        @TutorialReference(tutorial: "doc:Creating-Onboarding")
+    }
+}

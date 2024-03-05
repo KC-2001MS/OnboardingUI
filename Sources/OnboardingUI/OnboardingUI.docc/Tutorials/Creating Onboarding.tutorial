@@ -1,0 +1,71 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Creating Onboarding") {
+        This tutorial explains how to add Onboarding to your application.
+        
+        @Image(source: header.jpg, alt: "Onboarding for iOS, iPadOS, macOS, and tvOS is shown.")
+    }
+    
+    @Section(title: "Added structure with Onboarding protocol") {
+        @ContentAndMedia {
+            Build the Onboarding you want to display.
+        }
+        
+        @Steps {
+            @Step {
+                Create a new swift file. We name this file Onboardings.swift.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation01.swift)
+            }
+            
+            @Step {
+                Defines a structure compliant with the Onboarding protocol. Name this structure WelcomeOnboarding.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation02.swift)
+            }
+            
+            @Step {
+                Defines a variable text of type Text. The value is the content you wish to display as a heading.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation03.swift)
+            }
+            
+            @Step {
+                Define variable features of type Array<Feature>, where the Feature structure represents the content you wish to appeal for onboarding.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation04.swift)
+            }
+            
+            @Step {
+                If you want to add a link at the bottom of the onboarding, you can use Link<Text>? Add a variable link of type link.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation05.swift)
+            }
+        }
+    }
+    
+    @Section(title: "Add Onboarding to View") {
+        @ContentAndMedia {
+            Build the Onboarding you want to display.
+        }
+        
+        @Steps {
+            @Step {
+                Import OnboardingUI and add the environment variable appVersionManager.
+                
+                @Code(name: "SomeView.swift", file: OnboardingImplementation06.swift)
+            }
+            
+            @Step {
+                Add code in the body so that the variable appVersionManager becomes Bindable.
+                
+                @Code(name: "SomeView.swift", file: OnboardingImplementation07.swift)
+            }
+            
+            @Step {
+                Add onboardingSheet modifier.
+                
+                @Code(name: "SomeView.swift", file: OnboardingImplementation08.swift)
+            }
+        }
+    }
+}

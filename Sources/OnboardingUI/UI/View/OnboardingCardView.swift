@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View to display card-type onboarding
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 public struct OnboardingCardView<V1: View, V2: View>: View {
     @Binding var isPresented: Bool

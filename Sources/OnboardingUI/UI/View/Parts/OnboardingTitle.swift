@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// Title to be used for onboarding
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public struct OnboardingTitle: View {
     /// Text
     var TextView: Text

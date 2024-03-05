@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// View to show onboarding in sheets
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     /// Title View
