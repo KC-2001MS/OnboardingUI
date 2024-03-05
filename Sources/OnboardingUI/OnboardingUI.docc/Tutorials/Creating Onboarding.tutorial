@@ -30,15 +30,21 @@
             }
             
             @Step {
-                Define variable features of type Array<Feature>, where the Feature structure represents the content you wish to appeal for onboarding.
+                Defines a variable Feature of type Array<Feature>.
                 
                 @Code(name: "Onboardings.swift", file: OnboardingImplementation04.swift)
             }
             
             @Step {
-                If you want to add a link at the bottom of the onboarding, you can use Link<Text>? Add a variable link of type link.
+                The variable features is a resultBuilder, so it can represent Feature structures side by side. 
                 
                 @Code(name: "Onboardings.swift", file: OnboardingImplementation05.swift)
+            }
+            
+            @Step {
+                If you want to add a link at the bottom of the onboarding, you can use Link<Text>? Add a variable link of type link.
+                
+                @Code(name: "Onboardings.swift", file: OnboardingImplementation06.swift)
             }
         }
     }
@@ -52,19 +58,19 @@
             @Step {
                 Import OnboardingUI and add the environment variable appVersionManager.
                 
-                @Code(name: "SomeView.swift", file: OnboardingImplementation06.swift)
+                @Code(name: "SomeView.swift", file: OnboardingImplementation07.swift)
             }
             
             @Step {
                 Add code in the body so that the variable appVersionManager becomes Bindable.
                 
-                @Code(name: "SomeView.swift", file: OnboardingImplementation07.swift)
+                @Code(name: "SomeView.swift", file: OnboardingImplementation08.swift)
             }
             
             @Step {
                 Add onboardingSheet modifier.
                 
-                @Code(name: "SomeView.swift", file: OnboardingImplementation08.swift)
+                @Code(name: "SomeView.swift", file: OnboardingImplementation09.swift)
             }
         }
     }

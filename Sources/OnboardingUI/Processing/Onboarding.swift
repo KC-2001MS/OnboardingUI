@@ -16,7 +16,7 @@ public protocol Onboarding: Identifiable, Sendable {
     var title: Text { get }
     /// Variables indicating features
     @FeatureBuilder var features: Array<Feature> { get }
-    
+    /// Link to be displayed at the bottom of the screen
     var link: Link<Text>? { get }
 }
 
@@ -25,7 +25,7 @@ public extension Onboarding {
     var id: UUID {
         return UUID()
     }
-    // デフォルト実装でnilを返す
+    
     var link: Link<Text>? {
         return nil
     }
@@ -84,10 +84,20 @@ public struct Feature: Identifiable, Sendable {
         self.message = Text(message)
     }
     
+    /// Change the title variable from the original Feature structure.
+    /// - Parameter string: String to be displayed
+    /// - Returns: Feature structure with modified title variable
     public func title(_ string: String) -> Self {
         .init(title: Text(string), image: self.image, message: self.message)
     }
     
+    /// Change the title variable from the original Feature structure.
+    /// - Parameters:
+    ///   - key: LocalizedStringKey to be displayed
+    ///   - tableName: The name of the string table to search. If nil, use the table in the Localizable.strings file.
+    ///   - bundle: The bundle containing the strings file. If nil, use the main bundle.
+    ///   - comment: Contextual information about this key-value pair.
+    /// - Returns: Feature structure with modified title variable
     public func title(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -97,14 +107,27 @@ public struct Feature: Identifiable, Sendable {
         .init(title: Text(key, tableName: tableName, bundle: bundle, comment: comment), image: self.image, message: self.message)
     }
     
+    /// Change the image variable from the original Feature structure.
+    /// - Parameter systemName: The name of the system symbol image. Use the SF Symbols app to look up the names of system symbol images.
+    /// - Returns: Feature structure with modified image variable
     public func image(systemName: String) -> Self {
         .init(title: self.title, image: Image(systemName: systemName), message: self.message)
     }
     
+    /// Change the message variable from the original Feature structure.
+    /// - Parameter string: String to be displayed
+    /// - Returns: Feature structure with modified message variable
     public func message(_ string: String) -> Self {
         .init(title: self.title, image: self.image, message: Text(string))
     }
     
+    /// Change the message variable from the original Feature structure.
+    /// - Parameters:
+    ///   - key: LocalizedStringKey to be displayed
+    ///   - tableName: The name of the string table to search. If nil, use the table in the Localizable.strings file.
+    ///   - bundle: The bundle containing the strings file. If nil, use the main bundle.
+    ///   - comment: Contextual information about this key-value pair.
+    /// - Returns: Feature structure with modified message variable
     public func message(
         _ key: LocalizedStringKey,
         tableName: String? = nil,

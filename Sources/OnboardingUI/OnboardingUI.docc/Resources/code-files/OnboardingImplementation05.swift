@@ -1,13 +1,9 @@
-import OnboardingUI
 import SwiftUI
+import OnboardingUI
 
 struct WelcomeOnboarding: Onboarding {
     var title: Text {
         Text("Welcome to\nOnboardingUI")
-    }
-    
-    var link: Link<Text>? {
-        Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     }
     
     var features: Array<Feature> {

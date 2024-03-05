@@ -1,4 +1,5 @@
 import SwiftUI
+import OnboardingUI
 
 struct SomeView: View {
     @Environment(\.appVersionManager) private var appVersionManager
@@ -6,6 +7,5 @@ struct SomeView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         SomeDetailView()
-            .onboardingSheet(isPresented: $appVersionManager.isTheFirstLaunch, WelcomeOnboarding())
     }
 }
