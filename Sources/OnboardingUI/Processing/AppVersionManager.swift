@@ -8,6 +8,7 @@
 import Foundation
 import Observation
 import SwiftUI
+//import SwiftStorage
 
 /// A general-purpose operation recorder capable of determining the initial startup of an application or the startup of an application after an upgrade.
 @available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
@@ -63,16 +64,8 @@ public class AppVersionManager {
         self.lastOpenedVersion = userDefaults.string(forKey: "LastOpenedVersion") ?? ""
     }
 }
-/// AppVersionManager environment key
-@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
-public struct AppVersionManagerKey: EnvironmentKey {
-    public static var defaultValue = AppVersionManager()
-}
 /// AppVersionManager environment values
 @available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
 public extension EnvironmentValues {
-    var appVersionManager: AppVersionManager {
-        get { self[AppVersionManagerKey.self] }
-        set { self[AppVersionManagerKey.self] = newValue }
-    }
+    @Entry var appVersionManager: AppVersionManager = AppVersionManager()
 }

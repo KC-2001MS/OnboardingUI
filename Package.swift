@@ -14,6 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
+        .package(url: "https://github.com/apple/swift-testing.git", from: "0.10.0"),
     ],
     targets: [
         .target(
@@ -22,7 +23,10 @@ let package = Package(
         ),
         .testTarget(
             name: "OnboardingUITests",
-            dependencies: ["OnboardingUI"]
+            dependencies: [
+                .product(name: "Testing", package: "swift-testing"),
+                "OnboardingUI"
+            ]
         ),
     ]
 )
