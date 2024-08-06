@@ -220,12 +220,7 @@ Xcode is required to use this library.
 However, it is currently under development and cannot be installed. We will let you know as soon as possible.  
 
 ## Contribution
-
-1. Fork it
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create new Pull Request
+See [CONTRIBUTING.md](https://github.com/KC-2001MS/OnboardingUI/blob/main/CONTRIBUTING.md) if you want to make a contribution.
 
 ## Licence
 

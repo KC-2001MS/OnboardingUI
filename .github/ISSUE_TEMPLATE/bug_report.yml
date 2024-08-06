@@ -1,0 +1,71 @@
+name: Bug Report
+description: Report a bug in the OnboardingUI framework.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thank you for submitting a bug report. This form is for bug reports only.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Summarize the bug in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: Explain how you were able to get the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-results
+    attributes:
+      label: Expected Results
+      description: Enter the expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-results
+    attributes:
+      label: Actual Results
+      description: Enter the actual behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: What type of OS did the bug occur on?
+      multiple: true
+      options:
+        - iOS
+        - iPadOS
+        - macOS
+        - watchOS
+        - tvOS
+        - visionOS
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: os-version
+    attributes:
+      label: Operating System Version
+      description: What is the version number of the OS on which the bug occurred?
+    validations:
+      required: true
+  - type: input
+    id: onboardingui-version
+    attributes:
+      label: OnboardingUI Version
+      description: Indicate which version of OnboardingUI you are using.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: If you have any other information, screenshots, videos, etc. regarding this bug, please add them here.

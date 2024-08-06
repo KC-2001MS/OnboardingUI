@@ -1,0 +1,45 @@
+name: Feature Request
+description: Propose the idea of OnboardingUI.
+title: "[Feature Request]: "
+labels: ["new feature"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thank you for submitting your feature request. This form is for feature requests only.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Summarize the feature in one or two sentences.
+  - type: textarea
+    id: pain-points
+    attributes:
+      label: Pain points
+      description: Explain in detail what pain points you're trying to solve.
+    validations:
+      required: true
+  - type: textarea
+    id: alts
+    attributes:
+      label: Considered Alternatives
+      description: What alternative solutions did you consider and how did they fall short of your expectations?
+  - type: dropdown
+    id: is-feature-breaking-change
+    attributes:
+      label: Is this a break change or not?
+      options:
+        - 'Yes'
+        - 'No'
+    validations:
+      required: true
+  - type: textarea
+    id: library-examples
+    attributes:
+      label: Library Examples
+      description: Do you have a library with similar functionality to the one you have in mind? If so, please describe it here.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the issue here.
