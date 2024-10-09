@@ -23,5 +23,9 @@ let package = Package(
                 .process("Localizable.xcstrings")
             ]
         ),
+        .testTarget(
+            name: "OnboardingUITests",
+            dependencies: ["OnboardingUI"]
+        ),
     ]
 )
