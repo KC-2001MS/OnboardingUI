@@ -79,9 +79,9 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
 }
 
 #Preview {
-    @State var isPresented = true
+    @Previewable @State var isPresented = true
     
-    return ScrollView {
+    ScrollView {
         OnboardingCardView(isPresented: $isPresented, onboarding: PreviewWhatIsNewOnboarding())
             .padding()
     }

@@ -13,13 +13,16 @@ let package = Package(
             targets: ["OnboardingUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
-        .package(url: "https://github.com/apple/swift-testing.git", from: "0.10.0"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.0"),
+        .package(url: "https://github.com/apple/swift-testing.git", from: "0.12.0"),
     ],
     targets: [
         .target(
             name: "OnboardingUI",
-            dependencies: []
+            resources: [
+//                .process("Media.xcassets"),
+                .process("Localizable.xcstrings")
+            ]
         ),
         .testTarget(
             name: "OnboardingUITests",

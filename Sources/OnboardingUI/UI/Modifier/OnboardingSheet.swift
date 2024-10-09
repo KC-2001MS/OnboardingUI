@@ -53,9 +53,9 @@ public extension View {
 }
 
 #Preview {
-    @State var isPresented: Bool = true
+    @Previewable @State var isPresented: Bool = true
     
-    return Group {
+    Group {
         Button(String("Open Onboarding")) {
             isPresented = true
         }

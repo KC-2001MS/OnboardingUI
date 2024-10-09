@@ -49,7 +49,7 @@ public struct ContinueButton: View {
     /// View
     public var body: some View {
         Button(action: action) {
-            Text("Continue")
+            Text("Continue", bundle: Bundle.module)
         }
 #if !os(tvOS)
         .buttonStyle(ColorButtonStyle(foregroundColor: foregroundColor, backgroundColor: backgroundColor))
