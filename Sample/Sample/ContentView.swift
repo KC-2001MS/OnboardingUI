@@ -126,9 +126,9 @@ struct ContentView: View {
                 appVersionManager.isMajorVersionUpdated = false
             })
         }
-        .sheet(isPresented: $appVersionManager.isMajorOrMinorVersionUpdated) {
+        .sheet(isPresented: $appVersionManager.isMinorVersionUpdated) {
             NewFeatureOnboardingSheetView(action: {
-                appVersionManager.isMajorOrMinorVersionUpdated = false
+                appVersionManager.isMinorVersionUpdated = false
             })
         }
         .onboardingSheet(isPresented: $isOpenSheet, WelcomeOnboarding())

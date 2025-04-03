@@ -9,6 +9,8 @@ import SwiftUI
 import OnboardingUI
 
 struct NewFeatureOnboardingSheetView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var action: () -> Void
     
     init(action: @escaping () -> Void) {
@@ -41,7 +43,9 @@ struct NewFeatureOnboardingSheetView: View {
             }
 #endif
         } button: {
-            ContinueButton(color: .accentColor, action: action)
+            ContinueButton(color: .accentColor, action: {
+                dismiss()
+            })
         }
     }
 }

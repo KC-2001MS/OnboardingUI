@@ -10,6 +10,8 @@ import SwiftUI
 import OnboardingUI
 
 struct WelcomeOnboardingSheetView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var action: () -> Void
     
     init(action: @escaping () -> Void) {
@@ -44,7 +46,9 @@ struct WelcomeOnboardingSheetView: View {
         } link: {
             Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
         } button: {
-            ContinueButton(color: .accentColor, action: action)
+            ContinueButton(color: .accentColor, action: {
+                dismiss()
+            })
         }
     }
 }
