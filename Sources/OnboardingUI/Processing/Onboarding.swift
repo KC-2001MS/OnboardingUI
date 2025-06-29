@@ -92,34 +92,29 @@ public struct Feature: Identifiable, Sendable {
     ///   - title: Title outlining the features
     ///   - imageName: Images showing features
     ///   - message: Description of features as a localized resource
-    public init(_ title: LocalizedStringKey,imageName: String, message: LocalizedStringResource) {
+    public init(_ title: LocalizedStringKey,imageName: String, messageResource: LocalizedStringResource) {
         self.id = UUID()
         self.title = Text(title)
         self.image = Image(systemName: imageName)
-        self.message = Text(message)
+        self.message = Text(messageResource)
     }
     /// Initializes a feature with localized string resource message.
     /// - Parameters:
-    ///   - title: Title outlining the features as a localized resource
+    ///   - titleResource: Title outlining the features as a localized resource
     ///   - imageName: Images showing features
-    ///   - message: Description of features as a localized resource
-    public init(_ title: LocalizedStringResource,imageName: String, message: LocalizedStringResource) {
+    ///   - messageResource: Description of features as a localized resource
+    public init(_ titleResource: LocalizedStringResource,imageName: String, messageResource: LocalizedStringResource) {
         self.id = UUID()
-        self.title = Text(title)
+        self.title = Text(titleResource)
         self.image = Image(systemName: imageName)
-        self.message = Text(message)
+        self.message = Text(messageResource)
     }
-    /// General initializer
-    /// - Parameters:
-    ///   - title: Title outlining the features
-    ///   - imageName: Images showing features
-    ///   - message: Description of features
-    @_disfavoredOverload 
     /// Initializes a feature with string titles and messages.
     /// - Parameters:
     ///   - title: String title of the feature.
     ///   - imageName: System image name.
     ///   - message: Description message string.
+    @_disfavoredOverload
     public init<S>(_ title: S,imageName: String, message: S) where S : StringProtocol {
         self.id = UUID()
         self.title = Text(title)
