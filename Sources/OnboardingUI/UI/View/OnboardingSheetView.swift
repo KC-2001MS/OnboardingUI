@@ -7,22 +7,25 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// View to show onboarding in sheets
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    /// Title View
+    /// The view used for the title area.
     var title: V1
-    /// View displaying features
+    /// The view displaying onboarding features.
     var content: V2
     
+    /// The link view shown in the sheet.
     var link: V3
-    /// Button view at the bottom
+    /// The button view at the bottom of the onboarding sheet.
     var button: V4
-    /// Initializer for the three Views that make up the OnboardingSheet
+    /// Creates an onboarding sheet view with custom content, title, link, and button views.
     /// - Parameters:
     ///   - title: Title View
     ///   - content: View displaying features
+    ///   - link: Link view in the sheet
     ///   - button: Button view at the bottom
     public init(
         @ViewBuilder title: () -> V1,
@@ -36,6 +39,12 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         self.button = button()
     }
     
+    /// Creates an onboarding sheet view with a default link view.
+    /// - Parameters:
+    ///   - title: Title View
+    ///   - content: View displaying features
+    ///   - link: Link view in the sheet (default is EmptyView)
+    ///   - button: Button view at the bottom
     public init(
         @ViewBuilder title: () -> V1,
         @ViewBuilder content: () -> V2,
@@ -47,7 +56,7 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         self.link = link
         self.button = button()
     }
-    /// View
+    /// The view body providing the onboarding UI layout.
     public var body: some View {
         GeometryReader { geom in
             VStack(alignment: .center) {

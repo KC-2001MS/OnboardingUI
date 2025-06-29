@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-//項目タイトルView（完成）
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 /// Subtitle to be used for onboarding
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingSubtitle: View {
     /// Text
     var TextView: Text

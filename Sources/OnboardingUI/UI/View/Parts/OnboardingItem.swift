@@ -22,6 +22,7 @@ import SwiftUI
 ///   - Content: The type of the content view.
 ///   - S: The type of the shape style.
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     /// The content view of the onboarding item.

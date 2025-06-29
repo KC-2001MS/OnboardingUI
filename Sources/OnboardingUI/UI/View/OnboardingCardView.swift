@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingCardView<V1: View, V2: View>: View {
     @Binding var isPresented: Bool
     var title: V1
@@ -44,7 +45,7 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
             }
         })
     }
-    
+    /// View
     public var body: some View {
         if isPresented {
             VStack {
@@ -89,9 +90,9 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
 }
 
 #Preview {
-    @State var isPresented = true
+    @Previewable @State var isPresented = true
     
-    return ScrollView {
+    ScrollView {
         OnboardingCardView(isPresented: $isPresented, onboarding: PreviewWhatIsNewOnboarding())
             .padding()
     }
