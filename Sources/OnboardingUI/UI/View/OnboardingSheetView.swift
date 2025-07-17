@@ -38,7 +38,6 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         self.link = link()
         self.button = button()
     }
-    
     /// Creates an onboarding sheet view with a default link view.
     /// - Parameters:
     ///   - title: Title View
@@ -138,23 +137,30 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     }
 }
 
-#Preview("Onboarding Sheet 2") {
+#Preview("Onboarding Sheet") {
     OnboardingSheetView {
-        OnboardingTitle(String("Welcome to\nOnboardingUI"))
+        Text("Welcome to\nOnboardingUI")
+            .onboardingTextFormatting(style: .title)
     } content: {
         OnboardingItem(systemName: "keyboard",shape: .red) {
-            OnboardingSubtitle(String("Easy to Make"))
-            OnboardingContent(String("Onboarding screens like Apple's stock apps can be easily created with SwiftUI."))
+            Text("Easy to Make")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "macbook.and.ipad") {
-            OnboardingSubtitle(String("Not only for iPhone, but also for Mac and iPad"))
-            OnboardingContent(String("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."))
+            Text("Not only for iPhone, but also for Mac and iPad")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
-            OnboardingSubtitle(String("Customize SF Symbols"))
-            OnboardingContent(String("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."))
+            Text("Customize SF Symbols")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
+                .onboardingTextFormatting(style: .content)
         }
     } link: {
         Link(String("Check our Privacy Policy…"), destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)

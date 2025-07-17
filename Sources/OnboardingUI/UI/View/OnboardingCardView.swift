@@ -38,8 +38,10 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     image
                 } content: {
                     if let message = feature.message {
-                        OnboardingSubtitle(feature.title)
-                        OnboardingContent(message)
+                        feature.title
+                            .onboardingTextFormatting(style: .subtitle)
+                        message
+                            .onboardingTextFormatting(style: .content)
                     }
                 }
             }
