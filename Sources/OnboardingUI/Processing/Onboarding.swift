@@ -8,15 +8,17 @@
 import Foundation
 import SwiftUI
 
-///  A protocol that allows you to easily configure what is displayed in Onboarding
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// A protocol that defines onboarding content for an app.
 public protocol Onboarding: Identifiable, Sendable {
+    /// The unique identifier for this onboarding item.
     var id: UUID { get }
     /// Onboarding Title
     var title: Text { get }
     /// Variables indicating features
     @FeatureBuilder var features: Array<Feature> { get }
-    /// Link to be displayed at the bottom of the screen
+    
+    /// Optional link displayed on the onboarding screen.
     var link: Link<Text>? { get }
 }
 
@@ -25,14 +27,16 @@ public extension Onboarding {
     var id: UUID {
         return UUID()
     }
-    
+    // デフォルト実装でnilを返す
     var link: Link<Text>? {
         return nil
     }
 }
 /// Structures to build features to display onboarding
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// A structure representing a single onboarding feature.
 public struct Feature: Identifiable, Sendable {
+    /// The unique identifier for this feature.
     public var id: UUID = UUID()
     /// Onboarding Item Title
     public var title: Text = Text(verbatim: "")
@@ -48,6 +52,11 @@ public struct Feature: Identifiable, Sendable {
         self.message = nil
     }
     
+    /// Initializes a feature with title, image and message.
+    /// - Parameters:
+    ///   - title: The title text of the feature.
+    ///   - image: The image representing the feature.
+    ///   - message: The message text of the feature.
     public init(title: Text,image: Image?,message: Text?) {
         self.id = UUID()
         self.title = title
@@ -55,6 +64,11 @@ public struct Feature: Identifiable, Sendable {
         self.message = message
     }
     
+    /// Initializes a feature using closures to create title, image and message.
+    /// - Parameters:
+    ///   - title: Closure returning the title text.
+    ///   - image: Closure returning the image.
+    ///   - message: Closure returning the message text.
     public init(title: () -> Text,image: () -> Image?,message: () -> Text?) {
         self.id = UUID()
         self.title = title()
@@ -72,32 +86,56 @@ public struct Feature: Identifiable, Sendable {
         self.image = Image(systemName: imageName)
         self.message = Text(message)
     }
-    /// General initializer
+    
+    /// Initializes a feature with localized string resource message.
     /// - Parameters:
     ///   - title: Title outlining the features
     ///   - imageName: Images showing features
-    ///   - message: Description of features
-    @_disfavoredOverload public init<S>(_ title: S,imageName: String, message: S) where S : StringProtocol {
+    ///   - message: Description of features as a localized resource
+    public init(_ title: LocalizedStringKey,imageName: String, messageResource: LocalizedStringResource) {
+        self.id = UUID()
+        self.title = Text(title)
+        self.image = Image(systemName: imageName)
+        self.message = Text(messageResource)
+    }
+    /// Initializes a feature with localized string resource message.
+    /// - Parameters:
+    ///   - titleResource: Title outlining the features as a localized resource
+    ///   - imageName: Images showing features
+    ///   - messageResource: Description of features as a localized resource
+    public init(titleResource: LocalizedStringResource,imageName: String, messageResource: LocalizedStringResource) {
+        self.id = UUID()
+        self.title = Text(titleResource)
+        self.image = Image(systemName: imageName)
+        self.message = Text(messageResource)
+    }
+    /// Initializes a feature with string titles and messages.
+    /// - Parameters:
+    ///   - title: String title of the feature.
+    ///   - imageName: System image name.
+    ///   - message: Description message string.
+    @_disfavoredOverload
+    public init<S>(_ title: S,imageName: String, message: S) where S : StringProtocol {
         self.id = UUID()
         self.title = Text(title)
         self.image = Image(systemName: imageName)
         self.message = Text(message)
     }
     
-    /// Change the title variable from the original Feature structure.
-    /// - Parameter string: String to be displayed
-    /// - Returns: Feature structure with modified title variable
+    /// Returns a new feature with the title replaced.
+    /// - Parameter string: The new title string.
+    /// - Returns: A new Feature instance with updated title.
     public func title(_ string: String) -> Self {
         .init(title: Text(string), image: self.image, message: self.message)
     }
     
-    /// Change the title variable from the original Feature structure.
+    /// Returns a new feature with the localized title replaced.
     /// - Parameters:
-    ///   - key: LocalizedStringKey to be displayed
-    ///   - tableName: The name of the string table to search. If nil, use the table in the Localizable.strings file.
-    ///   - bundle: The bundle containing the strings file. If nil, use the main bundle.
-    ///   - comment: Contextual information about this key-value pair.
-    /// - Returns: Feature structure with modified title variable
+    ///   - key: The localized string key for the new title.
+    ///   - tableName: The table name for localization.
+    ///   - bundle: The bundle containing the localized strings.
+    ///   - comment: Contextual comment for translators.
+    /// - Returns: A new Feature instance with updated title.
     public func title(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -107,27 +145,27 @@ public struct Feature: Identifiable, Sendable {
         .init(title: Text(key, tableName: tableName, bundle: bundle, comment: comment), image: self.image, message: self.message)
     }
     
-    /// Change the image variable from the original Feature structure.
-    /// - Parameter systemName: The name of the system symbol image. Use the SF Symbols app to look up the names of system symbol images.
-    /// - Returns: Feature structure with modified image variable
+    /// Returns a new feature with the image replaced by a system image.
+    /// - Parameter systemName: The system image name.
+    /// - Returns: A new Feature instance with updated image.
     public func image(systemName: String) -> Self {
         .init(title: self.title, image: Image(systemName: systemName), message: self.message)
     }
     
-    /// Change the message variable from the original Feature structure.
-    /// - Parameter string: String to be displayed
-    /// - Returns: Feature structure with modified message variable
+    /// Returns a new feature with the message replaced.
+    /// - Parameter string: The new message string.
+    /// - Returns: A new Feature instance with updated message.
     public func message(_ string: String) -> Self {
         .init(title: self.title, image: self.image, message: Text(string))
     }
     
-    /// Change the message variable from the original Feature structure.
+    /// Returns a new feature with the localized message replaced.
     /// - Parameters:
-    ///   - key: LocalizedStringKey to be displayed
-    ///   - tableName: The name of the string table to search. If nil, use the table in the Localizable.strings file.
-    ///   - bundle: The bundle containing the strings file. If nil, use the main bundle.
-    ///   - comment: Contextual information about this key-value pair.
-    /// - Returns: Feature structure with modified message variable
+    ///   - key: The localized string key for the new message.
+    ///   - tableName: The table name for localization.
+    ///   - bundle: The bundle containing the localized strings.
+    ///   - comment: Contextual comment for translators.
+    /// - Returns: A new Feature instance with updated message.
     public func message(
         _ key: LocalizedStringKey,
         tableName: String? = nil,
@@ -137,3 +175,48 @@ public struct Feature: Identifiable, Sendable {
         .init(title: self.title, image: self.image, message: Text(key, tableName: tableName, bundle: bundle, comment: comment))
     }
 }
+/// Result builder that allows you to freely build Feature structures
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+/// A result builder to construct onboarding features.
+@resultBuilder
+public struct FeatureBuilder {
+    /// Required in resultBuilder
+    /// Combines multiple Features into an array.
+    /// - Parameter parts: A variadic list of Features.
+    /// - Returns: An array of Features.
+    public static func buildBlock(_ parts: Feature...) -> Array<Feature> {
+        parts
+    }
+    /// Enable if
+    /// Handles optional Feature arrays.
+    /// - Parameter parts: An optional array of Features.
+    /// - Returns: The first Feature or a default Feature.
+    public static func buildOptional(_ parts: [Feature]?) -> Feature {
+        parts?.first ?? Feature()
+    }
+    /// Enable if-else (first branch)
+    /// - Parameter parts: An array of Features.
+    /// - Returns: The first Feature or a default Feature.
+    public static func buildEither(first parts: [Feature]) -> Feature {
+        parts.first ?? Feature()
+    }
+    /// Enable if-else (second branch)
+    /// - Parameter parts: An array of Features.
+    /// - Returns: The first Feature or a default Feature.
+    public static func buildEither(second parts: [Feature]) -> Feature {
+        parts.first ?? Feature()
+    }
+    /// Enable for-in
+    /// - Parameter parts: An array of Feature arrays.
+    /// - Returns: The first Feature from the first array or a default Feature.
+    public static func buildArray(_ parts: [[Feature]]) -> Feature {
+        parts.first?.first ?? Feature()
+    }
+    /// Enable #if
+    /// - Parameter parts: An array of Features.
+    /// - Returns: The array of Features.
+    public static func buildLimitedAvailability(_ parts: [Feature]) -> Array<Feature> {
+        parts
+    }
+}
+

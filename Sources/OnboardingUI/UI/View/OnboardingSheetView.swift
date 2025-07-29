@@ -6,22 +6,26 @@
 //
 
 import SwiftUI
+
 /// View to show onboarding in sheets
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    /// Title View
+    /// The view used for the title area.
     var title: V1
-    /// View displaying features
+    /// The view displaying onboarding features.
     var content: V2
-    /// Link View
+    
+    /// The link view shown in the sheet.
     var link: V3
-    /// Button view at the bottom
+    /// The button view at the bottom of the onboarding sheet.
     var button: V4
-    /// Initializer for the three Views that make up the OnboardingSheet
+    /// Creates an onboarding sheet view with custom content, title, link, and button views.
     /// - Parameters:
     ///   - title: Title View
     ///   - content: View displaying features
+    ///   - link: Link view in the sheet
     ///   - button: Button view at the bottom
     public init(
         @ViewBuilder title: () -> V1,
@@ -34,7 +38,12 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         self.link = link()
         self.button = button()
     }
-    
+    /// Creates an onboarding sheet view with a default link view.
+    /// - Parameters:
+    ///   - title: Title View
+    ///   - content: View displaying features
+    ///   - link: Link view in the sheet (default is EmptyView)
+    ///   - button: Button view at the bottom
     public init(
         @ViewBuilder title: () -> V1,
         @ViewBuilder content: () -> V2,
@@ -46,7 +55,7 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         self.link = link
         self.button = button()
     }
-    /// View
+    /// The view body providing the onboarding UI layout.
     public var body: some View {
         GeometryReader { geom in
             VStack(alignment: .center) {
@@ -55,10 +64,9 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
                         VStack(spacing: 0) {
                             
                             title
-                                .padding(.horizontal, 10)
                                 .padding(.vertical, geom.size.height / 20)
                         }
-#if !os(tvOS)
+                        
                         VStack(alignment: .leading, spacing: 35) {
                             content
                         }
@@ -71,35 +79,19 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
 #else
                         .frame(maxWidth: .infinity)
 #endif
-#else
-                        LazyVGrid(columns: Array(repeating: .init(.flexible()),
-                                                 count: 2), spacing: 100) {
-                            content
-                        }
-                        .padding(.horizontal, 50)
-#endif
-                        
-                        VStack {
-                            if dynamicTypeSize > .xxxLarge {
-                                link
-#if os(macOS)
-                                    .padding(30)
-#else
-                                    .padding(.vertical, 5)
-#endif
-                                
-                                button
+                        if dynamicTypeSize > .xxxLarge {
+                            link
+                            
+                            button
 #if os(iOS)
-                                    .padding(.top, 10)
-                                    .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+                                .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
 #elseif os(visionOS)
-                                    .padding(.bottom, geom.size.height/25)
+                                .padding(.bottom, geom.size.height/25)
 #elseif os(macOS)
-                                    .padding(.bottom, 15 + geom.size.height/20)
+                                .padding(.bottom, 15 + geom.size.height/20)
 #else
-                                    .padding(.bottom, geom.size.height/20)
+                                .padding(.bottom, geom.size.height/20)
 #endif
-                            }
                         }
                     }
 #if os(visionOS)
@@ -145,31 +137,31 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     }
 }
 
-#Preview("Onboarding Sheet 2") {
+#Preview("Onboarding Sheet") {
     OnboardingSheetView {
-        OnboardingTitle(String("Welcome to\nOnboardingUI"))
+        Text("Welcome to\nOnboardingUI")
+            .onboardingTextFormatting(style: .title)
     } content: {
         OnboardingItem(systemName: "keyboard",shape: .red) {
-            OnboardingSubtitle(String("Easy to Make"))
-            OnboardingContent(String("Onboarding screens like Apple's stock apps can be easily created with SwiftUI."))
+            Text("Easy to Make")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "macbook.and.ipad") {
-            OnboardingSubtitle(String("Not only for iPhone, but also for Mac and iPad"))
-            OnboardingContent(String("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."))
+            Text("Not only for iPhone, but also for Mac and iPad")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
+                .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
-            OnboardingSubtitle(String("Customize SF Symbols"))
-            OnboardingContent(String("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."))
+            Text("Customize SF Symbols")
+                .onboardingTextFormatting(style: .subtitle)
+            Text("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
+                .onboardingTextFormatting(style: .content)
         }
-        
-#if os(tvOS)
-        OnboardingItem(systemName: "ellipsis",shape: .white) {
-            OnboardingSubtitle(String("Many other benefits"))
-            OnboardingContent(String("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS."))
-        }
-#endif
     } link: {
         Link(String("Check our Privacy Policy…"), destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
     } button: {

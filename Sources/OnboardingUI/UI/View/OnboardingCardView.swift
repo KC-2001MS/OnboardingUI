@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-/// View to display card-type onboarding
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct OnboardingCardView<V1: View, V2: View>: View {
     @Binding var isPresented: Bool
     var title: V1
@@ -38,14 +38,16 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     image
                 } content: {
                     if let message = feature.message {
-                        OnboardingSubtitle(feature.title)
-                        OnboardingContent(message)
+                        feature.title
+                            .onboardingTextFormatting(style: .subtitle)
+                        message
+                            .onboardingTextFormatting(style: .content)
                     }
                 }
             }
         })
     }
-    
+    /// View
     public var body: some View {
         if isPresented {
             VStack {
@@ -56,9 +58,6 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     content
                 }
                 .frame(maxWidth: .infinity)
-                #if os(tvOS)
-                .padding(.horizontal, 150)
-                #endif
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 50)
@@ -69,8 +68,22 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     isPresented.toggle()
                 }) {
                     Image(systemName: "multiply")
+                        .font(.system(size: 20))
+                        .frame(width: 30, height: 30)
+#if os(visionOS)
+                        .foregroundStyle(.white)
+                        .background(.ultraThinMaterial, in: Circle())
+#else
+                        .foregroundStyle(.gray)
+                        .background(.gray.opacity(0.15), in: Circle())
+#endif
+#if !os(macOS)
+                        .hoverEffect()
+#endif
                 }
-                .buttonStyle(DismissButtonStyle())
+                .frame(width: 30, height: 30)
+                .buttonStyle(.borderless)
+                .padding(10)
             }
         } else {
             EmptyView()

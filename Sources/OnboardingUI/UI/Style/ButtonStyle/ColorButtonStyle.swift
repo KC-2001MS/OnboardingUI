@@ -8,7 +8,8 @@
 import SwiftUI
 
 /// Modifier to build the look and feel of buttons that continue to be used in onboarding
-@available(iOS 17.0,macOS 14.0,visionOS 1.0,*)
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct ColorButtonStyle: ButtonStyle {
     /// Foreground Color
     var foregroundColor: Color = .white

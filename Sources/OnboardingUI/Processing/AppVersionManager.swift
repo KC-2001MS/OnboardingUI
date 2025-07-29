@@ -22,8 +22,8 @@ public class AppVersionManager {
             userDefaults.set(lastOpenedVersion, forKey: "LastOpenedVersion")
         }
     }
-    /// Whether or not this is the first activation
-    public var isTheFirstLaunch: Bool {
+    /// Whether or not this is the first activation.
+    public var isTheFirstActivation: Bool {
         get {
             return lastOpenedVersion == ""
         }
@@ -35,13 +35,9 @@ public class AppVersionManager {
     /// Variable to detect if the major version number has increased.
     public var isMajorVersionUpdated: Bool {
         get {
-            if !lastOpenedVersion.isEmpty {
-                let lastOpenedComponents = parseVersion(lastOpenedVersion)
-                let currentComponents = parseVersion(version)
-                return lastOpenedComponents.major < currentComponents.major
-            } else {
-                return false
-            }
+            let lastOpenedComponents = filled(splitByDot(lastOpenedVersion), count: 3)
+            let currentComponents = filled(splitByDot(version), count: 3)
+            return lastOpenedComponents[0] < currentComponents[0]
         }
         
         set {
@@ -49,15 +45,13 @@ public class AppVersionManager {
         }
     }
     /// Variable to detect if the minor version number or higher has increased.
-    public var isMinorVersionUpdated: Bool {
+    public var isMinorOrPatchVersionUpdated: Bool {
         get {
-            if !lastOpenedVersion.isEmpty {
-                let lastOpenedComponents = parseVersion(lastOpenedVersion)
-                let currentComponents = parseVersion(version)
-                return lastOpenedComponents.major == currentComponents.major && lastOpenedComponents.minor < currentComponents.minor
-            } else {
-                return false
-            }
+            let lastOpenedComponents = filled(splitByDot(lastOpenedVersion), count: 3)
+            let currentComponents = filled(splitByDot(version), count: 3)
+            return lastOpenedComponents[0] == currentComponents[0] &&
+            (lastOpenedComponents[1] < currentComponents[1] ||
+             (lastOpenedComponents[1] == currentComponents[1] && lastOpenedComponents[2] < currentComponents[2]))
         }
         
         set {
@@ -65,23 +59,38 @@ public class AppVersionManager {
         }
     }
     /// Default initializer
+    /// Creates a new AppVersionManager instance.
     public init() {
-        self.version = Bundle.main
-            .object(
-                forInfoDictionaryKey: "CFBundleShortVersionString"
-            ) as! String
-        self.lastOpenedVersion = userDefaults
-            .string(forKey: "LastOpenedVersion") ?? ""
+        self.version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        self.lastOpenedVersion = userDefaults.string(forKey: "LastOpenedVersion") ?? ""
     }
-
-    func parseVersion(_ versionString: String) -> (major: Int, minor: Int, patch: Int) {
-        var components = versionString.split(separator: ".").compactMap { Int($0) }
-        components = (0..<3).map { $0 < components.count ? components[$0] : 0 }
-        return (major: components[0], minor: components[1], patch: components[2])
-    }
+}
+/// AppVersionManager environment key
+/// The environment key for the AppVersionManager.
+@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
+public struct AppVersionManagerKey: EnvironmentKey {
+    public static var defaultValue = AppVersionManager()
 }
 /// AppVersionManager environment values
-@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
 public extension EnvironmentValues {
-    @Entry var appVersionManager: AppVersionManager = AppVersionManager()
+    /// Accessor for the AppVersionManager value in EnvironmentValues.
+    var appVersionManager: AppVersionManager {
+        get { self[AppVersionManagerKey.self] }
+        set { self[AppVersionManagerKey.self] = newValue }
+    }
 }
+/// Function to split the version number dot by dot
+@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
+func splitByDot(_ versionNumber: String) -> [Int] {
+    return versionNumber.split(separator: ".").map { string -> Int in
+        return Int(string) ?? 0
+    }
+}
+/// Function to unify the number of elements in an array
+@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
+func filled(_ target: [Int], count: Int) -> [Int] {
+    return (0..<count).map { i -> Int in
+        (i < target.count) ? target[i] : 0
+    }
+}
+

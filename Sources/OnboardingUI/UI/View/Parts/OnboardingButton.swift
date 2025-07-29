@@ -9,6 +9,7 @@ import SwiftUI
 
 /// Continue button
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
 public struct ContinueButton: View {
     /// Foreground Color
     let foregroundColor: Color
@@ -49,7 +50,7 @@ public struct ContinueButton: View {
     /// View
     public var body: some View {
         Button(action: action) {
-            Text("Continue", bundle: Bundle.module)
+            Text("Continue", bundle: .module)
         }
 #if !os(tvOS)
         .buttonStyle(ColorButtonStyle(foregroundColor: foregroundColor, backgroundColor: backgroundColor))

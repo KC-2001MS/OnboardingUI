@@ -9,8 +9,6 @@ import SwiftUI
 import OnboardingUI
 
 struct NewFeatureOnboardingSheetView: View {
-    @Environment(\.dismiss) private var dismiss
-    
     var action: () -> Void
     
     init(action: @escaping () -> Void) {
@@ -19,33 +17,31 @@ struct NewFeatureOnboardingSheetView: View {
     
     var body: some View {
         OnboardingSheetView {
-            OnboardingTitle("What's New in\nOnboardingUI")
+            Text("What's New in\nOnboardingUI")
+                .onboardingTextFormatting(style: .title)
         } content: {
-            OnboardingItem(systemName: "tree",shape: .green) {
-                OnboardingSubtitle("New AppVersionManager environment variable")
-                OnboardingContent("The new AppVersionManager environment variable allows you to display onboarding at the intended time.")
+            OnboardingItem(systemName: "wrench.and.screwdriver",shape: .red) {
+                Text("New AppVersionManager environment variable")
+                    .onboardingTextFormatting(style: .subtitle)
+                Text("The new AppVersionManager environment variable allows you to display onboarding at the intended time.")
+                    .onboardingTextFormatting(style: .content)
             }
             
             OnboardingItem(systemName: "building.columns",shape: .blue) {
-                OnboardingSubtitle("New Onboarding protocol and Feature structure")
-                OnboardingContent("The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views.")
+                Text("New Onboarding protocol and Feature structure")
+                    .onboardingTextFormatting(style: .subtitle)
+                Text("The new Onboarding protocol and Feature structure make it easier to create onboarding. There is no need to build views.")
+                    .onboardingTextFormatting(style: .content)
             }
             
             OnboardingItem(systemName: "wrench.and.screwdriver",shape: .orange) {
-                OnboardingSubtitle("Customize the look and feel")
-                OnboardingContent("Of course, it is also customizable. You can build onboarding at will.")
+                Text("Customize the look and feel")
+                    .onboardingTextFormatting(style: .subtitle)
+                Text("Of course, it is also customizable. You can build onboarding at will.")
+                    .onboardingTextFormatting(style: .content)
             }
-            
-#if os(tvOS)
-            OnboardingItem(systemName: "ellipsis",shape: .white) {
-                OnboardingSubtitle("Many other benefits")
-                OnboardingContent("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS.")
-            }
-#endif
         } button: {
-            ContinueButton(color: .accentColor, action: {
-                dismiss()
-            })
+            ContinueButton(color: .accentColor, action: action)
         }
     }
 }
