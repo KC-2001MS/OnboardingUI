@@ -79,6 +79,14 @@ struct WelcomeOnboarding: Onboarding {
             imageName: "circle.badge.checkmark",
             message: "When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS."
         )
+        
+#if os(tvOS)
+        Feature(
+            "Many other benefits" ,
+            imageName: "ellipsis",
+            message: "Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS."
+        )
+#endif
     }
 }
 ```
@@ -92,7 +100,7 @@ struct SimpleImplementationView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         SomeView()
-            .sheetOnboarding(isPresented: $appVersionManager.isTheFirstActivation, WelcomeOnboarding())
+            .onboardingSheet(isPresented: $appVersionManager.isTheFirstLaunch, WelcomeOnboarding())
     }
 }
 ```
@@ -115,7 +123,7 @@ struct SimpleImplementationView: View {
 
 #### visionOS
 
-As it is still in beta, we refrain from posting screenshots.
+<img src="images/visionOS_SimpleImplementation.png" style="height:400px;object-fit: contain;"> 
 
 ### Customizable implementation
 
@@ -128,7 +136,7 @@ struct WelcomeOnboardingSheetView: View {
     }
     
     var body: some View {
-        OnboardingSheet {
+        OnboardingSheetView {
             OnboardingTitle("Welcome to\nOnboardingUI")
         } content: {
             OnboardingItem(systemName: "applescript",shape: .red) {
@@ -143,16 +151,21 @@ struct WelcomeOnboardingSheetView: View {
             
             OnboardingItem(systemName: "circle.badge.checkmark",mode: .palette,primary: .primary,secondary: .blue) {
                 OnboardingSubtitle("Customize SF Symbols")
-                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized. However, this feature is not supported in visionOS.")
+                OnboardingContent("When using a highly customizable implementation method, multi-color and SF symbol hierarchies are supported and can be freely customized.")
             }
+            
+#if os(tvOS)
+            OnboardingItem(systemName: "ellipsis",shape: .white) {
+                OnboardingSubtitle("Many other benefits")
+                OnboardingContent("Now, tvOS is also supported, making it easy to create onboarding. Now you can create onboarding for all platforms except watchOS.")
+            }
+#endif
+        } link: {
+            Link("Check our Privacy Policy…", destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
         } button: {
             ContinueButton(color: .accentColor, action: action)
         }
     }
-}
-
-#Preview {
-    WelcomeOnboardingSheetView(action: {})
 }
 ```
 
@@ -165,9 +178,9 @@ struct SimpleImplementationView: View {
     var body: some View {
         @Bindable var appVersionManager = appVersionManager
         SomeView()
-            .sheet(isPresented: $appVersionManager.isTheFirstActivation) {
+            .sheet(isPresented: $appVersionManager.isTheFirstLaunch) {
                 WelcomeOnboardingSheetView(action: {
-                    appVersionManager.isTheFirstActivation = false
+                    appVersionManager.isTheFirstLaunch = false
                 })
             }
     }
@@ -193,11 +206,13 @@ struct SimpleImplementationView: View {
 
 #### visionOS
 
-As it is still in beta, we refrain from posting screenshots.
+<img src="images/visionOS_CustomizableImplementation.png" style="height:400px;object-fit: contain;">
 
 ## Swift-DocC
 
-Swift-DocC is not currently implemented, but will be supported when we have time.
+Swift-DocC is currently being implemented.
+
+[Documentation](https://kc-2001ms.github.io/OnboardingUI/documentation/onboardingui)
 
 ## Install
 
@@ -205,12 +220,7 @@ Xcode is required to use this library.
 However, it is currently under development and cannot be installed. We will let you know as soon as possible.  
 
 ## Contribution
-
-1. Fork it
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create new Pull Request
+See [CONTRIBUTING.md](https://github.com/KC-2001MS/OnboardingUI/blob/main/CONTRIBUTING.md) if you want to make a contribution.
 
 ## Licence
 
@@ -219,7 +229,9 @@ However, it is currently under development and cannot be installed. We will let 
 ## Supporting
 
 If you would like to make a donation to this project, please click here. The money you give will be used to improve my programming skills and maintain the application.   
-
+<a href="https://www.buymeacoffee.com/iroiro" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+</a>  
 [Pay by PayPal](https://paypal.me/iroiroWork?country.x=JP&locale.x=ja_JP)
 
 ## Author

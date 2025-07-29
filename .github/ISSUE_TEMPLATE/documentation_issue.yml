@@ -1,0 +1,59 @@
+name: Documentation Issue
+description: Report any problems or deficiencies in the documentation.
+title: "[Documentation]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thank you for submitting your documentation issue. This form is for documentation issues only.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Summarize the issue in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Explain in detail what the issue is.
+    validations:
+      required: true
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: What type of issue is it?
+      multiple: true
+      options:
+        - Spelling
+        - Grammar
+        - Inconsistency
+        - Suggestion
+        - Error
+        - Contradiction
+        - Too much/Too Little
+        - Outdated
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: onboardingui-version
+    attributes:
+      label: OnboardingUI Version
+      description: Indicate which version of OnboardingUI you are using.
+    validations:
+      required: true
+  - type: input
+    id: doc-location
+    attributes:
+      label: Documentation Location
+      description: Describe the problem in a way that uniquely identifies the location where the problem occurred.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the issue here.

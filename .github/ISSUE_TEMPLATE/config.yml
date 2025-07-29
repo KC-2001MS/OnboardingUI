@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation 
+    url: https://iroiro.dev/OnboardingUI/documentation/onboardingui/
+    about: More information on using OnboardingUI can be found here.

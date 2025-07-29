@@ -51,6 +51,13 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             bottom: CGFloat(10),
             trailing: CGFloat(18.75)
         )
+#elseif os(tvOS)
+        EdgeInsets(
+            top: CGFloat(10),
+            leading: CGFloat(0),
+            bottom: CGFloat(10),
+            trailing: CGFloat(50)
+        )
 #else
         EdgeInsets(
             top: CGFloat(10),
@@ -237,11 +244,11 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                 }
             }
         }
-#if !os(macOS)
+#if !os(macOS) || !os(tvOS)
         .padding(.horizontal, 40)
 #endif
 #if os(tvOS)
-        .focusable()
+        .frame(maxWidth: .infinity,alignment: .leading)
 #endif
     }
     
@@ -252,11 +259,17 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             image
                 .resizable()
                 .scaledToFit()
+#if !os(tvOS)
                 .font(.largeTitle)
                 .frame(width: 37.5, height: 37.5)
+#else
+                .font(.system(size: 80))
+                .frame(width: 100, height: 100)
+#endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
+                .foregroundStyle(Color.accentColor)
 #if os(visionOS)
                 .brightness(0.5)
                 .opacity(0.3)
@@ -265,8 +278,13 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             image
                 .resizable()
                 .scaledToFit()
+#if !os(tvOS)
                 .font(.largeTitle)
                 .frame(width: 37.5, height: 37.5)
+#else
+                .font(.system(size: 80))
+                .frame(width: 100, height: 100)
+#endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
@@ -279,8 +297,13 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             image
                 .resizable()
                 .scaledToFit()
+#if !os(tvOS)
                 .font(.largeTitle)
                 .frame(width: 37.5, height: 37.5)
+#else
+                .font(.system(size: 80))
+                .frame(width: 100, height: 100)
+#endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
@@ -293,8 +316,13 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             image
                 .resizable()
                 .scaledToFit()
+#if !os(tvOS)
                 .font(.largeTitle)
                 .frame(width: 37.5, height: 37.5)
+#else
+                .font(.system(size: 80))
+                .frame(width: 100, height: 100)
+#endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
@@ -333,7 +361,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         OnboardingItem {
             Image(systemName: "arrow.up.doc")
         } content: {
-            Text(String("Sample Subtitle \(3)"))
+            Text(String("Sample Subtitle \(4)"))
                 .onboardingTextFormatting(style: .subtitle)
             Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
                 .onboardingTextFormatting(style: .content)

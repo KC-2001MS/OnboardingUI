@@ -1,0 +1,23 @@
+name: Format Swift files
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Lint
+        uses: mtgto/swift-format-action@main
+        with:
+          configuration_file: .swift-format
+          all_files: true
+          max_warnings: -1
