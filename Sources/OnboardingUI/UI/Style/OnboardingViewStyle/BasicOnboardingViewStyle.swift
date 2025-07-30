@@ -87,12 +87,13 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                     if configuration.dynamicTypeSize > .xxxLarge {
                         configuration.footer
                         
-                        configuration.dismissButton { text in
-                            text
+                        DismissButton {
+                            configuration.dismissLabel
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 10)
                         }
                         .buttonStyle(.borderedProminent)
+                        .padding(.horizontal, 40)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -104,8 +105,8 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                 VStack(alignment: .center, spacing: 25) {
                     configuration.footer
                     
-                    configuration.dismissButton { text in
-                        text
+                    DismissButton {
+                        configuration.dismissLabel
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 10)
                     }

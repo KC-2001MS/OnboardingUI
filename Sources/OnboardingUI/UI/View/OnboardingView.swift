@@ -34,7 +34,7 @@ public struct OnboardingView<O: Onboarding>: View {
                             link
                         }
                     },
-                    dismissButton: .init(text: Text("Continue", bundle: .module))
+                    dismissLabel: .init(text: Text("Continue", bundle: .module))
                 )
             )
     }

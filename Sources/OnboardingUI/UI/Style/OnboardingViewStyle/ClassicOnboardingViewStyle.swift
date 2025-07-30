@@ -71,7 +71,9 @@ public struct ClassicOnboardingViewStyle: OnboardingViewStyle {
                         if configuration.dynamicTypeSize > .xxxLarge {
                             configuration.footer
                             
-                            configuration.dismissButton
+                            DismissButton {
+                                configuration.dismissLabel
+                            }
                                 .buttonStyle(ColorButtonStyle())
 #if os(iOS)
                                 .padding(
@@ -106,7 +108,9 @@ public struct ClassicOnboardingViewStyle: OnboardingViewStyle {
 #endif
 #endif
                     
-                    configuration.dismissButton
+                    DismissButton {
+                        configuration.dismissLabel
+                    }
                         .buttonStyle(ColorButtonStyle())
 #if os(iOS)
                         .padding(

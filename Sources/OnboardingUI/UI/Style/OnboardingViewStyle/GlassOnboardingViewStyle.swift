@@ -86,13 +86,13 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                     
                     if configuration.dynamicTypeSize > .xxxLarge {
                         configuration.footer
-                        
-                        configuration.dismissButton { text in
-                            text
+                        DismissButton {
+                            configuration.dismissLabel
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 10)
                         }
                         .buttonStyle(.glass)
+                        .padding(.horizontal, 40)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -104,8 +104,8 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                 VStack(alignment: .center, spacing: 25) {
                     configuration.footer
                     
-                    configuration.dismissButton { text in
-                        text
+                    DismissButton {
+                        configuration.dismissLabel
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 10)
                     }

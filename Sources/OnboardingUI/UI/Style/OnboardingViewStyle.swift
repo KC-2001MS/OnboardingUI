@@ -45,20 +45,20 @@ public struct OnboardingViewStyleConfiguration: Sendable {
     
     var footer: Footer
     
-    var dismissButton: DismissButton
+    var dismissLabel: DismissLabel
     
     init(
         dynamicTypeSize: DynamicTypeSize,
         title: Title,
         content: Content,
         footer: Footer ,
-        dismissButton: DismissButton
+        dismissLabel: DismissLabel
     ) {
         self.dynamicTypeSize = dynamicTypeSize
         self.title = title
         self.content = content
         self.footer = footer
-        self.dismissButton = dismissButton
+        self.dismissLabel = dismissLabel
     }
     
     struct Title: View, Sendable {
@@ -157,7 +157,7 @@ public struct OnboardingViewStyleConfiguration: Sendable {
         }
     }
     
-    @preconcurrency public struct DismissButton: View, Sendable {
+    @preconcurrency public struct DismissLabel: View, Sendable {
         @Environment(\.dismiss) var dismiss
         
         var text: Text
@@ -167,21 +167,7 @@ public struct OnboardingViewStyleConfiguration: Sendable {
         }
         
         public var body: some View {
-            Button {
-                dismiss()
-            } label: {
-                text
-            }
-        }
-
-        public func callAsFunction<V: View>(
-            @ViewBuilder content: (Text) -> V
-        ) -> some View {
-            Button {
-                dismiss()
-            } label: {
-                content(text)
-            }
+            text
         }
     }
 }
