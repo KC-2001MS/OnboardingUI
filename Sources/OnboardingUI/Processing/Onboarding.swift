@@ -91,7 +91,7 @@ public struct Feature: Identifiable, Sendable {
     /// - Parameters:
     ///   - title: Title outlining the features
     ///   - imageName: Images showing features
-    ///   - message: Description of features as a localized resource
+    ///   - messageResource: Description of features as a localized resource
     public init(_ title: LocalizedStringKey,imageName: String, messageResource: LocalizedStringResource) {
         self.id = UUID()
         self.title = Text(title)

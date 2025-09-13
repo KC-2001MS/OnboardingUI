@@ -111,10 +111,18 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                             .padding(.vertical, 10)
                     }
                     .buttonStyle(.borderedProminent)
-                    .padding(.horizontal, 40)
+                    .buttonBorderShape(.capsule)
+#if os(iOS)
+.padding([.horizontal],40)
+#else
+.padding([.horizontal, .bottom],40)
+#endif
                 }
             }
         }
+#if os(tvOS)
+.frame(width: 1500, height: 1000)
+#endif
     }
 }
 

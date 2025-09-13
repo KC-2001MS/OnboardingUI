@@ -21,6 +21,9 @@ struct OnboardingSheet<O: Onboarding>: ViewModifier {
     
     public func body(content: Content) -> some View {
         content
+//            .fullScreenCover(isPresented: <#T##Binding<Bool>#>) {
+//                
+//            }
             .sheet(isPresented: $isPresented) {
                 if #available(iOS 18.0,macOS 15.0,tvOS 18.0,visionOS 2.0,*) {
                     OnboardingView(onboarding: onboarding)
@@ -82,7 +85,7 @@ public extension View {
         .frame(width: 400, height: 300)
 #endif
         .onboardingSheet(isPresented: $isPresented, PreviewWhatIsNewOnboarding())
-        .onboardingViewStyle(.glass)
+        .onboardingViewStyle(.automatic)
     }
 
 }

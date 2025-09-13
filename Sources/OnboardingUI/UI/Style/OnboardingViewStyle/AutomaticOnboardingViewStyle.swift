@@ -11,11 +11,15 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct AutomaticOnboardingViewStyle: OnboardingViewStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        if #available(iOS 26, macOS 26, tvOS 26, visionOS 26, *) {
+        #if os(visionOS)
+        ClassicOnboardingViewStyle().makeBody(configuration: configuration)
+        #else
+        if #available(iOS 26, macOS 26, tvOS 26, *) {
             ColoredGlassOnboardingViewStyle().makeBody(configuration: configuration)
         } else {
             ClassicOnboardingViewStyle().makeBody(configuration: configuration)
         }
+        #endif
     }
 }
 
@@ -33,3 +37,4 @@ extension OnboardingViewStyle where Self == AutomaticOnboardingViewStyle {
         OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
             .onboardingViewStyle(.automatic)
 }
+

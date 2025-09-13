@@ -57,75 +57,86 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
     }
     /// The view body providing the onboarding UI layout.
     public var body: some View {
-        GeometryReader { geom in
-            VStack(alignment: .center) {
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .center,spacing: geom.size.height / 60) {
-                        VStack(spacing: 0) {
+        VStack {
+            GeometryReader { geom in
+                VStack(alignment: .center) {
+                    ScrollView(showsIndicators: false) {
+                        VStack(
+                            alignment: .center,
+                            spacing: geom.size.height / 60
+                        ) {
+                            VStack(spacing: 0) {
+                                
+                                title
+                                    .padding(.vertical, geom.size.height / 20)
+                            }
                             
-                            title
-                                .padding(.vertical, geom.size.height / 20)
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 35) {
-                            content
-                        }
+                            VStack(alignment: .leading, spacing: 35) {
+                                content
+                            }
 #if os(iOS)
-                        .frame(maxWidth: 440)
+                            .frame(maxWidth: 440)
 #elseif os(macOS)
-                        .frame(maxWidth: 350)
+                            .frame(maxWidth: 350)
 #elseif os(visionOS)
-                        .frame(maxWidth: 555)
+                            .frame(maxWidth: 555)
 #else
-                        .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity)
 #endif
-                        if dynamicTypeSize > .xxxLarge {
-                            link
-                            
-                            button
+                            if dynamicTypeSize > .xxxLarge {
+                                link
+                                
+                                button
 #if os(iOS)
-                                .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+                                    .padding(
+                                        .bottom,
+                                        70 - geom.size.height/15 + geom.size.height/20
+                                    )
 #elseif os(visionOS)
-                                .padding(.bottom, geom.size.height/25)
+                                    .padding(.bottom, geom.size.height/25)
 #elseif os(macOS)
-                                .padding(.bottom, 15 + geom.size.height/20)
+                                    .padding(.bottom, 15 + geom.size.height/20)
 #else
-                                .padding(.bottom, geom.size.height/20)
+                                    .padding(.bottom, geom.size.height/20)
 #endif
+                            }
                         }
-                    }
 #if os(visionOS)
-                    .padding(.top, geom.size.height/25)
+                        .padding(.top, geom.size.height/25)
 #else
-                    .padding(.top, geom.size.height/20)
+                        .padding(.top, geom.size.height/20)
 #endif
-                }
-                
-                if dynamicTypeSize <= .xxxLarge {
-                    Spacer()
+                    }
                     
+                    if dynamicTypeSize <= .xxxLarge {
+                        Spacer()
+                        
 #if !os(tvOS)
-                    link
+                        link
 #if os(macOS)
-                        .padding(30)
+                            .padding(30)
 #else
-                        .padding(.vertical, 5)
+                            .padding(.vertical, 5)
 #endif
 #endif
-                    
-                    button
+                        
+                        button
 #if os(iOS)
-                        .padding(.bottom, 70 - geom.size.height/15 + geom.size.height/20)
+                            .padding(
+                                .bottom,
+                                70 - geom.size.height/15 + geom.size.height/20
+                            )
 #elseif os(visionOS)
-                        .padding(.bottom, geom.size.height/25)
+                            .padding(.bottom, geom.size.height/25)
 #elseif os(macOS)
-                        .padding(.bottom, 15 + geom.size.height/20)
+                            .padding(.bottom, 15 + geom.size.height/20)
 #else
-                        .padding(.bottom, geom.size.height/20)
+                            .padding(.bottom, geom.size.height/20)
 #endif
+                    }
                 }
+                .frame(maxWidth: .infinity,maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity,maxHeight: .infinity)
         }
 #if os(iOS)
         .frame(maxWidth: 500)
@@ -133,7 +144,10 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         .frame(minWidth: 600,minHeight: 700, alignment: .center)
 #elseif os(visionOS)
         .frame(width: 655,height: 695, alignment: .center)
+#elseif os(tvOS)
+.frame(width: 1500, height: 1000)
 #endif
+        
     }
 }
 
@@ -145,25 +159,41 @@ public struct OnboardingSheetView<V1: View,V2: View,V3: View,V4: View>: View {
         OnboardingItem(systemName: "keyboard",shape: .red) {
             Text("Easy to Make")
                 .onboardingTextFormatting(style: .subtitle)
-            Text("Onboarding screens like Apple's stock apps can be easily created with SwiftUI.")
-                .onboardingTextFormatting(style: .content)
+            Text(
+                "Onboarding screens like Apple's stock apps can be easily created with SwiftUI."
+            )
+            .onboardingTextFormatting(style: .content)
         }
         
         OnboardingItem(systemName: "macbook.and.ipad") {
             Text("Not only for iPhone, but also for Mac and iPad")
                 .onboardingTextFormatting(style: .subtitle)
-            Text("It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device.")
-                .onboardingTextFormatting(style: .content)
+            Text(
+                "It supports not only iPhone, but also Mac and iPad. Therefore, there is no need to rewrite the code for each device."
+            )
+            .onboardingTextFormatting(style: .content)
         }
         
-        OnboardingItem(systemName: "macbook.and.iphone",mode: .palette,primary: .primary,secondary: .blue) {
+        OnboardingItem(
+            systemName: "macbook.and.iphone",
+            mode: .palette,
+            primary: .primary,
+            secondary: .blue
+        ) {
             Text("Customize SF Symbols")
                 .onboardingTextFormatting(style: .subtitle)
-            Text("It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish.")
-                .onboardingTextFormatting(style: .content)
+            Text(
+                "It supports multi-colors and hierarchies supported by iOS 15 and macOS 12, so you can customize it as you wish."
+            )
+            .onboardingTextFormatting(style: .content)
         }
     } link: {
-        Link(String("Check our Privacy Policy…"), destination: URL(string: "https://kc-2001ms.github.io/en/privacy.html")!)
+        Link(
+            String("Check our Privacy Policy…"),
+            destination: URL(
+                string: "https://kc-2001ms.github.io/en/privacy.html"
+            )!
+        )
     } button: {
         ContinueButton(color: .accentColor) {
             

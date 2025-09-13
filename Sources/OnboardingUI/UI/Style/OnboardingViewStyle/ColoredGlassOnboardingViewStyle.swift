@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-@available(iOS 26, macOS 26, tvOS 26, visionOS 26, *)
+@available(iOS 26, macOS 26, tvOS 26, *)
+@available(visionOS, unavailable)
 @available(watchOS, unavailable)
 public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
     public func makeBody(configuration: Configuration) -> some View {
@@ -111,14 +112,23 @@ public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
                             .padding(.vertical, 10)
                     }
                     .buttonStyle(.glassProminent)
-                    .padding(.horizontal, 40)
+                    .buttonBorderShape(.capsule)
+                    #if os(iOS)
+                    .padding([.horizontal],40)
+                    #else
+                    .padding([.horizontal, .bottom],40)
+                    #endif
                 }
             }
         }
+#if os(tvOS)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+#endif
     }
 }
 
-@available(iOS 26, macOS 26, tvOS 26, visionOS 26, *)
+@available(iOS 26, macOS 26, tvOS 26, *)
+@available(visionOS, unavailable)
 @available(watchOS, unavailable)
 extension OnboardingViewStyle where Self == ColoredGlassOnboardingViewStyle {
     /// The regular About view style to use with an About view.
@@ -127,10 +137,11 @@ extension OnboardingViewStyle where Self == ColoredGlassOnboardingViewStyle {
     }
 }
 
-
+#if !os(visionOS)
 #Preview {
-    if #available(iOS 26, macOS 26, tvOS 26, visionOS 26, *) {
+    if #available(iOS 26, macOS 26, tvOS 26, *) {
         OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
             .onboardingViewStyle(.coloredGlass)
     }
 }
+#endif

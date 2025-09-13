@@ -158,8 +158,6 @@ public struct OnboardingViewStyleConfiguration: Sendable {
     }
     
     @preconcurrency public struct DismissLabel: View, Sendable {
-        @Environment(\.dismiss) var dismiss
-        
         var text: Text
         
         public init(text: Text) {
