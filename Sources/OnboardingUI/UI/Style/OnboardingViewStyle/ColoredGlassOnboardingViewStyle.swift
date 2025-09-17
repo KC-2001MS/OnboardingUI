@@ -12,7 +12,7 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .center) {
+        NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 30) {
                     configuration.title
@@ -113,11 +113,12 @@ public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
                     }
                     .buttonStyle(.glassProminent)
                     .buttonBorderShape(.capsule)
-                    #if os(iOS)
-                    .padding([.horizontal],40)
-                    #else
-                    .padding([.horizontal, .bottom],40)
-                    #endif
+#if os(iOS)
+  .padding(.horizontal, 40)
+  .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
+  #else
+  .padding([.horizontal, .bottom], 40)
+  #endif
                 }
             }
         }

@@ -113,10 +113,11 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                     .buttonStyle(.glass)
                     .buttonBorderShape(.capsule)
 #if os(iOS)
-.padding([.horizontal],40)
-#else
-.padding([.horizontal, .bottom],40)
-#endif
+  .padding(.horizontal, 40)
+  .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
+  #else
+  .padding([.horizontal, .bottom], 40)
+  #endif
                 }
             }
         }
