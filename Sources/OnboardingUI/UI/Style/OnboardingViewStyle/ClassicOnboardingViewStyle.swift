@@ -38,7 +38,7 @@ public struct ClassicOnboardingViewStyle: OnboardingViewStyle {
                                     .multilineTextAlignment(.center)
                                     .minimumScaleFactor(0.75)
                                     .lineLimit(3)
-                                    .accessibilityLabel(configuration.title.text)
+                                    .accessibilityAddTraits(.isHeader)
                                     .padding(.vertical, geom.size.height / 20)
                             }
                             

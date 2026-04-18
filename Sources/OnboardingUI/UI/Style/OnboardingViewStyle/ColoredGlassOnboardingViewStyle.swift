@@ -18,6 +18,7 @@ public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
                     configuration.title
                         .font(.title2)
                         .fontWeight(.bold)
+                        .accessibilityAddTraits(.isHeader)
                     VStack(alignment: .leading, spacing: 20) {
                         configuration.content { feature in
                             if let image = feature.image {

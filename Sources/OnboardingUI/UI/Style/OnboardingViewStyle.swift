@@ -9,18 +9,18 @@ import SwiftUI
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 @available(watchOS, unavailable)
-@preconcurrency public protocol OnboardingViewStyle {
+public protocol OnboardingViewStyle: Sendable {
     typealias Configuration = OnboardingViewStyleConfiguration
 
     associatedtype Body: View
 
-    @preconcurrency @ViewBuilder func makeBody(configuration: Configuration) -> Body
+    @MainActor @ViewBuilder func makeBody(configuration: Configuration) -> Body
 }
 
 @available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
 @available(watchOS, unavailable)
 struct AnyOnboardingViewStyle: OnboardingViewStyle {
-    private var _makeBody: (Configuration) -> AnyView
+    private var _makeBody: @MainActor @Sendable (Configuration) -> AnyView
     
     init<S: OnboardingViewStyle>(_ style: S) {
         _makeBody = { configuration in
@@ -28,7 +28,7 @@ struct AnyOnboardingViewStyle: OnboardingViewStyle {
         }
     }
     
-    func makeBody(configuration: Configuration) -> some View {
+    @MainActor func makeBody(configuration: Configuration) -> some View {
         _makeBody(configuration)
     }
 }

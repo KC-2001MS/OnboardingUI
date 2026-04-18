@@ -81,6 +81,7 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                         .hoverEffect()
 #endif
                 }
+                .accessibilityLabel(Text("Close", bundle: .module))
                 .frame(width: 30, height: 30)
                 .buttonStyle(.borderless)
                 .padding(10)

@@ -55,7 +55,7 @@ public struct ContinueButton: View {
 #if !os(tvOS)
         .buttonStyle(ColorButtonStyle(foregroundColor: foregroundColor, backgroundColor: backgroundColor))
 #endif
-        .accessibilityInputLabels(["Continue","Start","Close"])
+        .accessibilityInputLabels([Text("Continue", bundle: .module), Text("Start", bundle: .module), Text("Close", bundle: .module)])
     }
 }
 

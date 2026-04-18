@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "After major update" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -12,6 +13,7 @@
       }
     },
     "After minor update" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -22,6 +24,7 @@
       }
     },
     "AppVersionManager environment variables and customizable views" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -92,6 +95,7 @@
       }
     },
     "Initialization" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -279,6 +283,7 @@
       }
     },
     "This one is implemented with a customizable View and environment variables" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {

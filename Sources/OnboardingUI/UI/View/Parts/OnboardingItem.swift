@@ -110,8 +110,8 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     public init(
         image: () -> Image,
         mode: SymbolRenderingMode? = .palette,
-        primary: S = Color.accentColor,
-        secondary: S = Color.accentColor,
+        primary: S,
+        secondary: S,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
@@ -132,9 +132,9 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     public init(
         image: () -> Image,
         mode: SymbolRenderingMode? = .palette,
-        primary: S = Color.accentColor,
-        tertiary: S = Color.accentColor,
-        secondary: S = Color.accentColor,
+        primary: S,
+        tertiary: S,
+        secondary: S,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
@@ -190,8 +190,8 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     public init(
         systemName: String,
         mode: SymbolRenderingMode? = .palette,
-        primary: S = Color.accentColor,
-        secondary: S = Color.accentColor,
+        primary: S,
+        secondary: S,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
@@ -212,9 +212,9 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     public init(
         systemName: String,
         mode: SymbolRenderingMode? = .palette,
-        primary: S = Color.accentColor,
-        secondary: S = Color.accentColor,
-        tertiary: S = Color.accentColor,
+        primary: S,
+        secondary: S,
+        tertiary: S,
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
@@ -332,6 +332,70 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
                 .opacity(0.3)
 #endif
         }
+    }
+}
+
+// MARK: - Convenience initializers with default Color.accentColor
+@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(watchOS, unavailable)
+extension OnboardingItem where S == Color {
+    /// Creates an onboarding item with a custom image and default accent color for primary and secondary shapes.
+    public init(
+        image: () -> Image,
+        mode: SymbolRenderingMode? = .palette,
+        primary: Color = .accentColor,
+        secondary: Color = .accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = mode
+        self.shape = [primary, secondary]
+        self.shapeSize = .secondary
+    }
+    /// Creates an onboarding item with a custom image and default accent color for primary, secondary, and tertiary shapes.
+    public init(
+        image: () -> Image,
+        mode: SymbolRenderingMode? = .palette,
+        primary: Color = .accentColor,
+        tertiary: Color = .accentColor,
+        secondary: Color = .accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = image()
+        self.mode = mode
+        self.shape = [primary, secondary, tertiary]
+        self.shapeSize = .tertiary
+    }
+    /// Creates an onboarding item with a system image and default accent color for primary and secondary shapes.
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .palette,
+        primary: Color = .accentColor,
+        secondary: Color = .accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = Image(systemName: systemName)
+        self.mode = mode
+        self.shape = [primary, secondary]
+        self.shapeSize = .secondary
+    }
+    /// Creates an onboarding item with a system image and default accent color for primary, secondary, and tertiary shapes.
+    public init(
+        systemName: String,
+        mode: SymbolRenderingMode? = .palette,
+        primary: Color = .accentColor,
+        secondary: Color = .accentColor,
+        tertiary: Color = .accentColor,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.content = content()
+        self.image = Image(systemName: systemName)
+        self.mode = mode
+        self.shape = [primary, secondary, tertiary]
+        self.shapeSize = .tertiary
     }
 }
 

@@ -65,19 +65,11 @@ public class AppVersionManager {
         self.lastOpenedVersion = userDefaults.string(forKey: "LastOpenedVersion") ?? ""
     }
 }
-/// AppVersionManager environment key
-/// The environment key for the AppVersionManager.
-@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
-public struct AppVersionManagerKey: EnvironmentKey {
-    public static var defaultValue = AppVersionManager()
-}
 /// AppVersionManager environment values
+@available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)
 public extension EnvironmentValues {
     /// Accessor for the AppVersionManager value in EnvironmentValues.
-    var appVersionManager: AppVersionManager {
-        get { self[AppVersionManagerKey.self] }
-        set { self[AppVersionManagerKey.self] = newValue }
-    }
+    @Entry var appVersionManager: AppVersionManager = AppVersionManager()
 }
 /// Function to split the version number dot by dot
 @available(iOS 17.0,macOS 14.0,watchOS 10.0,tvOS 17.0,visionOS 1.0,*)

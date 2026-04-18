@@ -38,7 +38,7 @@ public extension Text {
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
-                    .accessibilityLabel(self)
+                    .accessibilityAddTraits(.isHeader)
             case .subtitle:
                 self
 #if os(macOS)
@@ -52,7 +52,7 @@ public extension Text {
                     .bold()
                     .minimumScaleFactor(0.75)
                     .lineLimit(3)
-                    .accessibilityLabel(self)
+                    .accessibilityAddTraits(.isHeader)
             case .content:
                 self
 #if os(macOS)
@@ -66,7 +66,6 @@ public extension Text {
                     .foregroundColor(.secondary)
                     .minimumScaleFactor(0.75)
                     .lineLimit(7)
-                    .accessibilityLabel(self)
             }
         }
     }
