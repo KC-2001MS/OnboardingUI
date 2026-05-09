@@ -12,7 +12,7 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct ColoredGlassOnboardingViewStyle: OnboardingViewStyle {
     public func makeBody(configuration: Configuration) -> some View {
-        NavigationStack {
+        VStack(alignment: .center) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 30) {
                     configuration.title
