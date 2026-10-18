@@ -23,7 +23,7 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                             if let image = feature.image {
                                 Group {
                                     if configuration.dynamicTypeSize <= .xxxLarge {
-                                        HStack(alignment: .top,spacing: 20) {
+                                        HStack(alignment: .top, spacing: 20) {
                                             image
                                                 .resizable()
                                                 .scaledToFit()
@@ -36,7 +36,7 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                                                     height: 37.5
                                                 )
                                                 .accessibilityHidden(true)
-                                            
+
                                             VStack(
                                                 alignment: .leading,
                                                 spacing: 2.5
@@ -63,13 +63,13 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                                                     height: 37.5
                                                 )
                                                 .accessibilityHidden(true)
-                                            
+
                                             VStack(
                                                 alignment: .leading,
                                                 spacing: 5
                                             ) {
                                                 if let message = feature.message {
-                                                        feature.title
+                                                    feature.title
                                                         .onboardingTextFormatting(style: .subtitle)
                                                     message
                                                         .onboardingTextFormatting(style: .content)
@@ -78,16 +78,16 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                                         }
                                     }
                                 }
-#if os(tvOS)
-                                .focusable()
-#endif
+                                #if os(tvOS)
+                                    .focusable()
+                                #endif
                             }
                         }
                     }
-                    
+
                     if configuration.dynamicTypeSize > .xxxLarge {
                         configuration.footer
-                        
+
                         DismissButton {
                             configuration.dismissLabel
                                 .frame(maxWidth: .infinity)
@@ -98,14 +98,14 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding([.horizontal, .bottom],40)
+                .padding([.horizontal, .bottom], 40)
                 .padding(.top, 80)
             }
-            
+
             if configuration.dynamicTypeSize <= .xxxLarge {
                 VStack(alignment: .center, spacing: 25) {
                     configuration.footer
-                    
+
                     DismissButton {
                         configuration.dismissLabel
                             .frame(maxWidth: .infinity)
@@ -113,18 +113,18 @@ public struct BasicOnboardingViewStyle: OnboardingViewStyle {
                     }
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
-#if os(iOS)
-  .padding(.horizontal, 40)
-  .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
-  #else
-  .padding([.horizontal, .bottom], 40)
-  #endif
+                    #if os(iOS)
+                        .padding(.horizontal, 40)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
+                    #else
+                        .padding([.horizontal, .bottom], 40)
+                    #endif
                 }
             }
         }
-#if os(tvOS)
-.frame(width: 1500, height: 1000)
-#endif
+        #if os(tvOS)
+            .frame(width: 1500, height: 1000)
+        #endif
     }
 }
 
@@ -136,7 +136,6 @@ extension OnboardingViewStyle where Self == BasicOnboardingViewStyle {
         return BasicOnboardingViewStyle()
     }
 }
-
 
 #Preview {
     if #available(iOS 18, macOS 15, tvOS 18, visionOS 2, *) {

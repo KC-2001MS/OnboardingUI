@@ -1,5 +1,5 @@
-import SwiftUI
 import OnboardingUI
+import SwiftUI
 
 struct WelcomeOnboarding: Onboarding {
     var title: Text {

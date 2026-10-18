@@ -24,7 +24,7 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                             if let image = feature.image {
                                 Group {
                                     if configuration.dynamicTypeSize <= .xxxLarge {
-                                        HStack(alignment: .top,spacing: 20) {
+                                        HStack(alignment: .top, spacing: 20) {
                                             image
                                                 .resizable()
                                                 .scaledToFit()
@@ -37,13 +37,13 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                                                     height: 37.5
                                                 )
                                                 .accessibilityHidden(true)
-                                            
+
                                             VStack(
                                                 alignment: .leading,
                                                 spacing: 2.5
                                             ) {
                                                 if let message = feature.message {
-                                                        feature.title
+                                                    feature.title
                                                         .onboardingTextFormatting(style: .subtitle)
                                                     message
                                                         .onboardingTextFormatting(style: .content)
@@ -64,13 +64,13 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                                                     height: 37.5
                                                 )
                                                 .accessibilityHidden(true)
-                                            
+
                                             VStack(
                                                 alignment: .leading,
                                                 spacing: 5
                                             ) {
                                                 if let message = feature.message {
-                                                        feature.title
+                                                    feature.title
                                                         .onboardingTextFormatting(style: .subtitle)
                                                     message
                                                         .onboardingTextFormatting(style: .content)
@@ -79,13 +79,13 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                                         }
                                     }
                                 }
-#if os(tvOS)
-                                .focusable()
-#endif
+                                #if os(tvOS)
+                                    .focusable()
+                                #endif
                             }
                         }
                     }
-                    
+
                     if configuration.dynamicTypeSize > .xxxLarge {
                         configuration.footer
                         DismissButton {
@@ -98,14 +98,14 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding([.horizontal, .bottom],40)
+                .padding([.horizontal, .bottom], 40)
                 .padding(.top, 80)
             }
-            
+
             if configuration.dynamicTypeSize <= .xxxLarge {
                 VStack(alignment: .center, spacing: 25) {
                     configuration.footer
-                    
+
                     DismissButton {
                         configuration.dismissLabel
                             .frame(maxWidth: .infinity)
@@ -113,18 +113,18 @@ public struct GlassOnboardingViewStyle: OnboardingViewStyle {
                     }
                     .buttonStyle(.glass)
                     .buttonBorderShape(.capsule)
-#if os(iOS)
-  .padding(.horizontal, 40)
-  .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
-  #else
-  .padding([.horizontal, .bottom], 40)
-  #endif
+                    #if os(iOS)
+                        .padding(.horizontal, 40)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .pad ? 40 : 0)
+                    #else
+                        .padding([.horizontal, .bottom], 40)
+                    #endif
                 }
             }
         }
-#if os(tvOS)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-#endif
+        #if os(tvOS)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        #endif
     }
 }
 
@@ -138,12 +138,11 @@ extension OnboardingViewStyle where Self == GlassOnboardingViewStyle {
     }
 }
 
-
 #if !os(visionOS)
-#Preview {
-    if #available(iOS 26, macOS 26, tvOS 26, *) {
-        OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
-            .onboardingViewStyle(.glass)
+    #Preview {
+        if #available(iOS 26, macOS 26, tvOS 26, *) {
+            OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
+                .onboardingViewStyle(.glass)
+        }
     }
-}
 #endif

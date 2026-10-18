@@ -12,13 +12,13 @@ import SwiftUI
 public struct AutomaticOnboardingViewStyle: OnboardingViewStyle {
     public func makeBody(configuration: Configuration) -> some View {
         #if os(visionOS)
-        ClassicOnboardingViewStyle().makeBody(configuration: configuration)
-        #else
-        if #available(iOS 26, macOS 26, tvOS 26, *) {
-            ColoredGlassOnboardingViewStyle().makeBody(configuration: configuration)
-        } else {
             ClassicOnboardingViewStyle().makeBody(configuration: configuration)
-        }
+        #else
+            if #available(iOS 26, macOS 26, tvOS 26, *) {
+                ColoredGlassOnboardingViewStyle().makeBody(configuration: configuration)
+            } else {
+                ClassicOnboardingViewStyle().makeBody(configuration: configuration)
+            }
         #endif
     }
 }
@@ -32,9 +32,7 @@ extension OnboardingViewStyle where Self == AutomaticOnboardingViewStyle {
     }
 }
 
-
 #Preview {
-        OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
-            .onboardingViewStyle(.automatic)
+    OnboardingView(onboarding: PreviewWhatIsNewOnboarding())
+        .onboardingViewStyle(.automatic)
 }
-

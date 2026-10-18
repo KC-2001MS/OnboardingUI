@@ -1,12 +1,12 @@
-import SwiftUI
 import OnboardingUI
+import SwiftUI
 
 struct WelcomeOnboarding: Onboarding {
     var title: Text {
         Text("Welcome to\nOnboardingUI")
     }
-    
-    var features: Array<Feature> {
-        
+
+    var features: [Feature] {
+
     }
 }

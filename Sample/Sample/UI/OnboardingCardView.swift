@@ -5,14 +5,12 @@
 //  Created by Keisuke Chinone on 2023/12/10.
 //
 
-
-import SwiftUI
 import OnboardingUI
+import SwiftUI
 
 struct NewFeatureOnboardingCardView: View {
     @State private var isOpeningOnboarding = true
-    
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -26,10 +24,10 @@ struct NewFeatureOnboardingCardView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .padding()
                     .focusable()
-                
+
                 OnboardingCardView(isPresented: $isOpeningOnboarding, onboarding: WhatIsNewOnboarding())
                     .padding()
-                
+
                 Text("Some Contents \(2)")
                     .font(.title)
                     .bold()

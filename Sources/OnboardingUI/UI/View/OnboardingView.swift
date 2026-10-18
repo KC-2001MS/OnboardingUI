@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public struct OnboardingView<O: Onboarding>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    
+
     @Environment(
         \.onboardingViewStyle
     ) private var onboardingViewStyle: AnyOnboardingViewStyle
-    
+
     var onboarding: O
-    
+
     init(onboarding: O) {
         self.onboarding = onboarding
     }
-    
+
     public var body: some View {
         onboardingViewStyle
             .makeBody(

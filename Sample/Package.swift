@@ -3,4 +3,4 @@
 
 import PackageDescription
 
-let package =　Package(name: "Sample")
+let package = Package(name: "Sample")

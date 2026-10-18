@@ -8,11 +8,11 @@
 import Foundation
 
 /// Result builder that allows you to freely build Feature structures
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @resultBuilder
 public struct FeatureBuilder {
     /// Required in resultBuilder
-    public static func buildBlock(_ parts: Feature...) -> Array<Feature> {
+    public static func buildBlock(_ parts: Feature...) -> [Feature] {
         parts
     }
     /// Enable if
@@ -32,7 +32,7 @@ public struct FeatureBuilder {
         parts.first?.first ?? Feature()
     }
     /// Enable #if
-    public static func buildLimitedAvailability(_ parts: [Feature]) -> Array<Feature> {
+    public static func buildLimitedAvailability(_ parts: [Feature]) -> [Feature] {
         parts
     }
 }

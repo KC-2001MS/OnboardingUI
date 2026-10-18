@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Continue button
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public struct ContinueButton: View {
     /// Foreground Color
@@ -19,7 +19,7 @@ public struct ContinueButton: View {
     let action: () -> Void
     /// Initializer to create default style buttons
     /// - Parameter action: Button Action
-    public init(action: @escaping () -> Void){
+    public init(action: @escaping () -> Void) {
         self.foregroundColor = .white
         self.backgroundColor = .accentColor
         self.action = action
@@ -28,7 +28,7 @@ public struct ContinueButton: View {
     /// - Parameters:
     ///   - color: Background Color
     ///   - action: Button Action
-    public init(color: Color,action: @escaping () -> Void) {
+    public init(color: Color, action: @escaping () -> Void) {
         self.foregroundColor = .white
         self.backgroundColor = color
         self.action = action
@@ -52,15 +52,17 @@ public struct ContinueButton: View {
         Button(action: action) {
             Text("Continue", bundle: .module)
         }
-#if !os(tvOS)
-        .buttonStyle(ColorButtonStyle(foregroundColor: foregroundColor, backgroundColor: backgroundColor))
-#endif
-        .accessibilityInputLabels([Text("Continue", bundle: .module), Text("Start", bundle: .module), Text("Close", bundle: .module)])
+        #if !os(tvOS)
+            .buttonStyle(ColorButtonStyle(foregroundColor: foregroundColor, backgroundColor: backgroundColor))
+        #endif
+        .accessibilityInputLabels([
+            Text("Continue", bundle: .module), Text("Start", bundle: .module), Text("Close", bundle: .module),
+        ])
     }
 }
 
 #Preview("Onboarding Button") {
     ContinueButton(color: .accentColor) {
-        
+
     }
 }

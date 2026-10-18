@@ -21,9 +21,9 @@ import SwiftUI
 /// - Parameters:
 ///   - Content: The type of the content view.
 ///   - S: The type of the shape style.
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
-public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
+public struct OnboardingItem<Content: View, S: ShapeStyle>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     /// The content view of the onboarding item.
     var content: Content
@@ -32,7 +32,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
     /// The rendering mode for the symbol in the onboarding item.
     var mode: SymbolRenderingMode?
     /// An array of shape styles to be applied to the onboarding item.
-    var shape: Array<S> = []
+    var shape: [S] = []
     /// The size options for the shape in the onboarding item.
     private var shapeSize: ShapeSize
     /// Options for the size of the shape in the onboarding item.
@@ -42,30 +42,30 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
         case secondary
         case tertiary
     }
-    
+
     private var iconEdge: EdgeInsets {
-#if os(visionOS)
-        EdgeInsets(
-            top: CGFloat(10),
-            leading: CGFloat(0),
-            bottom: CGFloat(10),
-            trailing: CGFloat(18.75)
-        )
-#elseif os(tvOS)
-        EdgeInsets(
-            top: CGFloat(10),
-            leading: CGFloat(0),
-            bottom: CGFloat(10),
-            trailing: CGFloat(50)
-        )
-#else
-        EdgeInsets(
-            top: CGFloat(10),
-            leading: CGFloat(8.75),
-            bottom: CGFloat(10),
-            trailing: CGFloat(8.75)
-        )
-#endif
+        #if os(visionOS)
+            EdgeInsets(
+                top: CGFloat(10),
+                leading: CGFloat(0),
+                bottom: CGFloat(10),
+                trailing: CGFloat(18.75)
+            )
+        #elseif os(tvOS)
+            EdgeInsets(
+                top: CGFloat(10),
+                leading: CGFloat(0),
+                bottom: CGFloat(10),
+                trailing: CGFloat(50)
+            )
+        #else
+            EdgeInsets(
+                top: CGFloat(10),
+                leading: CGFloat(8.75),
+                bottom: CGFloat(10),
+                trailing: CGFloat(8.75)
+            )
+        #endif
     }
     /// Creates an onboarding item with a custom image and content.
     ///
@@ -229,7 +229,7 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             if dynamicTypeSize <= .xxxLarge {
                 HStack(spacing: 5) {
                     imageView
-                    
+
                     VStack(alignment: .leading, spacing: 2.5) {
                         content
                     }
@@ -237,21 +237,21 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             } else {
                 VStack(alignment: .leading) {
                     imageView
-                    
+
                     VStack(alignment: .leading, spacing: 5) {
                         content
                     }
                 }
             }
         }
-#if !os(macOS) || !os(tvOS)
-        .padding(.horizontal, 40)
-#endif
-#if os(tvOS)
-        .frame(maxWidth: .infinity,alignment: .leading)
-#endif
+        #if !os(macOS) || !os(tvOS)
+            .padding(.horizontal, 40)
+        #endif
+        #if os(tvOS)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        #endif
     }
-    
+
     @ViewBuilder
     private var imageView: some View {
         switch shapeSize {
@@ -259,84 +259,84 @@ public struct OnboardingItem<Content: View,S: ShapeStyle>: View {
             image
                 .resizable()
                 .scaledToFit()
-#if !os(tvOS)
-                .font(.largeTitle)
-                .frame(width: 37.5, height: 37.5)
-#else
-                .font(.system(size: 80))
-                .frame(width: 100, height: 100)
-#endif
+                #if !os(tvOS)
+                    .font(.largeTitle)
+                    .frame(width: 37.5, height: 37.5)
+                #else
+                    .font(.system(size: 80))
+                    .frame(width: 100, height: 100)
+                #endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
                 .foregroundStyle(Color.accentColor)
-#if os(visionOS)
-                .brightness(0.5)
-                .opacity(0.3)
-#endif
+                #if os(visionOS)
+                    .brightness(0.5)
+                    .opacity(0.3)
+                #endif
         case .primary:
             image
                 .resizable()
                 .scaledToFit()
-#if !os(tvOS)
-                .font(.largeTitle)
-                .frame(width: 37.5, height: 37.5)
-#else
-                .font(.system(size: 80))
-                .frame(width: 100, height: 100)
-#endif
+                #if !os(tvOS)
+                    .font(.largeTitle)
+                    .frame(width: 37.5, height: 37.5)
+                #else
+                    .font(.system(size: 80))
+                    .frame(width: 100, height: 100)
+                #endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
                 .foregroundStyle(shape[0])
-#if os(visionOS)
-                .brightness(0.75)
-                .opacity(0.3)
-#endif
+                #if os(visionOS)
+                    .brightness(0.75)
+                    .opacity(0.3)
+                #endif
         case .secondary:
             image
                 .resizable()
                 .scaledToFit()
-#if !os(tvOS)
-                .font(.largeTitle)
-                .frame(width: 37.5, height: 37.5)
-#else
-                .font(.system(size: 80))
-                .frame(width: 100, height: 100)
-#endif
+                #if !os(tvOS)
+                    .font(.largeTitle)
+                    .frame(width: 37.5, height: 37.5)
+                #else
+                    .font(.system(size: 80))
+                    .frame(width: 100, height: 100)
+                #endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
-                .foregroundStyle(shape[0],shape[1])
-#if os(visionOS)
-                .brightness(0.75)
-                .opacity(0.3)
-#endif
+                .foregroundStyle(shape[0], shape[1])
+                #if os(visionOS)
+                    .brightness(0.75)
+                    .opacity(0.3)
+                #endif
         case .tertiary:
             image
                 .resizable()
                 .scaledToFit()
-#if !os(tvOS)
-                .font(.largeTitle)
-                .frame(width: 37.5, height: 37.5)
-#else
-                .font(.system(size: 80))
-                .frame(width: 100, height: 100)
-#endif
+                #if !os(tvOS)
+                    .font(.largeTitle)
+                    .frame(width: 37.5, height: 37.5)
+                #else
+                    .font(.system(size: 80))
+                    .frame(width: 100, height: 100)
+                #endif
                 .padding(iconEdge)
                 .accessibilityHidden(true)
                 .symbolRenderingMode(mode)
-                .foregroundStyle(shape[0],shape[1],shape[2])
-#if os(visionOS)
-                .brightness(0.75)
-                .opacity(0.3)
-#endif
+                .foregroundStyle(shape[0], shape[1], shape[2])
+                #if os(visionOS)
+                    .brightness(0.75)
+                    .opacity(0.3)
+                #endif
         }
     }
 }
 
 // MARK: - Convenience initializers with default Color.accentColor
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 extension OnboardingItem where S == Color {
     /// Creates an onboarding item with a custom image and default accent color for primary and secondary shapes.
@@ -401,34 +401,50 @@ extension OnboardingItem where S == Color {
 
 #Preview("Onboarding Item") {
     ScrollView {
-        OnboardingItem(systemName: "doc",mode: .palette,primary: .red,secondary: .blue) {
+        OnboardingItem(systemName: "doc", mode: .palette, primary: .red, secondary: .blue) {
             Text(String("Sample Subtitle \(1)"))
                 .onboardingTextFormatting(style: .subtitle)
-            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
-                .onboardingTextFormatting(style: .content)
+            Text(
+                String(
+                    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."
+                )
+            )
+            .onboardingTextFormatting(style: .content)
         }
-        
-        OnboardingItem(systemName: "doc.fill",shape: .red) {
+
+        OnboardingItem(systemName: "doc.fill", shape: .red) {
             Text(String("Sample Subtitle \(2)"))
                 .onboardingTextFormatting(style: .subtitle)
-            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
-                .onboardingTextFormatting(style: .content)
+            Text(
+                String(
+                    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."
+                )
+            )
+            .onboardingTextFormatting(style: .content)
         }
-        
+
         OnboardingItem(systemName: "arrow.down.doc") {
             Text(String("Sample Subtitle \(3)"))
                 .onboardingTextFormatting(style: .subtitle)
-            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
-                .onboardingTextFormatting(style: .content)
+            Text(
+                String(
+                    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."
+                )
+            )
+            .onboardingTextFormatting(style: .content)
         }
-        
+
         OnboardingItem {
             Image(systemName: "arrow.up.doc")
         } content: {
             Text(String("Sample Subtitle \(4)"))
                 .onboardingTextFormatting(style: .subtitle)
-            Text(String("This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."))
-                .onboardingTextFormatting(style: .content)
+            Text(
+                String(
+                    "This is a sample text. This text will allow you to see how it will appear in this framework. See the preview."
+                )
+            )
+            .onboardingTextFormatting(style: .content)
         }
     }
 }

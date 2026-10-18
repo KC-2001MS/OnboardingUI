@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public protocol OnboardingViewStyle: Sendable {
     typealias Configuration = OnboardingViewStyleConfiguration
@@ -17,41 +17,41 @@ public protocol OnboardingViewStyle: Sendable {
     @MainActor @ViewBuilder func makeBody(configuration: Configuration) -> Body
 }
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 struct AnyOnboardingViewStyle: OnboardingViewStyle {
     private var _makeBody: @MainActor @Sendable (Configuration) -> AnyView
-    
+
     init<S: OnboardingViewStyle>(_ style: S) {
         _makeBody = { configuration in
             AnyView(style.makeBody(configuration: configuration))
         }
     }
-    
+
     @MainActor func makeBody(configuration: Configuration) -> some View {
         _makeBody(configuration)
     }
 }
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public struct OnboardingViewStyleConfiguration: Sendable {
-    
+
     var dynamicTypeSize: DynamicTypeSize
 
     var title: Title
-    
+
     var content: Content
-    
+
     var footer: Footer
-    
+
     var dismissLabel: DismissLabel
-    
+
     init(
         dynamicTypeSize: DynamicTypeSize,
         title: Title,
         content: Content,
-        footer: Footer ,
+        footer: Footer,
         dismissLabel: DismissLabel
     ) {
         self.dynamicTypeSize = dynamicTypeSize
@@ -60,14 +60,14 @@ public struct OnboardingViewStyleConfiguration: Sendable {
         self.footer = footer
         self.dismissLabel = dismissLabel
     }
-    
+
     struct Title: View, Sendable {
         var text: Text
-        
+
         init(_ title: Text) {
             self.text = title
         }
-        
+
         var body: some View {
             text
         }
@@ -76,19 +76,19 @@ public struct OnboardingViewStyleConfiguration: Sendable {
     @preconcurrency
     public struct Content: View, Sendable {
         private let items: [Feature]
-        
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         public init(_ items: [Feature]) {
             self.items = items
         }
-        
+
         public var body: some View {
             ForEach(items) { feature in
                 if let image = feature.image {
                     Group {
                         if dynamicTypeSize <= .xxxLarge {
-                            HStack(alignment: .top,spacing: 20) {
+                            HStack(alignment: .top, spacing: 20) {
                                 image
                                     .resizable()
                                     .scaledToFit()
@@ -96,7 +96,7 @@ public struct OnboardingViewStyleConfiguration: Sendable {
                                     .foregroundStyle(Color.accentColor)
                                     .frame(width: 37.5, height: 37.5)
                                     .accessibilityHidden(true)
-                                
+
                                 VStack(alignment: .leading, spacing: 2.5) {
                                     if let message = feature.message {
                                         feature.title
@@ -115,7 +115,7 @@ public struct OnboardingViewStyleConfiguration: Sendable {
                                     .foregroundStyle(Color.accentColor)
                                     .frame(width: 37.5, height: 37.5)
                                     .accessibilityHidden(true)
-                                
+
                                 VStack(alignment: .leading, spacing: 5) {
                                     if let message = feature.message {
                                         feature.title
@@ -127,9 +127,9 @@ public struct OnboardingViewStyleConfiguration: Sendable {
                             }
                         }
                     }
-#if os(tvOS)
-                    .focusable()
-#endif
+                    #if os(tvOS)
+                        .focusable()
+                    #endif
                 }
             }
         }
@@ -143,30 +143,29 @@ public struct OnboardingViewStyleConfiguration: Sendable {
             }
         }
     }
-    
+
     @preconcurrency
     public struct Footer: View, Sendable {
         var content: AnyView
-        
+
         init<V: View>(@ViewBuilder content: () -> V) {
             self.content = AnyView(content())
         }
-        
+
         public var body: some View {
             content
         }
     }
-    
+
     @preconcurrency public struct DismissLabel: View, Sendable {
         var text: Text
-        
+
         public init(text: Text) {
             self.text = text
         }
-        
+
         public var body: some View {
             text
         }
     }
 }
-

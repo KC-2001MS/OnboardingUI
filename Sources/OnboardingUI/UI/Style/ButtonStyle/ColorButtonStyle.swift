@@ -1,14 +1,14 @@
 //
 //  ColorButtonStyle.swift
-//  
-//  
+//
+//
 //  Created by Keisuke Chinone on 2023/12/13.
 //
 
 import SwiftUI
 
 /// Modifier to build the look and feel of buttons that continue to be used in onboarding
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public struct ColorButtonStyle: ButtonStyle {
     /// Foreground Color
@@ -24,7 +24,7 @@ public struct ColorButtonStyle: ButtonStyle {
     /// - Parameters:
     ///   - foregroundColor: Foreground Color
     ///   - backgroundColor: Background Color
-    public init(foregroundColor: Color,backgroundColor: Color) {
+    public init(foregroundColor: Color, backgroundColor: Color) {
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
     }
@@ -33,23 +33,23 @@ public struct ColorButtonStyle: ButtonStyle {
         configuration.label
             .lineLimit(1)
             .bold()
-#if os(macOS)
-            .frame(minWidth: 0, maxWidth: 170)
-            .padding([.top, .bottom], 7.5)
-            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 7))
-#elseif os(visionOS)
-            .frame(minWidth: 0, maxWidth: 275)
-            .padding([.top, .bottom], 15)
-            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 35))
-#else
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding([.top, .bottom], 15)
-            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 15))
-#endif
+            #if os(macOS)
+                .frame(minWidth: 0, maxWidth: 170)
+                .padding([.top, .bottom], 7.5)
+                .background(backgroundColor, in: RoundedRectangle(cornerRadius: 7))
+            #elseif os(visionOS)
+                .frame(minWidth: 0, maxWidth: 275)
+                .padding([.top, .bottom], 15)
+                .background(backgroundColor, in: RoundedRectangle(cornerRadius: 35))
+            #else
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .padding([.top, .bottom], 15)
+                .background(backgroundColor, in: RoundedRectangle(cornerRadius: 15))
+            #endif
             .foregroundColor(foregroundColor)
-#if !os(macOS)
-            .hoverEffect()
-#endif
+            #if !os(macOS)
+                .hoverEffect()
+            #endif
             .buttonStyle(.borderless)
             .padding(.horizontal, 40)
     }
@@ -57,7 +57,7 @@ public struct ColorButtonStyle: ButtonStyle {
 
 #Preview {
     Button(action: {
-        
+
     }) {
         Text(String("Sample ColorButtonStyle"))
     }

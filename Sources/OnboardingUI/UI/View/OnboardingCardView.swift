@@ -1,19 +1,19 @@
 //
 //  OnboardingView.swift
 //
-//  
+//
 //  Created by Keisuke Chinone on 2023/12/13.
 //
 
 import SwiftUI
 
-@available(iOS 17.0,macOS 14.0,tvOS 17.0,visionOS 1.0,*)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, visionOS 1.0, *)
 @available(watchOS, unavailable)
 public struct OnboardingCardView<V1: View, V2: View>: View {
     @Binding var isPresented: Bool
     var title: V1
     var content: V2
-    
+
     // Initialize with @ViewBuilder
     public init(
         isPresented: Binding<Bool>,
@@ -32,20 +32,21 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
         self._isPresented = isPresented
         self.title = AnyView(onboarding.title.onboardingTextFormatting(style: .title))
         self.content =
-        AnyView(ForEach(onboarding.features) { feature in
-            if let image = feature.image {
-                OnboardingItem {
-                    image
-                } content: {
-                    if let message = feature.message {
-                        feature.title
-                            .onboardingTextFormatting(style: .subtitle)
-                        message
-                            .onboardingTextFormatting(style: .content)
+            AnyView(
+                ForEach(onboarding.features) { feature in
+                    if let image = feature.image {
+                        OnboardingItem {
+                            image
+                        } content: {
+                            if let message = feature.message {
+                                feature.title
+                                    .onboardingTextFormatting(style: .subtitle)
+                                message
+                                    .onboardingTextFormatting(style: .content)
+                            }
+                        }
                     }
-                }
-            }
-        })
+                })
     }
     /// View
     public var body: some View {
@@ -53,7 +54,7 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
             VStack {
                 title
                     .padding(.bottom, 30)
-                
+
                 VStack(alignment: .leading, spacing: 35) {
                     content
                 }
@@ -70,16 +71,16 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
                     Image(systemName: "multiply")
                         .font(.system(size: 20))
                         .frame(width: 30, height: 30)
-#if os(visionOS)
-                        .foregroundStyle(.white)
-                        .background(.ultraThinMaterial, in: Circle())
-#else
-                        .foregroundStyle(.gray)
-                        .background(.gray.opacity(0.15), in: Circle())
-#endif
-#if !os(macOS)
-                        .hoverEffect()
-#endif
+                        #if os(visionOS)
+                            .foregroundStyle(.white)
+                            .background(.ultraThinMaterial, in: Circle())
+                        #else
+                            .foregroundStyle(.gray)
+                            .background(.gray.opacity(0.15), in: Circle())
+                        #endif
+                        #if !os(macOS)
+                            .hoverEffect()
+                        #endif
                 }
                 .accessibilityLabel(Text("Close", bundle: .module))
                 .frame(width: 30, height: 30)
@@ -94,7 +95,7 @@ public struct OnboardingCardView<V1: View, V2: View>: View {
 
 #Preview {
     @Previewable @State var isPresented = true
-    
+
     ScrollView {
         OnboardingCardView(isPresented: $isPresented, onboarding: PreviewWhatIsNewOnboarding())
             .padding()
